@@ -316,7 +316,7 @@ const App = () => {
                     <img
                       src={profileImageSrc}
                       alt="Teacher Nicole"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-top"
                       onError={() => setImageError(true)}
                     />
                   ) : (
