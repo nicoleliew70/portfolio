@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { GraduationCap, Smile, Check, Coffee } from 'lucide-react';
 import useScrollReveal from '../hooks/useScrollReveal';
+import teacherNicoleImg from '../assets/teacher-nicole.jpg';
 
 const AboutSection = ({ currentText }) => {
   const [imageError, setImageError] = useState(false);
-  const profileImageSrc = import.meta.env.BASE_URL + "images/teacher-nicole.jpg";
+  const profileImageSrc = teacherNicoleImg;
   const { ref, isVisible } = useScrollReveal();
 
   return (
