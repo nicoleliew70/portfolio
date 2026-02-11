@@ -84,47 +84,47 @@ const App = () => {
     zh: {
       nav: { about: "关于我", classes: "课程", arcade: "游戏区", pricing: "价格", book: "预约试课" },
       hero: {
-        badge: "🎓 CELT 认证资深导师",
-        title: "让英语学习变得",
-        titleHighlight: "有趣且合乎逻辑",
-        desc: "从儿童绘本故事到青少年的“语法数学”。加入 Nicole 老师的课堂，掌握学校考试和生活所需的英语技能。",
+        badge: "🎓 CELT 认证 · 经验丰富的英语导师",
+        title: "让学英语变得",
+        titleHighlight: "好玩又有逻辑",
+        desc: "从小朋友的故事教学，到中学生的\"语法数学\"。跟着 Nicole 老师一起，轻松掌握学校、考试和日常生活中的英语！",
         cta: "开始学习",
         view: "查看课程"
       },
-      stats: { exp: "教学经验", spm: "SPM 佳绩", cert: "专业认证", students: "名学生" },
+      stats: { exp: "教学经验", spm: "SPM 最佳成绩", cert: "专业认证", students: "位学生" },
       about: {
         title: "你好！我是 Nicole Liew。",
-        p1: "自2017年以来，我一直是一名专注的英语老师。我的热情是消除大家对英语的恐惧，让每个人都能轻松掌握。",
-        funFact: "趣闻：",
-        funFactText: "在成为全职教育者之前，我是一名认证糕点师！🍰 就像烘焙需要精准的配方一样，语言学习也需要结构（语法）与创意（故事）的结合。",
-        specialty: "使用数学逻辑简化复杂的语法。",
-        focus: "SPM, IGCSE, 剑桥英语 & 成人英语。"
+        p1: "从2017年开始，我就一直在教英语。我最大的热情就是让英语不再\"可怕\"，让每个人都能轻松学会。",
+        funFact: "小知识：",
+        funFactText: "在成为全职老师之前，我其实是一名持证的糕点师！🍰 就像做蛋糕需要配方一样，学语言也需要结构（语法）加上创意（表达）。",
+        specialty: "用数学逻辑来简化语法，让你一看就懂。",
+        focus: "SPM、IGCSE、剑桥英语和成人英语。"
       },
       arcade: {
         title: "英语游戏区",
-        subtitle: "边玩，边学，边创造！",
+        subtitle: "边玩、边学、边创造！",
         modeQuiz: "快速测验",
         modeStory: "故事生成器"
       },
       story: {
-        title: "魔法故事生成器 ✨",
-        desc: "给我3个英文单词，我为你写一个有趣的故事！",
-        label1: "名字 (Name)",
-        label2: "地点 (Place)",
-        label3: "物体 (Object)",
+        title: "魔法故事机 ✨",
+        desc: "给我3个英文单词，我帮你编一个有趣的故事！",
+        label1: "一个名字（例如：Ali）",
+        label2: "一个地方（例如：School）",
+        label3: "一样东西（例如：Banana）",
         btn: "生成故事",
-        result: "你的杰作：",
-        tip: "老师小贴士：注意到我们要怎么运用名词吗？在课堂上，我们将学习如何用文字构建整个世界！"
+        result: "你的作品：",
+        tip: "老师提示：注意看我们怎么用这些名词的哦！在课堂上，我们会学习如何用文字构建一个完整的世界！"
       },
       pricing: {
-        title: "简单透明的价格",
+        title: "收费简单透明",
         group: "小组班",
-        groupDesc: "适合与朋友一起学习。",
-        personal: "一对一私教",
-        personalDesc: "完全针对您的弱点进行加强。",
+        groupDesc: "和朋友一起学，更有动力。",
+        personal: "一对一补习",
+        personalDesc: "完全针对你的弱点来加强。",
         crash: "考试冲刺班",
-        crashDesc: "大考前的强化准备。",
-        inquire: "查询详情",
+        crashDesc: "大考前的集中强化训练。",
+        inquire: "咨询详情",
         book: "立即预约"
       }
     },
@@ -309,13 +309,13 @@ const App = () => {
 
               {/* Lang Switcher */}
               <div className="flex bg-gray-100 rounded-full p-1 shrink-0">
-                {['en', 'zh', 'ms'].map((l) => (
+                {[{ code: 'en', label: 'EN' }, { code: 'zh', label: '中' }, { code: 'ms', label: 'BM' }].map(({ code, label }) => (
                   <button
-                    key={l}
-                    onClick={() => setLang(l)}
-                    className={`px-3 py-1 rounded-full text-xs font-bold uppercase transition ${lang === l ? 'bg-white shadow text-sky-600' : 'text-gray-400 hover:text-gray-600'}`}
+                    key={code}
+                    onClick={() => setLang(code)}
+                    className={`px-3 py-1 rounded-full text-xs font-bold transition ${lang === code ? 'bg-white shadow text-sky-600' : 'text-gray-400 hover:text-gray-600'}`}
                   >
-                    {l}
+                    {label}
                   </button>
                 ))}
               </div>
@@ -335,8 +335,8 @@ const App = () => {
             {/* CHANGED: Switched from 'md:hidden' to 'lg:hidden' so the hamburger button appears on tablets now */}
             <div className="lg:hidden flex items-center gap-4">
               {/* Mobile Lang Switcher */}
-              <button onClick={() => setLang(lang === 'en' ? 'zh' : lang === 'zh' ? 'ms' : 'en')} className="font-bold text-sky-600 uppercase bg-sky-50 px-2 py-1 rounded text-sm">
-                {lang} <Globe size={14} className="inline ml-1" />
+              <button onClick={() => setLang(lang === 'en' ? 'zh' : lang === 'zh' ? 'ms' : 'en')} className="font-bold text-sky-600 bg-sky-50 px-2 py-1 rounded text-sm">
+                {{ en: 'EN', zh: '中', ms: 'BM' }[lang]} <Globe size={14} className="inline ml-1" />
               </button>
               <button onClick={toggleMenu} className="text-gray-600 hover:text-sky-600 focus:outline-none">
                 {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -517,7 +517,7 @@ const App = () => {
                   <div className="w-full animate-fadeIn">
                     {/* CHANGED: Removed hardcoded Chinese. Now uses dynamic translation based on selected language. */}
                     <h3 className="text-2xl font-bold mb-8 text-gray-800">
-                      {lang === 'zh' ? '选择等级' : lang === 'ms' ? 'Pilih Tahap Anda' : 'Select Your Level'}
+                      {lang === 'zh' ? '选择你的级别' : lang === 'ms' ? 'Pilih Tahap Anda' : 'Select Your Level'}
                     </h3>
                     <div className="grid md:grid-cols-3 gap-6">
                       <button onClick={() => handleLevelSelect('primary')} className="group p-6 rounded-2xl border-2 border-yellow-200 hover:border-yellow-400 hover:bg-yellow-50 transition flex flex-col items-center">
