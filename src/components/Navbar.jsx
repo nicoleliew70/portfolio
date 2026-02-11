@@ -28,6 +28,7 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink }) => {
             <a href="#classes" className="text-gray-600 hover:text-sky-600 font-medium transition whitespace-nowrap">{currentText.nav.classes}</a>
             <a href="#arcade" className="text-gray-600 hover:text-sky-600 font-medium transition flex items-center gap-1 whitespace-nowrap"><Gamepad2 size={16} /> {currentText.nav.arcade}</a>
             <a href="#pricing" className="text-gray-600 hover:text-sky-600 font-medium transition whitespace-nowrap">{currentText.nav.pricing}</a>
+            <a href="#contact" className="text-gray-600 hover:text-sky-600 font-medium transition whitespace-nowrap">{currentText.nav.contact}</a>
 
             {/* Lang Switcher */}
             <div className="flex bg-gray-100 rounded-full p-1 shrink-0">
@@ -74,6 +75,7 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink }) => {
             <a href="#classes" onClick={toggleMenu} className="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sky-50 hover:text-sky-600">{currentText.nav.classes}</a>
             <a href="#arcade" onClick={toggleMenu} className="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sky-50 hover:text-sky-600">{currentText.nav.arcade}</a>
             <a href="#pricing" onClick={toggleMenu} className="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sky-50 hover:text-sky-600">{currentText.nav.pricing}</a>
+            <a href="#contact" onClick={toggleMenu} className="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sky-50 hover:text-sky-600">{currentText.nav.contact}</a>
             <a href={whatsAppLink} onClick={() => trackWhatsAppClick('mobile_menu')} className="block px-3 py-3 rounded-md text-base font-bold text-sky-600 bg-sky-50 mt-4">{currentText.nav.book}</a>
           </div>
         </div>

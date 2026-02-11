@@ -8,6 +8,7 @@ import ArcadeSection from './components/ArcadeSection';
 import ClassesSection from './components/ClassesSection';
 import PricingSection from './components/PricingSection';
 import Testimonials from './components/Testimonials';
+import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 
 const WHATSAPP_NUMBER = "601133848412";
@@ -32,6 +33,7 @@ const App = () => {
         <ClassesSection />
         <PricingSection currentText={currentText} whatsAppLink={whatsAppLink} />
         <Testimonials />
+        <ContactSection currentText={currentText} whatsAppLink={whatsAppLink} />
       </main>
       <Footer whatsAppLink={whatsAppLink} />
     </div>

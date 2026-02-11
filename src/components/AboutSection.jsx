@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { GraduationCap, Smile, Check, Coffee } from 'lucide-react';
 import useScrollReveal from '../hooks/useScrollReveal';
-import teacherNicoleImg from '../assets/teacher-nicole.jpg';
+import teacherNicoleImg from '../assets/teacher-nicole.webp';
 
 const AboutSection = ({ currentText }) => {
   const [imageError, setImageError] = useState(false);

@@ -1,6 +1,6 @@
 const translations = {
   en: {
-    nav: { about: "About Me", classes: "Classes", arcade: "Arcade", pricing: "Pricing", book: "Book a Trial" },
+    nav: { about: "About Me", classes: "Classes", arcade: "Arcade", pricing: "Pricing", contact: "Contact", book: "Book a Trial" },
     hero: {
       badge: "🎓 CELT Certified & Experienced Tutor",
       title: "English Learning Made",
@@ -48,10 +48,25 @@ const translations = {
       crashDesc: "Intensive prep before major exams.",
       inquire: "Inquire Now",
       book: "Book Now"
+    },
+    contact: {
+      title: "Get in Touch",
+      desc: "Have a question or want to book a trial class? Reach out!",
+      name: "Your Name",
+      namePlaceholder: "e.g. Sarah",
+      email: "Your Email",
+      emailPlaceholder: "e.g. sarah@email.com",
+      message: "Message",
+      messagePlaceholder: "I'd like to know about classes for my child...",
+      sendEmail: "Send Email",
+      sendWhatsApp: "WhatsApp",
+      thankYou: "Message Ready!",
+      thankYouDesc: "Your email app or WhatsApp should have opened with your message. If not, try again or contact us directly.",
+      sendAnother: "Send Another Message"
     }
   },
   zh: {
-    nav: { about: "关于我", classes: "课程", arcade: "游戏区", pricing: "价格", book: "预约试课" },
+    nav: { about: "关于我", classes: "课程", arcade: "游戏区", pricing: "价格", contact: "联系", book: "预约试课" },
     hero: {
       badge: "🎓 CELT 认证 · 经验丰富的英语导师",
       title: "让学英语变得",
@@ -99,10 +114,25 @@ const translations = {
       crashDesc: "大考前的集中强化训练。",
       inquire: "咨询详情",
       book: "立即预约"
+    },
+    contact: {
+      title: "联系我们",
+      desc: "有问题或想预约试课？随时联系！",
+      name: "你的名字",
+      namePlaceholder: "例如：小明",
+      email: "你的邮箱",
+      emailPlaceholder: "例如：ming@email.com",
+      message: "留言",
+      messagePlaceholder: "我想了解孩子的课程...",
+      sendEmail: "发送邮件",
+      sendWhatsApp: "WhatsApp",
+      thankYou: "消息已准备好！",
+      thankYouDesc: "您的邮件应用或 WhatsApp 应已打开。如未打开，请重试或直接联系我们。",
+      sendAnother: "再发一条消息"
     }
   },
   ms: {
-    nav: { about: "Tentang Saya", classes: "Kelas", arcade: "Arked", pricing: "Harga", book: "Tempah Sesi" },
+    nav: { about: "Tentang Saya", classes: "Kelas", arcade: "Arked", pricing: "Harga", contact: "Hubungi", book: "Tempah Sesi" },
     hero: {
       badge: "🎓 Tutor Berpengalaman & Diiktiraf CELT",
       title: "Belajar Bahasa Inggeris",
@@ -150,6 +180,21 @@ const translations = {
       crashDesc: "Persediaan intensif sebelum peperiksaan besar.",
       inquire: "Tanya Sekarang",
       book: "Tempah Sekarang"
+    },
+    contact: {
+      title: "Hubungi Kami",
+      desc: "Ada soalan atau ingin tempah sesi percubaan? Hubungi kami!",
+      name: "Nama Anda",
+      namePlaceholder: "cth. Aisyah",
+      email: "Emel Anda",
+      emailPlaceholder: "cth. aisyah@email.com",
+      message: "Mesej",
+      messagePlaceholder: "Saya ingin tahu tentang kelas untuk anak saya...",
+      sendEmail: "Hantar Emel",
+      sendWhatsApp: "WhatsApp",
+      thankYou: "Mesej Sedia!",
+      thankYouDesc: "Aplikasi emel atau WhatsApp anda sepatutnya sudah dibuka. Jika tidak, sila cuba lagi atau hubungi kami terus.",
+      sendAnother: "Hantar Mesej Lagi"
     }
   }
 };
