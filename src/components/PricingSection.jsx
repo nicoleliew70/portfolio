@@ -1,9 +1,12 @@
 import { Check } from 'lucide-react';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 const PricingSection = ({ currentText, whatsAppLink }) => {
+  const { ref, isVisible } = useScrollReveal();
+
   return (
     <section id="pricing" className="py-20 bg-sky-900 text-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div ref={ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 scroll-reveal ${isVisible ? 'visible' : ''}`}>
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">{currentText.pricing.title}</h2>
           <p className="text-sky-200 text-lg">Invest in your future with affordable rates.</p>

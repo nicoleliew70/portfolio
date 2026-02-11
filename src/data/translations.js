@@ -22,7 +22,11 @@ const translations = {
       title: "English Arcade",
       subtitle: "Play, Learn & Create!",
       modeQuiz: "Quiz Challenge",
-      modeStory: "Story Generator"
+      modeStory: "Story Generator",
+      modeScramble: "Word Scramble",
+      modeSentence: "Sentence Builder",
+      modeSpelling: "Spelling Bee",
+      modeGrammar: "Grammar Police"
     },
     story: {
       title: "The Magic Story Maker ✨",
@@ -69,7 +73,11 @@ const translations = {
       title: "英语游戏区",
       subtitle: "边玩、边学、边创造！",
       modeQuiz: "快速测验",
-      modeStory: "故事生成器"
+      modeStory: "故事生成器",
+      modeScramble: "拼字游戏",
+      modeSentence: "造句挑战",
+      modeSpelling: "拼写比赛",
+      modeGrammar: "语法纠错"
     },
     story: {
       title: "魔法故事机 ✨",
@@ -116,7 +124,11 @@ const translations = {
       title: "Arked Bahasa Inggeris",
       subtitle: "Main, Belajar & Cipta!",
       modeQuiz: "Kuiz Pantas",
-      modeStory: "Pencipta Cerita"
+      modeStory: "Pencipta Cerita",
+      modeScramble: "Susun Perkataan",
+      modeSentence: "Pembina Ayat",
+      modeSpelling: "Pertandingan Ejaan",
+      modeGrammar: "Polis Tatabahasa"
     },
     story: {
       title: "Pencipta Cerita Ajaib ✨",

@@ -1,13 +1,35 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Star } from 'lucide-react';
 import testimonials from '../data/testimonials';
+import useScrollReveal from '../hooks/useScrollReveal';
+
+const AUTO_ROTATE_MS = 5000;
 
 const Testimonials = () => {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const intervalRef = useRef(null);
+  const { ref, isVisible } = useScrollReveal();
+
+  const startAutoRotate = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, AUTO_ROTATE_MS);
+  };
+
+  useEffect(() => {
+    startAutoRotate();
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  const handleDotClick = (index) => {
+    setActiveTestimonial(index);
+    startAutoRotate();
+  };
 
   return (
     <section className="py-20 bg-yellow-50 overflow-hidden">
-      <div className="max-w-4xl mx-auto px-4 text-center">
+      <div ref={ref} className={`max-w-4xl mx-auto px-4 text-center scroll-reveal ${isVisible ? 'visible' : ''}`}>
         <Star size={40} className="text-yellow-400 mx-auto mb-6 fill-current" />
         <h2 className="text-3xl font-bold mb-12">Student Success Stories</h2>
 
@@ -30,7 +52,7 @@ const Testimonials = () => {
           {testimonials.map((_, i) => (
             <button
               key={i}
-              onClick={() => setActiveTestimonial(i)}
+              onClick={() => handleDotClick(i)}
               className={`w-3 h-3 rounded-full transition ${i === activeTestimonial ? 'bg-yellow-400' : 'bg-gray-300'}`}
             />
           ))}

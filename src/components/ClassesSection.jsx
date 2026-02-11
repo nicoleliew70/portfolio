@@ -1,9 +1,12 @@
 import { Smile, PenTool, Brain } from 'lucide-react';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 const ClassesSection = () => {
+  const { ref, isVisible } = useScrollReveal();
+
   return (
     <section id="classes" className="py-20 bg-sky-50 relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div ref={ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 scroll-reveal ${isVisible ? 'visible' : ''}`}>
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Choose Your Learning Path</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">Whether you are preparing for a big exam or just want to speak confidently, I have a class for you.</p>

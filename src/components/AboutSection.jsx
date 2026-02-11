@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { GraduationCap, Smile, Check, Coffee } from 'lucide-react';
+import useScrollReveal from '../hooks/useScrollReveal';
 
 const AboutSection = ({ currentText }) => {
   const [imageError, setImageError] = useState(false);
   const profileImageSrc = import.meta.env.BASE_URL + "images/teacher-nicole.jpg";
+  const { ref, isVisible } = useScrollReveal();
 
   return (
     <section id="about" className="py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div ref={ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 scroll-reveal ${isVisible ? 'visible' : ''}`}>
         <div className="flex flex-col md:flex-row items-center gap-16">
           <div className="md:w-1/2 relative">
             <div className="absolute inset-0 bg-yellow-200 rounded-3xl transform rotate-3"></div>
