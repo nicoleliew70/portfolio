@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { Smile, PenTool, Brain, Trophy, RefreshCw, ArrowRight, X, Volume2 } from 'lucide-react';
 import spellingBeeData from '../data/spellingBeeData';
+import { trackGameStart, trackGameComplete } from '../utils/analytics';
 
 const ROUNDS = 5;
 
@@ -33,6 +34,7 @@ const SpellingBee = ({ lang, whatsAppLink }) => {
     setShowScore(false);
     setGuess('');
     setFeedback(null);
+    trackGameStart('spelling_bee', lvl);
   };
 
   const speak = (text) => {
@@ -57,6 +59,7 @@ const SpellingBee = ({ lang, whatsAppLink }) => {
     const next = round + 1;
     if (next >= ROUNDS) {
       setShowScore(true);
+      trackGameComplete('spelling_bee', score, ROUNDS);
     } else {
       setRound(next);
       setGuess('');

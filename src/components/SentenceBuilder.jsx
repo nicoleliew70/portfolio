@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { Smile, PenTool, Brain, Trophy, RefreshCw, ArrowRight, X, Check, RotateCcw } from 'lucide-react';
 import sentenceBuilderData from '../data/sentenceBuilderData';
+import { trackGameStart, trackGameComplete } from '../utils/analytics';
 
 const ROUNDS = 5;
 
@@ -43,6 +44,7 @@ const SentenceBuilder = ({ lang, whatsAppLink }) => {
     setSelected([]);
     setFeedback(null);
     setAvailable(shuffleArray(picked[0].words.map((w, i) => ({ word: w, id: i }))));
+    trackGameStart('sentence_builder', lvl);
   };
 
   const handleWordClick = (item) => {
@@ -76,6 +78,7 @@ const SentenceBuilder = ({ lang, whatsAppLink }) => {
     const next = round + 1;
     if (next >= ROUNDS) {
       setShowScore(true);
+      trackGameComplete('sentence_builder', score, ROUNDS);
     } else {
       setRound(next);
       setSelected([]);

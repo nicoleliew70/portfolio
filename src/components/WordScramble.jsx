@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Smile, PenTool, Brain, Trophy, RefreshCw, ArrowRight, X, Clock } from 'lucide-react';
 import wordScrambleData from '../data/wordScrambleData';
+import { trackGameStart, trackGameComplete } from '../utils/analytics';
 
 const ROUNDS = 5;
 const TIME_LIMIT = 30;
@@ -47,12 +48,14 @@ const WordScramble = ({ lang, whatsAppLink }) => {
     setFeedback(null);
     setTimeLeft(TIME_LIMIT);
     setScrambled(scrambleWord(picked[0].word));
+    trackGameStart('word_scramble', lvl);
   };
 
-  const advanceRound = useCallback((currentRound, currentWords) => {
+  const advanceRound = useCallback((currentRound, currentWords, currentScore) => {
     const next = currentRound + 1;
     if (next >= ROUNDS) {
       setShowScore(true);
+      trackGameComplete('word_scramble', currentScore, ROUNDS);
     } else {
       setRound(next);
       setGuess('');
@@ -76,9 +79,9 @@ const WordScramble = ({ lang, whatsAppLink }) => {
 
   useEffect(() => {
     if (!feedback || feedback === null) return;
-    const timer = setTimeout(() => advanceRound(round, words), 1500);
+    const timer = setTimeout(() => advanceRound(round, words, score), 1500);
     return () => clearTimeout(timer);
-  }, [feedback, round, words, advanceRound]);
+  }, [feedback, round, words, score, advanceRound]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

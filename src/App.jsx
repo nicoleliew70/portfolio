@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import translations from './data/translations';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
@@ -17,16 +17,22 @@ const App = () => {
   const [lang, setLang] = useState('en');
   const currentText = translations[lang];
 
+  useEffect(() => {
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang === 'ms' ? 'ms' : 'en';
+  }, [lang]);
+
   return (
     <div className="font-sans text-gray-800 bg-sky-50 min-h-screen selection:bg-yellow-200">
       <Navbar lang={lang} setLang={setLang} currentText={currentText} whatsAppLink={whatsAppLink} />
-      <HeroSection currentText={currentText} whatsAppLink={whatsAppLink} />
-      <StatsBar currentText={currentText} />
-      <AboutSection currentText={currentText} />
-      <ArcadeSection currentText={currentText} lang={lang} whatsAppLink={whatsAppLink} />
-      <ClassesSection />
-      <PricingSection currentText={currentText} whatsAppLink={whatsAppLink} />
-      <Testimonials />
+      <main>
+        <HeroSection currentText={currentText} whatsAppLink={whatsAppLink} />
+        <StatsBar currentText={currentText} />
+        <AboutSection currentText={currentText} />
+        <ArcadeSection currentText={currentText} lang={lang} whatsAppLink={whatsAppLink} />
+        <ClassesSection />
+        <PricingSection currentText={currentText} whatsAppLink={whatsAppLink} />
+        <Testimonials />
+      </main>
       <Footer whatsAppLink={whatsAppLink} />
     </div>
   );

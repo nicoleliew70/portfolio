@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { Smile, PenTool, Brain, Trophy, RefreshCw, ArrowRight, X, Shield } from 'lucide-react';
 import grammarPoliceData from '../data/grammarPoliceData';
+import { trackGameStart, trackGameComplete } from '../utils/analytics';
 
 const ROUNDS = 5;
 const MAX_ATTEMPTS = 2;
@@ -35,12 +36,14 @@ const GrammarPolice = ({ lang, whatsAppLink }) => {
     setAttempts(0);
     setFeedback(null);
     setSelectedIndex(null);
+    trackGameStart('grammar_police', lvl);
   };
 
   const nextRound = () => {
     const next = round + 1;
     if (next >= ROUNDS) {
       setShowScore(true);
+      trackGameComplete('grammar_police', score, ROUNDS);
     } else {
       setRound(next);
       setAttempts(0);

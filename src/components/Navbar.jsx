@@ -1,9 +1,15 @@
 import { useState } from 'react';
 import { BookOpen, MessageCircle, Menu, X, Globe, Gamepad2 } from 'lucide-react';
+import { trackLanguageSwitch, trackWhatsAppClick } from '../utils/analytics';
 
 const Navbar = ({ lang, setLang, currentText, whatsAppLink }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  const handleLangChange = (code) => {
+    setLang(code);
+    trackLanguageSwitch(code);
+  };
 
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
@@ -28,7 +34,7 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink }) => {
               {[{ code: 'en', label: 'EN' }, { code: 'zh', label: '中' }, { code: 'ms', label: 'BM' }].map(({ code, label }) => (
                 <button
                   key={code}
-                  onClick={() => setLang(code)}
+                  onClick={() => handleLangChange(code)}
                   className={`px-3 py-1 rounded-full text-xs font-bold transition ${lang === code ? 'bg-white shadow text-sky-600' : 'text-gray-400 hover:text-gray-600'}`}
                 >
                   {label}
@@ -40,6 +46,7 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink }) => {
               href={whatsAppLink}
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackWhatsAppClick('navbar')}
               className="bg-sky-500 hover:bg-sky-600 text-white px-5 py-2 rounded-full font-bold transition shadow-md flex items-center gap-2 transform hover:scale-105 whitespace-nowrap"
             >
               <MessageCircle size={18} />
@@ -49,7 +56,7 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink }) => {
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center gap-4">
-            <button onClick={() => setLang(lang === 'en' ? 'zh' : lang === 'zh' ? 'ms' : 'en')} className="font-bold text-sky-600 bg-sky-50 px-2 py-1 rounded text-sm">
+            <button onClick={() => handleLangChange(lang === 'en' ? 'zh' : lang === 'zh' ? 'ms' : 'en')} className="font-bold text-sky-600 bg-sky-50 px-2 py-1 rounded text-sm">
               {{ en: 'EN', zh: '中', ms: 'BM' }[lang]} <Globe size={14} className="inline ml-1" />
             </button>
             <button onClick={toggleMenu} className="text-gray-600 hover:text-sky-600 focus:outline-none">
@@ -67,7 +74,7 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink }) => {
             <a href="#classes" onClick={toggleMenu} className="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sky-50 hover:text-sky-600">{currentText.nav.classes}</a>
             <a href="#arcade" onClick={toggleMenu} className="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sky-50 hover:text-sky-600">{currentText.nav.arcade}</a>
             <a href="#pricing" onClick={toggleMenu} className="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sky-50 hover:text-sky-600">{currentText.nav.pricing}</a>
-            <a href={whatsAppLink} className="block px-3 py-3 rounded-md text-base font-bold text-sky-600 bg-sky-50 mt-4">{currentText.nav.book}</a>
+            <a href={whatsAppLink} onClick={() => trackWhatsAppClick('mobile_menu')} className="block px-3 py-3 rounded-md text-base font-bold text-sky-600 bg-sky-50 mt-4">{currentText.nav.book}</a>
           </div>
         </div>
       )}

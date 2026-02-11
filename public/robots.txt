@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nicoleliew70.github.io/portfolio/sitemap.xml

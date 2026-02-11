@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Smile, PenTool, Brain, Trophy, RefreshCw, ArrowRight, Check, X } from 'lucide-react';
 import quizData from '../data/quizData';
+import { trackGameStart, trackGameComplete } from '../utils/analytics';
 
 const ANSWER_DELAY_MS = 1200;
 
@@ -19,6 +20,7 @@ const QuizGame = ({ lang, whatsAppLink }) => {
     setShowScore(false);
     setSelectedAnswer(null);
     setIsAnswerChecked(false);
+    trackGameStart('quiz', level);
   };
 
   const handleAnswerClick = (index) => {
@@ -35,6 +37,7 @@ const QuizGame = ({ lang, whatsAppLink }) => {
         setIsAnswerChecked(false);
       } else {
         setShowScore(true);
+        trackGameComplete('quiz', index === quizData[quizLevel][currentQuestionIndex].correct ? score + 1 : score, 3);
       }
     }, ANSWER_DELAY_MS);
   };

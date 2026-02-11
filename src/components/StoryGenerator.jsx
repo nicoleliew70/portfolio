@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { trackStoryGenerated } from '../utils/analytics';
 
 const STORY_API_URL = 'https://nicole-story-api.nicole-story-api.workers.dev/';
 
@@ -36,10 +37,12 @@ const StoryGenerator = ({ currentText }) => {
 
       const data = await response.json();
       setGeneratedStory(data.story);
+      trackStoryGenerated(data.source || 'ai');
     } catch (err) {
       console.warn('Story API unavailable, using fallback:', err.message);
       const template = fallbackTemplates[Math.floor(Math.random() * fallbackTemplates.length)];
       setGeneratedStory(template(name, place, object));
+      trackStoryGenerated('template');
     } finally {
       setIsGenerating(false);
     }

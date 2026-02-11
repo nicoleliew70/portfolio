@@ -1,4 +1,5 @@
 import { BookOpen, Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
+import { trackWhatsAppClick } from '../utils/analytics';
 
 const Footer = ({ whatsAppLink }) => {
   return (
@@ -40,6 +41,7 @@ const Footer = ({ whatsAppLink }) => {
         href={whatsAppLink}
         target="_blank"
         rel="noreferrer"
+        onClick={() => trackWhatsAppClick('floating_button')}
         className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl z-50 transition transform hover:scale-110 flex items-center justify-center"
         aria-label="Contact on WhatsApp"
       >

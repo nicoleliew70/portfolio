@@ -1,4 +1,5 @@
 import { MessageCircle } from 'lucide-react';
+import { trackWhatsAppClick } from '../utils/analytics';
 
 const HeroSection = ({ currentText, whatsAppLink }) => {
   return (
@@ -17,6 +18,7 @@ const HeroSection = ({ currentText, whatsAppLink }) => {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a
               href={whatsAppLink}
+              onClick={() => trackWhatsAppClick('hero')}
               className="bg-sky-500 hover:bg-sky-600 text-white text-lg px-8 py-4 rounded-full font-bold transition shadow-lg flex items-center justify-center gap-2"
             >
               <MessageCircle />
