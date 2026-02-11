@@ -345,7 +345,7 @@ const App = () => {
             <div className="md:w-1/2">
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Hello! I'm Nicole Liew.</h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                I've been a dedicated English teacher since 2017. My passion is taking the "scary" out of English and making it accessible for everyone—from young kids just starting to read, to adults aiming for career growth.
+                I've been a dedicated English teacher since 2017. My passion is taking the "scary" out of English and making it accessible for everyone. From young kids just starting to read, to adults aiming for career growth.
               </p>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 <strong className="text-sky-600">Fun Fact:</strong> Before I became a full-time educator, I was a certified Pastry Chef! 🍰 Just like baking requires precise measurements and creativity, I believe language learning needs structure (grammar) mixed with a lot of creative expression (storytelling).
