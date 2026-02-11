@@ -94,9 +94,9 @@ const App = () => {
       stats: { exp: "教学经验", spm: "SPM 最佳成绩", cert: "专业认证", students: "位学生" },
       about: {
         title: "你好！我是 Nicole Liew。",
-        p1: "从2017年开始，我就一直在教英语。我最大的热情就是让英语不再\"可怕\"，让每个人都能轻松学会。",
-        funFact: "小知识：",
-        funFactText: "在成为全职老师之前，我其实是一名持证的糕点师！🍰 就像做蛋糕需要配方一样，学语言也需要结构（语法）加上创意（表达）。",
+        p1: `我自2017年以来一直是一名敬业的英语老师。我的使命在于把英语中“让人害怕”的部分拿掉，让每个人都能轻松掌握。`,
+        funFact: "趣味小知识：",
+        funFactText: "在成为全职教育者之前，我是一名持证的糕点师！🍰 就像烘焙一样，语言也需要结构（语法）与创意的结合。",
         specialty: "用数学逻辑来简化语法，让你一看就懂。",
         focus: "SPM、IGCSE、剑桥英语和成人英语。"
       },
@@ -182,27 +182,53 @@ const App = () => {
   // Story Generator State
   const [storyInputs, setStoryInputs] = useState({ name: '', place: '', object: '' });
   const [generatedStory, setGeneratedStory] = useState('');
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [storySource, setStorySource] = useState(''); // 'ai' or 'template'
 
-  const generateStory = () => {
+  // UPDATE THIS after deploying your Cloudflare Worker
+  const STORY_API_URL = 'https://nicole-story-api.nicole-story-api.workers.dev/';
+
+  // Fallback templates (used if API is unavailable)
+  const fallbackTemplates = [
+    (n, p, o) => `One day, ${n} went to the ${p} to find a mysterious ${o}. Suddenly, the ${o} started dancing! Everyone at the ${p} was shocked.`,
+    (n, p, o) => `${n} was the bravest hero in the ${p}. But ${n}'s only weakness was a giant ${o}.`,
+    (n, p, o) => `"Don't touch the ${o}!" shouted ${n}. But it was too late. The ${p} was already filled with glitter.`,
+    (n, p, o) => `Chef ${n} decided to bake a cake shaped like a ${o}. It tasted like ${p}!`,
+    (n, p, o) => `It was a dark and stormy night at the ${p}. ${n} tripped over a ${o} and found a secret door.`,
+    (n, p, o) => `Teacher Nicole asked ${n} to bring a ${o} to class. ${n} brought it to the ${p} instead!`,
+    (n, p, o) => `The ${o} at the ${p} is magical. If ${n} touches it, it turns into gold.`,
+    (n, p, o) => `Every time ${n} visits the ${p}, a wild ${o} appears and sings a song.`,
+  ];
+
+  const generateStory = async () => {
     const { name, place, object } = storyInputs;
     if (!name || !place || !object) return;
 
-    // UPDATED: All templates are now in ENGLISH only, regardless of UI language
-    const templates = [
-      `One day, ${name} went to the ${place} to find a mysterious ${object}. Suddenly, the ${object} started dancing! Everyone at the ${place} was shocked.`,
-      `${name} was the bravest hero in the ${place}. But ${name}'s only weakness was a giant ${object}.`,
-      `"Don't touch the ${object}!" shouted ${name}. But it was too late. The ${place} was already filled with glitter.`,
-      `Chef ${name} decided to bake a cake shaped like a ${object}. It tasted like ${place}!`,
-      `The alien landed in ${place} and asked, "Take me to your leader's ${object}."`,
-      `It was a dark and stormy night at the ${place}. ${name} tripped over a ${object} and found a secret door.`,
-      `Teacher Nicole asked ${name} to bring a ${object} to class. ${name} brought it to the ${place} instead!`,
-      `The ${object} at the ${place} is magical. If ${name} touches it, it turns into gold.`,
-      `Every time ${name} visits the ${place}, a wild ${object} appears and sings a song.`,
-      `News flash! A giant ${object} has blocked the entrance to the ${place}. Only ${name} can move it.`
-    ];
+    setIsGenerating(true);
+    setGeneratedStory('');
+    setStorySource('');
 
-    const randomStory = templates[Math.floor(Math.random() * templates.length)];
-    setGeneratedStory(randomStory);
+    try {
+      const response = await fetch(STORY_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, place, object }),
+      });
+
+      if (!response.ok) throw new Error('API error');
+
+      const data = await response.json();
+      setGeneratedStory(data.story);
+      setStorySource(data.source || 'ai');
+    } catch (err) {
+      // Fallback to local templates
+      console.warn('Story API unavailable, using fallback:', err.message);
+      const template = fallbackTemplates[Math.floor(Math.random() * fallbackTemplates.length)];
+      setGeneratedStory(template(name, place, object));
+      setStorySource('template');
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   // Quiz State
@@ -607,7 +633,13 @@ const App = () => {
             {/* === STORY MODE === */}
             {gameMode === 'story' && (
               <div className="w-full max-w-lg animate-fadeIn text-left">
-                {!generatedStory ? (
+                {isGenerating ? (
+                  <div className="text-center py-12">
+                    <div className="inline-block w-12 h-12 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin mb-6"></div>
+                    <p className="text-gray-600 font-medium text-lg">AI is writing your story...</p>
+                    <p className="text-gray-400 text-sm mt-2">Powered by Google Gemini ✨</p>
+                  </div>
+                ) : !generatedStory ? (
                   <>
                     <h3 className="text-2xl font-bold mb-6 text-gray-800 text-center">{currentText.story.title}</h3>
                     <p className="text-gray-500 text-center mb-8">{currentText.story.desc}</p>
@@ -651,7 +683,12 @@ const App = () => {
                   </>
                 ) : (
                   <div className="text-center">
-                    <h3 className="text-xl font-bold text-gray-500 mb-4 uppercase">{currentText.story.result}</h3>
+                    <div className="flex items-center justify-center gap-2 mb-4">
+                      <h3 className="text-xl font-bold text-gray-500 uppercase">{currentText.story.result}</h3>
+                      {storySource === 'ai' && (
+                        <span className="bg-purple-100 text-purple-700 text-xs font-bold px-2 py-0.5 rounded-full">✨ AI</span>
+                      )}
+                    </div>
                     <div className="bg-yellow-50 border-2 border-yellow-200 p-6 rounded-2xl mb-6 shadow-sm">
                       <p className="text-xl md:text-2xl font-serif text-gray-800 leading-relaxed">
                         "{generatedStory}"
@@ -661,7 +698,7 @@ const App = () => {
                       <p className="text-sm text-sky-800 italic">{currentText.story.tip}</p>
                     </div>
                     <button
-                      onClick={() => { setGeneratedStory(''); setStoryInputs({ name: '', place: '', object: '' }); }}
+                      onClick={() => { setGeneratedStory(''); setStoryInputs({ name: '', place: '', object: '' }); setStorySource(''); }}
                       className="text-purple-600 font-bold hover:text-purple-800"
                     >
                       Create Another Story
