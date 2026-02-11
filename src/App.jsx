@@ -683,12 +683,7 @@ const App = () => {
                   </>
                 ) : (
                   <div className="text-center">
-                    <div className="flex items-center justify-center gap-2 mb-4">
-                      <h3 className="text-xl font-bold text-gray-500 uppercase">{currentText.story.result}</h3>
-                      {storySource === 'ai' && (
-                        <span className="bg-purple-100 text-purple-700 text-xs font-bold px-2 py-0.5 rounded-full">✨ AI</span>
-                      )}
-                    </div>
+                    <h3 className="text-xl font-bold text-gray-500 mb-4 uppercase">{currentText.story.result}</h3>
                     <div className="bg-yellow-50 border-2 border-yellow-200 p-6 rounded-2xl mb-6 shadow-sm">
                       <p className="text-xl md:text-2xl font-serif text-gray-800 leading-relaxed">
                         "{generatedStory}"
