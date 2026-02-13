@@ -17,11 +17,11 @@ const PricingSection = ({ currentText, whatsAppLink }) => {
           {/* Group Class */}
           <div className="bg-white rounded-2xl p-8 hover:bg-gray-50 transition">
             <h3 className="text-xl font-bold text-gray-500 mb-2">{currentText.pricing.group}</h3>
-            <div className="text-4xl font-bold text-gray-900 mb-2">RM 120<span className="text-lg font-normal text-gray-500">/mo</span></div>
+            <div className="text-4xl font-bold text-gray-900 mb-2">RM 180<span className="text-lg font-normal text-gray-500">/mo</span></div>
             <p className="text-sm text-gray-500 mb-6">{currentText.pricing.groupDesc}</p>
             <button onClick={() => { trackWhatsAppClick('pricing'); window.open(whatsAppLink, '_blank'); }} className="w-full border-2 border-sky-600 text-sky-600 font-bold py-3 rounded-lg hover:bg-sky-50 transition mb-6">{currentText.pricing.inquire}</button>
             <ul className="space-y-3 text-sm">
-              <li className="flex items-center gap-2"><Check size={16} className="text-green-500" /> Max 5 students</li>
+              <li className="flex items-center gap-2"><Check size={16} className="text-green-500" /> Max 3 students</li>
               <li className="flex items-center gap-2"><Check size={16} className="text-green-500" /> 4 Classes per month</li>
               <li className="flex items-center gap-2"><Check size={16} className="text-green-500" /> 1.5 Hours per class</li>
               <li className="flex items-center gap-2"><Check size={16} className="text-green-500" /> Group activities</li>
@@ -34,7 +34,7 @@ const PricingSection = ({ currentText, whatsAppLink }) => {
               <span className="bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Most Recommended</span>
             </div>
             <h3 className="text-xl font-bold text-sky-600 mb-2 whitespace-nowrap tracking-tight">{currentText.pricing.personal}</h3>
-            <div className="text-4xl font-bold text-gray-900 mb-2">RM 50<span className="text-lg font-normal text-gray-500">/hr</span></div>
+            <div className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">RM 80 – 150<span className="text-lg font-normal text-gray-500">/hr</span></div>
             <p className="text-sm text-gray-500 mb-6">{currentText.pricing.personalDesc}</p>
             <button onClick={() => { trackWhatsAppClick('pricing'); window.open(whatsAppLink, '_blank'); }} className="w-full bg-sky-600 text-white font-bold py-3 rounded-lg hover:bg-sky-700 transition mb-6">{currentText.pricing.book}</button>
             <ul className="space-y-3 text-sm">
@@ -48,7 +48,7 @@ const PricingSection = ({ currentText, whatsAppLink }) => {
           {/* Intensive */}
           <div className="bg-white rounded-2xl p-8 hover:bg-gray-50 transition">
             <h3 className="text-xl font-bold text-purple-500 mb-2">{currentText.pricing.crash}</h3>
-            <div className="text-4xl font-bold text-gray-900 mb-2">RM 600<span className="text-lg font-normal text-gray-500">/pack</span></div>
+            <div className="text-4xl font-bold text-gray-900 mb-2">RM 900<span className="text-lg font-normal text-gray-500">/pack</span></div>
             <p className="text-sm text-gray-500 mb-6">{currentText.pricing.crashDesc}</p>
             <button onClick={() => { trackWhatsAppClick('pricing'); window.open(whatsAppLink, '_blank'); }} className="w-full border-2 border-purple-500 text-purple-600 font-bold py-3 rounded-lg hover:bg-purple-50 transition mb-6">{currentText.pricing.inquire}</button>
             <ul className="space-y-3 text-sm">

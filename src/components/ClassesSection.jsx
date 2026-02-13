@@ -19,12 +19,12 @@ const ClassesSection = () => {
               <Smile size={32} />
             </div>
             <h3 className="text-xl font-bold text-center mb-4">Junior Explorers</h3>
-            <p className="text-gray-500 text-center text-sm mb-6 uppercase tracking-wider font-bold">Primary School (Std 1-6)</p>
+            <p className="text-gray-500 text-center text-sm mb-6 uppercase tracking-wider font-bold">STD 6 – FORM 3</p>
             <ul className="space-y-3 mb-8">
-              <li className="flex items-center gap-2 text-gray-600"><div className="w-2 h-2 bg-yellow-400 rounded-full"></div>Interactive Storytelling</li>
-              <li className="flex items-center gap-2 text-gray-600"><div className="w-2 h-2 bg-yellow-400 rounded-full"></div>Vocabulary Building</li>
-              <li className="flex items-center gap-2 text-gray-600"><div className="w-2 h-2 bg-yellow-400 rounded-full"></div>Basic Grammar Fun</li>
-              <li className="flex items-center gap-2 text-gray-600"><div className="w-2 h-2 bg-yellow-400 rounded-full"></div>Reading Comprehension</li>
+              <li className="flex items-center gap-2 text-gray-600"><div className="w-2 h-2 bg-yellow-400 rounded-full"></div>Essay Writing Foundations</li>
+              <li className="flex items-center gap-2 text-gray-600"><div className="w-2 h-2 bg-yellow-400 rounded-full"></div>Grammar Systems</li>
+              <li className="flex items-center gap-2 text-gray-600"><div className="w-2 h-2 bg-yellow-400 rounded-full"></div>Comprehension Skills</li>
+              <li className="flex items-center gap-2 text-gray-600"><div className="w-2 h-2 bg-yellow-400 rounded-full"></div>Structured Answering</li>
             </ul>
           </div>
 
@@ -35,11 +35,11 @@ const ClassesSection = () => {
               <PenTool size={32} />
             </div>
             <h3 className="text-xl font-bold text-center mb-4">Exam Warriors</h3>
-            <p className="text-gray-500 text-center text-sm mb-6 uppercase tracking-wider font-bold">Secondary (Form 1-5 / IGCSE)</p>
+            <p className="text-gray-500 text-center text-sm mb-6 uppercase tracking-wider font-bold">Form 4 & 5 / IGCSE</p>
             <ul className="space-y-3 mb-8">
               <li className="flex items-center gap-2 text-gray-600"><div className="w-2 h-2 bg-sky-500 rounded-full"></div>SPM & IGCSE Prep</li>
               <li className="flex items-center gap-2 text-gray-600"><div className="w-2 h-2 bg-sky-500 rounded-full"></div>Essay Writing Structures</li>
-              <li className="flex items-center gap-2 text-gray-600"><div className="w-2 h-2 bg-sky-500 rounded-full"></div>Literature Components</li>
+              <li className="flex items-center gap-2 text-gray-600"><div className="w-2 h-2 bg-sky-500 rounded-full"></div>Advanced Writing & Argument Development</li>
               <li className="flex items-center gap-2 text-gray-600"><div className="w-2 h-2 bg-sky-500 rounded-full"></div>Advanced Grammar Logic</li>
             </ul>
           </div>
