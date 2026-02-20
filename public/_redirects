@@ -1,5 +1,8 @@
-# Let /admin work on Netlify for Decap CMS
+# Serve Decap CMS admin on Netlify
 /admin/*    /admin/index.html   200
+
+# Serve identity handler at root (for email confirmation tokens)
+/           /identity.html      200
 
 # Redirect everything else to GitHub Pages
 /*          https://nicoleliew70.github.io/portfolio/:splat  301!

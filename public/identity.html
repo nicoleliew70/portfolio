@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Redirecting...</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+    <script>
+      // Handle Netlify Identity confirmation/invite/recovery tokens
+      const hash = window.location.hash;
+      if (hash.includes('confirmation_token') || hash.includes('invite_token') || hash.includes('recovery_token')) {
+        // Let the Identity widget process the token, then redirect to admin
+        netlifyIdentity.on('init', () => {
+          netlifyIdentity.on('login', () => {
+            window.location.href = '/admin/';
+          });
+        });
+      } else {
+        // No identity token — redirect to the real site on GitHub Pages
+        window.location.href = 'https://nicoleliew70.github.io/portfolio/';
+      }
+    </script>
+  </body>
+</html>
