@@ -8,6 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  // Use '/portfolio' for GitHub Pages, '/' for Netlify
-  base: process.env.DEPLOY_TARGET === 'ghpages' ? '/portfolio' : '/'
+  base: '/portfolio'
 })

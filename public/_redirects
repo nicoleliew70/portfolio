@@ -1,2 +1,5 @@
-# SPA fallback — serve index.html for all routes (for client-side routing)
-/*    /index.html   200
+# Let /admin work on Netlify for Decap CMS
+/admin/*    /admin/index.html   200
+
+# Redirect everything else to GitHub Pages
+/*          https://nicoleliew70.github.io/portfolio/:splat  301!
