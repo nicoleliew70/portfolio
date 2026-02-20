@@ -1,0 +1,36 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "Personal Blog & Updates"
+    folder: "_blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Featured Image", name: "image", widget: "image" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Language", name: "language", widget: "select", options: ["English", "Malay", "Chinese"] }
+
+  - name: "services"
+    label: "Services Offered"
+    files:
+      - label: "Service List"
+        name: "products"
+        file: "public/data/products.json"
+        fields:
+          - name: items
+            label: Items
+            widget: list
+            fields:
+              - { label: "Service Name", name: "name", widget: "string" }
+              - { label: "Description", name: "description", widget: "string", required: false }
+              - { label: "Price (RM)", name: "price", widget: "string" }
+              - { label: "Open?", name: "open", widget: "boolean", default: true }
+              - { label: "Image", name: "image", widget: "image", required: false }
