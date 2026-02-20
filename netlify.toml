@@ -1,0 +1,24 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Serve Decap CMS admin
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+# Serve identity handler at root for email confirmation tokens
+# force = true ensures this takes priority over the built index.html
+[[redirects]]
+  from = "/"
+  to = "/identity.html"
+  status = 200
+  force = true
+
+# Redirect everything else to GitHub Pages
+[[redirects]]
+  from = "/*"
+  to = "https://nicoleliew70.github.io/portfolio/:splat"
+  status = 301
+  force = true
