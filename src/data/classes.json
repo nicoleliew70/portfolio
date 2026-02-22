@@ -25,9 +25,24 @@
       "icon": "smile",
       "badge": "",
       "features": {
-        "en": ["Essay Writing Foundations", "Grammar Systems", "Comprehension Skills", "Structured Answering"],
-        "zh": ["作文写作基础", "语法体系", "阅读理解能力", "结构化答题"],
-        "ms": ["Asas Penulisan Esei", "Sistem Tatabahasa", "Kemahiran Kefahaman", "Jawapan Berstruktur"]
+        "en": [
+          "Essay Writing Foundations",
+          "Grammar Systems",
+          "Comprehension Skills",
+          "Structured Answering"
+        ],
+        "zh": [
+          "作文写作基础",
+          "语法体系",
+          "阅读理解能力",
+          "结构化答题"
+        ],
+        "ms": [
+          "Asas Penulisan Esei",
+          "Sistem Tatabahasa",
+          "Kemahiran Kefahaman",
+          "Jawapan Berstruktur"
+        ]
       }
     },
     {
@@ -45,9 +60,24 @@
       "icon": "penTool",
       "badge": "POPULAR",
       "features": {
-        "en": ["SPM & IGCSE Prep", "Essay Writing Structures", "Advanced Writing & Argument Development", "Advanced Grammar Logic"],
-        "zh": ["SPM & IGCSE 备考", "作文写作结构", "高级写作与论证", "高级语法逻辑"],
-        "ms": ["Persediaan SPM & IGCSE", "Struktur Penulisan Esei", "Penulisan Lanjutan & Pembangunan Hujah", "Logik Tatabahasa Lanjutan"]
+        "en": [
+          "SPM & IGCSE Prep",
+          "Essay Writing Structures",
+          "Advanced Writing & Argument Development",
+          "Advanced Grammar Logic"
+        ],
+        "zh": [
+          "SPM & IGCSE 备考",
+          "作文写作结构",
+          "高级写作与论证",
+          "高级语法逻辑"
+        ],
+        "ms": [
+          "Persediaan SPM & IGCSE",
+          "Struktur Penulisan Esei",
+          "Penulisan Lanjutan & Pembangunan Hujah",
+          "Logik Tatabahasa Lanjutan"
+        ]
       }
     },
     {
@@ -65,9 +95,50 @@
       "icon": "brain",
       "badge": "",
       "features": {
-        "en": ["IELTS / PTE / MUET", "Business Communication", "Conversation Skills", "Resume & Interview Prep"],
-        "zh": ["IELTS / PTE / MUET", "商务沟通", "会话技巧", "简历和面试准备"],
-        "ms": ["IELTS / PTE / MUET", "Komunikasi Perniagaan", "Kemahiran Perbualan", "Persediaan Resume & Temuduga"]
+        "en": [
+          "IELTS / PTE / MUET",
+          "Business Communication",
+          "Conversation Skills",
+          "Resume & Interview Prep"
+        ],
+        "zh": [
+          "IELTS / PTE / MUET",
+          "商务沟通",
+          "会话技巧",
+          "简历和面试准备"
+        ],
+        "ms": [
+          "IELTS / PTE / MUET",
+          "Komunikasi Perniagaan",
+          "Kemahiran Perbualan",
+          "Persediaan Resume & Temuduga"
+        ]
+      }
+    },
+    {
+      "title": {
+        "en": "test",
+        "zh": "test",
+        "ms": "test"
+      },
+      "level": {
+        "en": "test",
+        "zh": "test",
+        "ms": "test"
+      },
+      "color": "sky",
+      "icon": "penTool",
+      "badge": "",
+      "features": {
+        "en": [
+          "test"
+        ],
+        "zh": [
+          "test"
+        ],
+        "ms": [
+          "test"
+        ]
       }
     }
   ]
