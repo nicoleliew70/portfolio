@@ -2,7 +2,7 @@ import { ArrowRight } from 'lucide-react';
 import useScrollReveal from '../hooks/useScrollReveal';
 import servicesData from '../data/services.json';
 
-const cmsImage = (path) => path ? `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}` : '';
+const cmsImage = (path) => path ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}` : '';
 
 const ServicesSection = ({ lang, currentText, whatsAppLink }) => {
     const { ref, isVisible } = useScrollReveal();

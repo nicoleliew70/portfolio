@@ -3,7 +3,7 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import classesData from '../data/classes.json';
 
 const iconMap = { smile: Smile, penTool: PenTool, brain: Brain };
-const cmsImage = (path) => path ? `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}` : '';
+const cmsImage = (path) => path ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}` : '';
 
 const colorMap = {
   yellow: { border: 'border-yellow-400', bg: 'bg-yellow-100', text: 'text-yellow-600', dot: 'bg-yellow-400' },

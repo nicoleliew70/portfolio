@@ -4,7 +4,7 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import teacherNicoleImg from '../assets/teacher-nicole.webp';
 import settings from '../data/settings.json';
 
-const cmsImage = (path) => path ? `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}` : '';
+const cmsImage = (path) => path ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}` : '';
 
 const AboutSection = ({ currentText }) => {
   const [imageError, setImageError] = useState(false);

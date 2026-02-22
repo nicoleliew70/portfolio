@@ -4,7 +4,7 @@ import testimonialsData from '../data/testimonials.json';
 import useScrollReveal from '../hooks/useScrollReveal';
 
 const AUTO_ROTATE_MS = 5000;
-const cmsImage = (path) => path ? `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}` : '';
+const cmsImage = (path) => path ? `${import.meta.env.BASE_URL.replace(/\/$/, '')}${path}` : '';
 
 const Testimonials = ({ lang }) => {
   const items = testimonialsData.items;
