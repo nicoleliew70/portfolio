@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { Send, MessageCircle } from 'lucide-react';
 import useScrollReveal from '../hooks/useScrollReveal';
 import { trackEvent } from '../utils/analytics';
-
-const NICOLE_EMAIL = 'nicoleliew70@gmail.com';
+import settings from '../data/settings.json';
 
 const ContactSection = ({ currentText, whatsAppLink }) => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -21,7 +20,7 @@ const ContactSection = ({ currentText, whatsAppLink }) => {
     if (!isValid) return;
     const subject = encodeURIComponent(`Enquiry from ${form.name.trim()}`);
     const body = encodeURIComponent(buildMessage());
-    window.open(`mailto:${NICOLE_EMAIL}?subject=${subject}&body=${body}`, '_self');
+    window.open(`mailto:${settings.email}?subject=${subject}&body=${body}`, '_self');
     trackEvent('contact_email', { method: 'mailto' });
     setSent(true);
   };

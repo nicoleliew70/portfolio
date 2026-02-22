@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { Star } from 'lucide-react';
-import testimonials from '../data/testimonials';
+import testimonialsData from '../data/testimonials.json';
 import useScrollReveal from '../hooks/useScrollReveal';
 
 const AUTO_ROTATE_MS = 5000;
 
-const Testimonials = () => {
+const Testimonials = ({ lang }) => {
+  const items = testimonialsData.items;
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const intervalRef = useRef(null);
   const { ref, isVisible } = useScrollReveal();
@@ -13,7 +14,7 @@ const Testimonials = () => {
   const startAutoRotate = () => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+      setActiveTestimonial((prev) => (prev + 1) % items.length);
     }, AUTO_ROTATE_MS);
   };
 
@@ -31,25 +32,25 @@ const Testimonials = () => {
     <section className="py-20 bg-yellow-50 overflow-hidden">
       <div ref={ref} className={`max-w-4xl mx-auto px-4 text-center scroll-reveal ${isVisible ? 'visible' : ''}`}>
         <Star size={40} className="text-yellow-400 mx-auto mb-6 fill-current" />
-        <h2 className="text-3xl font-bold mb-12">Student Success Stories</h2>
+        <h2 className="text-3xl font-bold mb-12">{testimonialsData.sectionTitle[lang]}</h2>
 
         <div className="relative h-48">
-          {testimonials.map((item, i) => (
+          {items.map((item, i) => (
             <div
               key={i}
               className={`absolute inset-0 transition-opacity duration-700 flex flex-col items-center justify-center ${i === activeTestimonial ? 'opacity-100' : 'opacity-0'}`}
             >
-              <p className="text-xl md:text-2xl font-light italic text-gray-700 mb-6">&ldquo;{item.text}&rdquo;</p>
+              <p className="text-xl md:text-2xl font-light italic text-gray-700 mb-6">&ldquo;{item.text[lang]}&rdquo;</p>
               <div>
                 <div className="font-bold text-gray-900">{item.author}</div>
-                <div className="text-sm text-gray-500">{item.grade}</div>
+                <div className="text-sm text-gray-500">{item.grade[lang]}</div>
               </div>
             </div>
           ))}
         </div>
 
         <div className="flex justify-center gap-2 mt-4">
-          {testimonials.map((_, i) => (
+          {items.map((_, i) => (
             <button
               key={i}
               onClick={() => handleDotClick(i)}

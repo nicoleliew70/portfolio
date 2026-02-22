@@ -8,31 +8,820 @@ media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "blog"
-    label: "Personal Blog & Updates"
-    folder: "_blog"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Featured Image", name: "image", widget: "image" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Language", name: "language", widget: "select", options: ["English", "Malay", "Chinese"] }
-
-  - name: "services"
-    label: "Services Offered"
+  # ── Site Settings ──────────────────────────────────
+  - name: "site-settings"
+    label: "Site Settings"
     files:
-      - label: "Service List"
-        name: "products"
-        file: "public/data/products.json"
+      - label: "General Settings"
+        name: "settings"
+        file: "src/data/settings.json"
         fields:
-          - name: items
-            label: Items
-            widget: list
+          - { label: "WhatsApp Number (no dashes)", name: "whatsappNumber", widget: "string", hint: "e.g. 601133848412" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Phone (display format)", name: "phone", widget: "string", hint: "e.g. +60-1133-8484-12" }
+          - { label: "Location", name: "location", widget: "string" }
+          - { label: "Copyright Name", name: "copyrightName", widget: "string" }
+          - { label: "Brand Name", name: "brandName", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+
+  # ── UI Translations ────────────────────────────────
+  - name: "translations"
+    label: "UI Translations"
+    files:
+      - label: "All UI Text"
+        name: "translations"
+        file: "src/data/translations.json"
+        fields:
+          # ── English ──
+          - name: "en"
+            label: "English"
+            widget: "object"
+            collapsed: true
             fields:
-              - { label: "Service Name", name: "name", widget: "string" }
-              - { label: "Description", name: "description", widget: "string", required: false }
-              - { label: "Price (RM)", name: "price", widget: "string" }
-              - { label: "Open?", name: "open", widget: "boolean", default: true }
-              - { label: "Image", name: "image", widget: "image", required: false }
+              - name: "nav"
+                label: "Navigation"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "About", name: "about", widget: "string" }
+                  - { label: "Classes", name: "classes", widget: "string" }
+                  - { label: "Arcade", name: "arcade", widget: "string" }
+                  - { label: "Pricing", name: "pricing", widget: "string" }
+                  - { label: "Contact", name: "contact", widget: "string" }
+                  - { label: "Book CTA", name: "book", widget: "string" }
+              - name: "hero"
+                label: "Hero Section"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Badge", name: "badge", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Title Highlight", name: "titleHighlight", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+                  - { label: "CTA Button", name: "cta", widget: "string" }
+                  - { label: "View Courses", name: "view", widget: "string" }
+              - name: "about"
+                label: "About Section"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Paragraph 1", name: "p1", widget: "text" }
+                  - { label: "Fun Fact Label", name: "funFact", widget: "string" }
+                  - { label: "Fun Fact Text", name: "funFactText", widget: "text" }
+                  - { label: "Specialty", name: "specialty", widget: "string" }
+                  - { label: "Focus", name: "focus", widget: "string" }
+              - name: "arcade"
+                label: "Arcade Section"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Subtitle", name: "subtitle", widget: "string" }
+                  - { label: "Quiz Mode", name: "modeQuiz", widget: "string" }
+                  - { label: "Story Mode", name: "modeStory", widget: "string" }
+                  - { label: "Scramble Mode", name: "modeScramble", widget: "string" }
+                  - { label: "Sentence Mode", name: "modeSentence", widget: "string" }
+                  - { label: "Spelling Mode", name: "modeSpelling", widget: "string" }
+                  - { label: "Grammar Mode", name: "modeGrammar", widget: "string" }
+              - name: "story"
+                label: "Story Generator"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+                  - { label: "Label 1 (Name)", name: "label1", widget: "string" }
+                  - { label: "Label 2 (Place)", name: "label2", widget: "string" }
+                  - { label: "Label 3 (Object)", name: "label3", widget: "string" }
+                  - { label: "Generate Button", name: "btn", widget: "string" }
+                  - { label: "Result Label", name: "result", widget: "string" }
+                  - { label: "Teacher Tip", name: "tip", widget: "text" }
+              - name: "pricing"
+                label: "Pricing Labels"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Section Title", name: "title", widget: "string" }
+                  - { label: "Group Name", name: "group", widget: "string" }
+                  - { label: "Group Desc", name: "groupDesc", widget: "string" }
+                  - { label: "Personal Name", name: "personal", widget: "string" }
+                  - { label: "Personal Desc", name: "personalDesc", widget: "string" }
+                  - { label: "Crash Name", name: "crash", widget: "string" }
+                  - { label: "Crash Desc", name: "crashDesc", widget: "string" }
+                  - { label: "Inquire Button", name: "inquire", widget: "string" }
+                  - { label: "Book Button", name: "book", widget: "string" }
+              - name: "contact"
+                label: "Contact Form"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+                  - { label: "Name Label", name: "name", widget: "string" }
+                  - { label: "Name Placeholder", name: "namePlaceholder", widget: "string" }
+                  - { label: "Email Label", name: "email", widget: "string" }
+                  - { label: "Email Placeholder", name: "emailPlaceholder", widget: "string" }
+                  - { label: "Message Label", name: "message", widget: "string" }
+                  - { label: "Message Placeholder", name: "messagePlaceholder", widget: "string" }
+                  - { label: "Send Email Button", name: "sendEmail", widget: "string" }
+                  - { label: "WhatsApp Button", name: "sendWhatsApp", widget: "string" }
+                  - { label: "Thank You Title", name: "thankYou", widget: "string" }
+                  - { label: "Thank You Desc", name: "thankYouDesc", widget: "text" }
+                  - { label: "Send Another", name: "sendAnother", widget: "string" }
+              - name: "footer"
+                label: "Footer"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Contact Heading", name: "contact", widget: "string" }
+                  - { label: "Quick Links Heading", name: "quickLinks", widget: "string" }
+                  - { label: "Slots Available", name: "slotsAvailable", widget: "string" }
+                  - { label: "Currently Full", name: "currentlyFull", widget: "string" }
+                  - { label: "Enquire Now", name: "enquireNow", widget: "string" }
+                  - { label: "Available Sessions", name: "availableSessions", widget: "string" }
+              - name: "gameUI"
+                label: "Game UI Strings"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Select Level", name: "selectLevel", widget: "string" }
+                  - { label: "Primary", name: "primary", widget: "string" }
+                  - { label: "Secondary / SPM", name: "secondarySPM", widget: "string" }
+                  - { label: "Secondary", name: "secondary", widget: "string" }
+                  - { label: "Adult", name: "adult", widget: "string" }
+                  - { label: "Play Again", name: "playAgain", widget: "string" }
+                  - { label: "Join Class", name: "joinClass", widget: "string" }
+                  - { label: "Get Evaluation", name: "getEvaluation", widget: "string" }
+                  - { label: "Check Answer", name: "checkAnswer", widget: "string" }
+                  - { label: "Check Spelling", name: "checkSpelling", widget: "string" }
+                  - { label: "Type Answer Placeholder", name: "typeAnswer", widget: "string" }
+                  - { label: "Spell Word Placeholder", name: "spellWord", widget: "string" }
+                  - { label: "Tap Words Instruction", name: "tapWords", widget: "string" }
+                  - { label: "Tap Words Below", name: "tapWordsBelow", widget: "string" }
+                  - { label: "Tap Error Instruction", name: "tapError", widget: "string" }
+                  - { label: "Clear", name: "clear", widget: "string" }
+                  - { label: "Check", name: "check", widget: "string" }
+                  - { label: "Round", name: "round", widget: "string" }
+                  - { label: "Question", name: "question", widget: "string" }
+                  - { label: "Correct!", name: "correct", widget: "string" }
+                  - { label: "Time's Up", name: "timeUp", widget: "string" }
+                  - { label: "Answer Was", name: "answerWas", widget: "string" }
+                  - { label: "Correct Spelling Is", name: "correctSpelling", widget: "string" }
+                  - { label: "Should Be", name: "shouldBe", widget: "string" }
+                  - { label: "Error Was", name: "errorWas", widget: "string" }
+                  - { label: "Not That One", name: "notThatOne", widget: "string" }
+                  - { label: "Attempt Left", name: "attemptLeft", widget: "string" }
+                  - { label: "You Scored", name: "youScored", widget: "string" }
+                  - { label: "Excellent!", name: "excellent", widget: "string" }
+                  - { label: "Great Job!", name: "greatJob", widget: "string" }
+                  - { label: "Good Try!", name: "goodTry", widget: "string" }
+                  - { label: "Amazing!", name: "amazing", widget: "string" }
+                  - { label: "Brilliant!", name: "brilliant", widget: "string" }
+                  - { label: "Keep Practicing!", name: "keepPracticing", widget: "string" }
+                  - { label: "Spelling Star!", name: "spellingStar", widget: "string" }
+                  - { label: "Grammar Expert!", name: "grammarExpert", widget: "string" }
+                  - { label: "Keep Learning!", name: "keepLearning", widget: "string" }
+                  - { label: "Tap to Hear", name: "tapToHear", widget: "string" }
+                  - { label: "Audio Not Supported", name: "audioNotSupported", widget: "string" }
+                  - { label: "AI Writing", name: "aiWriting", widget: "string" }
+                  - { label: "Powered By", name: "poweredBy", widget: "string" }
+                  - { label: "Create Another", name: "createAnother", widget: "string" }
+                  - { label: "Quiz Description", name: "quizDesc", widget: "string" }
+                  - { label: "Story Description", name: "storyDesc", widget: "string" }
+                  - { label: "Scramble Description", name: "scrambleDesc", widget: "string" }
+                  - { label: "Sentence Description", name: "sentenceDesc", widget: "string" }
+                  - { label: "Spelling Description", name: "spellingDesc", widget: "string" }
+                  - { label: "Grammar Description", name: "grammarDesc", widget: "string" }
+
+          # ── Chinese ──
+          - name: "zh"
+            label: "中文 (Chinese)"
+            widget: "object"
+            collapsed: true
+            fields:
+              - name: "nav"
+                label: "导航"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "About", name: "about", widget: "string" }
+                  - { label: "Classes", name: "classes", widget: "string" }
+                  - { label: "Arcade", name: "arcade", widget: "string" }
+                  - { label: "Pricing", name: "pricing", widget: "string" }
+                  - { label: "Contact", name: "contact", widget: "string" }
+                  - { label: "Book CTA", name: "book", widget: "string" }
+              - name: "hero"
+                label: "主页横幅"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Badge", name: "badge", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Title Highlight", name: "titleHighlight", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+                  - { label: "CTA Button", name: "cta", widget: "string" }
+                  - { label: "View Courses", name: "view", widget: "string" }
+              - name: "about"
+                label: "关于"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Paragraph 1", name: "p1", widget: "text" }
+                  - { label: "Fun Fact Label", name: "funFact", widget: "string" }
+                  - { label: "Fun Fact Text", name: "funFactText", widget: "text" }
+                  - { label: "Specialty", name: "specialty", widget: "string" }
+                  - { label: "Focus", name: "focus", widget: "string" }
+              - name: "arcade"
+                label: "游戏区"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Subtitle", name: "subtitle", widget: "string" }
+                  - { label: "Quiz Mode", name: "modeQuiz", widget: "string" }
+                  - { label: "Story Mode", name: "modeStory", widget: "string" }
+                  - { label: "Scramble Mode", name: "modeScramble", widget: "string" }
+                  - { label: "Sentence Mode", name: "modeSentence", widget: "string" }
+                  - { label: "Spelling Mode", name: "modeSpelling", widget: "string" }
+                  - { label: "Grammar Mode", name: "modeGrammar", widget: "string" }
+              - name: "story"
+                label: "故事生成器"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+                  - { label: "Label 1", name: "label1", widget: "string" }
+                  - { label: "Label 2", name: "label2", widget: "string" }
+                  - { label: "Label 3", name: "label3", widget: "string" }
+                  - { label: "Button", name: "btn", widget: "string" }
+                  - { label: "Result Label", name: "result", widget: "string" }
+                  - { label: "Teacher Tip", name: "tip", widget: "text" }
+              - name: "pricing"
+                label: "价格标签"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Section Title", name: "title", widget: "string" }
+                  - { label: "Group Name", name: "group", widget: "string" }
+                  - { label: "Group Desc", name: "groupDesc", widget: "string" }
+                  - { label: "Personal Name", name: "personal", widget: "string" }
+                  - { label: "Personal Desc", name: "personalDesc", widget: "string" }
+                  - { label: "Crash Name", name: "crash", widget: "string" }
+                  - { label: "Crash Desc", name: "crashDesc", widget: "string" }
+                  - { label: "Inquire Button", name: "inquire", widget: "string" }
+                  - { label: "Book Button", name: "book", widget: "string" }
+              - name: "contact"
+                label: "联系表单"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+                  - { label: "Name Label", name: "name", widget: "string" }
+                  - { label: "Name Placeholder", name: "namePlaceholder", widget: "string" }
+                  - { label: "Email Label", name: "email", widget: "string" }
+                  - { label: "Email Placeholder", name: "emailPlaceholder", widget: "string" }
+                  - { label: "Message Label", name: "message", widget: "string" }
+                  - { label: "Message Placeholder", name: "messagePlaceholder", widget: "string" }
+                  - { label: "Send Email", name: "sendEmail", widget: "string" }
+                  - { label: "WhatsApp", name: "sendWhatsApp", widget: "string" }
+                  - { label: "Thank You", name: "thankYou", widget: "string" }
+                  - { label: "Thank You Desc", name: "thankYouDesc", widget: "text" }
+                  - { label: "Send Another", name: "sendAnother", widget: "string" }
+              - name: "footer"
+                label: "页脚"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Contact", name: "contact", widget: "string" }
+                  - { label: "Quick Links", name: "quickLinks", widget: "string" }
+                  - { label: "Slots Available", name: "slotsAvailable", widget: "string" }
+                  - { label: "Currently Full", name: "currentlyFull", widget: "string" }
+                  - { label: "Enquire Now", name: "enquireNow", widget: "string" }
+                  - { label: "Available Sessions", name: "availableSessions", widget: "string" }
+              - name: "gameUI"
+                label: "游戏界面文字"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Select Level", name: "selectLevel", widget: "string" }
+                  - { label: "Primary", name: "primary", widget: "string" }
+                  - { label: "Secondary / SPM", name: "secondarySPM", widget: "string" }
+                  - { label: "Secondary", name: "secondary", widget: "string" }
+                  - { label: "Adult", name: "adult", widget: "string" }
+                  - { label: "Play Again", name: "playAgain", widget: "string" }
+                  - { label: "Join Class", name: "joinClass", widget: "string" }
+                  - { label: "Get Evaluation", name: "getEvaluation", widget: "string" }
+                  - { label: "Check Answer", name: "checkAnswer", widget: "string" }
+                  - { label: "Check Spelling", name: "checkSpelling", widget: "string" }
+                  - { label: "Type Answer", name: "typeAnswer", widget: "string" }
+                  - { label: "Spell Word", name: "spellWord", widget: "string" }
+                  - { label: "Tap Words", name: "tapWords", widget: "string" }
+                  - { label: "Tap Words Below", name: "tapWordsBelow", widget: "string" }
+                  - { label: "Tap Error", name: "tapError", widget: "string" }
+                  - { label: "Clear", name: "clear", widget: "string" }
+                  - { label: "Check", name: "check", widget: "string" }
+                  - { label: "Round", name: "round", widget: "string" }
+                  - { label: "Question", name: "question", widget: "string" }
+                  - { label: "Correct!", name: "correct", widget: "string" }
+                  - { label: "Time's Up", name: "timeUp", widget: "string" }
+                  - { label: "Answer Was", name: "answerWas", widget: "string" }
+                  - { label: "Correct Spelling", name: "correctSpelling", widget: "string" }
+                  - { label: "Should Be", name: "shouldBe", widget: "string" }
+                  - { label: "Error Was", name: "errorWas", widget: "string" }
+                  - { label: "Not That One", name: "notThatOne", widget: "string" }
+                  - { label: "Attempt Left", name: "attemptLeft", widget: "string" }
+                  - { label: "You Scored", name: "youScored", widget: "string" }
+                  - { label: "Excellent!", name: "excellent", widget: "string" }
+                  - { label: "Great Job!", name: "greatJob", widget: "string" }
+                  - { label: "Good Try!", name: "goodTry", widget: "string" }
+                  - { label: "Amazing!", name: "amazing", widget: "string" }
+                  - { label: "Brilliant!", name: "brilliant", widget: "string" }
+                  - { label: "Keep Practicing!", name: "keepPracticing", widget: "string" }
+                  - { label: "Spelling Star!", name: "spellingStar", widget: "string" }
+                  - { label: "Grammar Expert!", name: "grammarExpert", widget: "string" }
+                  - { label: "Keep Learning!", name: "keepLearning", widget: "string" }
+                  - { label: "Tap to Hear", name: "tapToHear", widget: "string" }
+                  - { label: "Audio Not Supported", name: "audioNotSupported", widget: "string" }
+                  - { label: "AI Writing", name: "aiWriting", widget: "string" }
+                  - { label: "Powered By", name: "poweredBy", widget: "string" }
+                  - { label: "Create Another", name: "createAnother", widget: "string" }
+                  - { label: "Quiz Desc", name: "quizDesc", widget: "string" }
+                  - { label: "Story Desc", name: "storyDesc", widget: "string" }
+                  - { label: "Scramble Desc", name: "scrambleDesc", widget: "string" }
+                  - { label: "Sentence Desc", name: "sentenceDesc", widget: "string" }
+                  - { label: "Spelling Desc", name: "spellingDesc", widget: "string" }
+                  - { label: "Grammar Desc", name: "grammarDesc", widget: "string" }
+
+          # ── Malay ──
+          - name: "ms"
+            label: "Bahasa Melayu (Malay)"
+            widget: "object"
+            collapsed: true
+            fields:
+              - name: "nav"
+                label: "Navigasi"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "About", name: "about", widget: "string" }
+                  - { label: "Classes", name: "classes", widget: "string" }
+                  - { label: "Arcade", name: "arcade", widget: "string" }
+                  - { label: "Pricing", name: "pricing", widget: "string" }
+                  - { label: "Contact", name: "contact", widget: "string" }
+                  - { label: "Book CTA", name: "book", widget: "string" }
+              - name: "hero"
+                label: "Bahagian Utama"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Badge", name: "badge", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Title Highlight", name: "titleHighlight", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+                  - { label: "CTA Button", name: "cta", widget: "string" }
+                  - { label: "View Courses", name: "view", widget: "string" }
+              - name: "about"
+                label: "Tentang"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Paragraph 1", name: "p1", widget: "text" }
+                  - { label: "Fun Fact Label", name: "funFact", widget: "string" }
+                  - { label: "Fun Fact Text", name: "funFactText", widget: "text" }
+                  - { label: "Specialty", name: "specialty", widget: "string" }
+                  - { label: "Focus", name: "focus", widget: "string" }
+              - name: "arcade"
+                label: "Arked"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Subtitle", name: "subtitle", widget: "string" }
+                  - { label: "Quiz Mode", name: "modeQuiz", widget: "string" }
+                  - { label: "Story Mode", name: "modeStory", widget: "string" }
+                  - { label: "Scramble Mode", name: "modeScramble", widget: "string" }
+                  - { label: "Sentence Mode", name: "modeSentence", widget: "string" }
+                  - { label: "Spelling Mode", name: "modeSpelling", widget: "string" }
+                  - { label: "Grammar Mode", name: "modeGrammar", widget: "string" }
+              - name: "story"
+                label: "Pencipta Cerita"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+                  - { label: "Label 1", name: "label1", widget: "string" }
+                  - { label: "Label 2", name: "label2", widget: "string" }
+                  - { label: "Label 3", name: "label3", widget: "string" }
+                  - { label: "Button", name: "btn", widget: "string" }
+                  - { label: "Result Label", name: "result", widget: "string" }
+                  - { label: "Teacher Tip", name: "tip", widget: "text" }
+              - name: "pricing"
+                label: "Label Harga"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Section Title", name: "title", widget: "string" }
+                  - { label: "Group Name", name: "group", widget: "string" }
+                  - { label: "Group Desc", name: "groupDesc", widget: "string" }
+                  - { label: "Personal Name", name: "personal", widget: "string" }
+                  - { label: "Personal Desc", name: "personalDesc", widget: "string" }
+                  - { label: "Crash Name", name: "crash", widget: "string" }
+                  - { label: "Crash Desc", name: "crashDesc", widget: "string" }
+                  - { label: "Inquire Button", name: "inquire", widget: "string" }
+                  - { label: "Book Button", name: "book", widget: "string" }
+              - name: "contact"
+                label: "Borang Hubungi"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "desc", widget: "text" }
+                  - { label: "Name Label", name: "name", widget: "string" }
+                  - { label: "Name Placeholder", name: "namePlaceholder", widget: "string" }
+                  - { label: "Email Label", name: "email", widget: "string" }
+                  - { label: "Email Placeholder", name: "emailPlaceholder", widget: "string" }
+                  - { label: "Message Label", name: "message", widget: "string" }
+                  - { label: "Message Placeholder", name: "messagePlaceholder", widget: "string" }
+                  - { label: "Send Email", name: "sendEmail", widget: "string" }
+                  - { label: "WhatsApp", name: "sendWhatsApp", widget: "string" }
+                  - { label: "Thank You", name: "thankYou", widget: "string" }
+                  - { label: "Thank You Desc", name: "thankYouDesc", widget: "text" }
+                  - { label: "Send Another", name: "sendAnother", widget: "string" }
+              - name: "footer"
+                label: "Kaki Halaman"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Contact", name: "contact", widget: "string" }
+                  - { label: "Quick Links", name: "quickLinks", widget: "string" }
+                  - { label: "Slots Available", name: "slotsAvailable", widget: "string" }
+                  - { label: "Currently Full", name: "currentlyFull", widget: "string" }
+                  - { label: "Enquire Now", name: "enquireNow", widget: "string" }
+                  - { label: "Available Sessions", name: "availableSessions", widget: "string" }
+              - name: "gameUI"
+                label: "Teks Permainan"
+                widget: "object"
+                collapsed: true
+                fields:
+                  - { label: "Select Level", name: "selectLevel", widget: "string" }
+                  - { label: "Primary", name: "primary", widget: "string" }
+                  - { label: "Secondary / SPM", name: "secondarySPM", widget: "string" }
+                  - { label: "Secondary", name: "secondary", widget: "string" }
+                  - { label: "Adult", name: "adult", widget: "string" }
+                  - { label: "Play Again", name: "playAgain", widget: "string" }
+                  - { label: "Join Class", name: "joinClass", widget: "string" }
+                  - { label: "Get Evaluation", name: "getEvaluation", widget: "string" }
+                  - { label: "Check Answer", name: "checkAnswer", widget: "string" }
+                  - { label: "Check Spelling", name: "checkSpelling", widget: "string" }
+                  - { label: "Type Answer", name: "typeAnswer", widget: "string" }
+                  - { label: "Spell Word", name: "spellWord", widget: "string" }
+                  - { label: "Tap Words", name: "tapWords", widget: "string" }
+                  - { label: "Tap Words Below", name: "tapWordsBelow", widget: "string" }
+                  - { label: "Tap Error", name: "tapError", widget: "string" }
+                  - { label: "Clear", name: "clear", widget: "string" }
+                  - { label: "Check", name: "check", widget: "string" }
+                  - { label: "Round", name: "round", widget: "string" }
+                  - { label: "Question", name: "question", widget: "string" }
+                  - { label: "Correct!", name: "correct", widget: "string" }
+                  - { label: "Time's Up", name: "timeUp", widget: "string" }
+                  - { label: "Answer Was", name: "answerWas", widget: "string" }
+                  - { label: "Correct Spelling", name: "correctSpelling", widget: "string" }
+                  - { label: "Should Be", name: "shouldBe", widget: "string" }
+                  - { label: "Error Was", name: "errorWas", widget: "string" }
+                  - { label: "Not That One", name: "notThatOne", widget: "string" }
+                  - { label: "Attempt Left", name: "attemptLeft", widget: "string" }
+                  - { label: "You Scored", name: "youScored", widget: "string" }
+                  - { label: "Excellent!", name: "excellent", widget: "string" }
+                  - { label: "Great Job!", name: "greatJob", widget: "string" }
+                  - { label: "Good Try!", name: "goodTry", widget: "string" }
+                  - { label: "Amazing!", name: "amazing", widget: "string" }
+                  - { label: "Brilliant!", name: "brilliant", widget: "string" }
+                  - { label: "Keep Practicing!", name: "keepPracticing", widget: "string" }
+                  - { label: "Spelling Star!", name: "spellingStar", widget: "string" }
+                  - { label: "Grammar Expert!", name: "grammarExpert", widget: "string" }
+                  - { label: "Keep Learning!", name: "keepLearning", widget: "string" }
+                  - { label: "Tap to Hear", name: "tapToHear", widget: "string" }
+                  - { label: "Audio Not Supported", name: "audioNotSupported", widget: "string" }
+                  - { label: "AI Writing", name: "aiWriting", widget: "string" }
+                  - { label: "Powered By", name: "poweredBy", widget: "string" }
+                  - { label: "Create Another", name: "createAnother", widget: "string" }
+                  - { label: "Quiz Desc", name: "quizDesc", widget: "string" }
+                  - { label: "Story Desc", name: "storyDesc", widget: "string" }
+                  - { label: "Scramble Desc", name: "scrambleDesc", widget: "string" }
+                  - { label: "Sentence Desc", name: "sentenceDesc", widget: "string" }
+                  - { label: "Spelling Desc", name: "spellingDesc", widget: "string" }
+                  - { label: "Grammar Desc", name: "grammarDesc", widget: "string" }
+
+  # ── Page Sections ──────────────────────────────────
+  - name: "page-sections"
+    label: "Page Sections"
+    files:
+      - label: "Stats Bar"
+        name: "stats"
+        file: "src/data/stats.json"
+        fields:
+          - name: "items"
+            label: "Stats"
+            widget: "list"
+            fields:
+              - { label: "Value", name: "value", widget: "string", hint: "Number or text like 'A+' or 'CELT'" }
+              - { label: "Is Number (animates)", name: "isNumber", widget: "boolean", default: false }
+              - { label: "Suffix", name: "suffix", widget: "string", required: false, hint: "e.g. '+'" }
+              - { label: "Display Suffix", name: "displaySuffix", widget: "string", required: false }
+              - name: "label"
+                label: "Label"
+                widget: "object"
+                fields:
+                  - { label: "English", name: "en", widget: "string" }
+                  - { label: "中文", name: "zh", widget: "string" }
+                  - { label: "Malay", name: "ms", widget: "string" }
+
+      - label: "Classes"
+        name: "classes"
+        file: "src/data/classes.json"
+        fields:
+          - name: "sectionTitle"
+            label: "Section Title"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string" }
+              - { label: "中文", name: "zh", widget: "string" }
+              - { label: "Malay", name: "ms", widget: "string" }
+          - name: "sectionSubtitle"
+            label: "Section Subtitle"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "text" }
+              - { label: "中文", name: "zh", widget: "text" }
+              - { label: "Malay", name: "ms", widget: "text" }
+          - name: "items"
+            label: "Class Cards"
+            widget: "list"
+            fields:
+              - name: "title"
+                label: "Title"
+                widget: "object"
+                fields:
+                  - { label: "English", name: "en", widget: "string" }
+                  - { label: "中文", name: "zh", widget: "string" }
+                  - { label: "Malay", name: "ms", widget: "string" }
+              - name: "level"
+                label: "Level Description"
+                widget: "object"
+                fields:
+                  - { label: "English", name: "en", widget: "string" }
+                  - { label: "中文", name: "zh", widget: "string" }
+                  - { label: "Malay", name: "ms", widget: "string" }
+              - { label: "Color", name: "color", widget: "select", options: ["yellow", "sky", "purple"] }
+              - { label: "Icon", name: "icon", widget: "select", options: ["smile", "penTool", "brain"] }
+              - { label: "Badge", name: "badge", widget: "string", required: false, hint: "e.g. POPULAR (leave empty for none)" }
+              - name: "features"
+                label: "Features"
+                widget: "object"
+                fields:
+                  - { label: "English", name: "en", widget: "list", field: { label: "Feature", name: "feature", widget: "string" } }
+                  - { label: "中文", name: "zh", widget: "list", field: { label: "Feature", name: "feature", widget: "string" } }
+                  - { label: "Malay", name: "ms", widget: "list", field: { label: "Feature", name: "feature", widget: "string" } }
+
+      - label: "Pricing"
+        name: "pricing"
+        file: "src/data/pricing.json"
+        fields:
+          - name: "subtitle"
+            label: "Subtitle"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string" }
+              - { label: "中文", name: "zh", widget: "string" }
+              - { label: "Malay", name: "ms", widget: "string" }
+          - name: "disclaimer"
+            label: "Disclaimer"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string" }
+              - { label: "中文", name: "zh", widget: "string" }
+              - { label: "Malay", name: "ms", widget: "string" }
+          - name: "tiers"
+            label: "Pricing Tiers"
+            widget: "list"
+            fields:
+              - name: "name"
+                label: "Tier Name"
+                widget: "object"
+                fields:
+                  - { label: "English", name: "en", widget: "string" }
+                  - { label: "中文", name: "zh", widget: "string" }
+                  - { label: "Malay", name: "ms", widget: "string" }
+              - name: "desc"
+                label: "Description"
+                widget: "object"
+                fields:
+                  - { label: "English", name: "en", widget: "string" }
+                  - { label: "中文", name: "zh", widget: "string" }
+                  - { label: "Malay", name: "ms", widget: "string" }
+              - { label: "Price", name: "price", widget: "string", hint: "e.g. RM 180" }
+              - { label: "Unit", name: "unit", widget: "string", hint: "e.g. /mo, /hr, /pack" }
+              - { label: "Badge", name: "badge", widget: "string", required: false, hint: "e.g. Most Recommended" }
+              - { label: "Highlighted", name: "highlighted", widget: "boolean", default: false }
+              - { label: "Color", name: "color", widget: "select", options: ["gray", "sky", "purple"] }
+              - name: "features"
+                label: "Features"
+                widget: "object"
+                fields:
+                  - { label: "English", name: "en", widget: "list", field: { label: "Feature", name: "feature", widget: "string" } }
+                  - { label: "中文", name: "zh", widget: "list", field: { label: "Feature", name: "feature", widget: "string" } }
+                  - { label: "Malay", name: "ms", widget: "list", field: { label: "Feature", name: "feature", widget: "string" } }
+
+      - label: "Testimonials"
+        name: "testimonials"
+        file: "src/data/testimonials.json"
+        fields:
+          - name: "sectionTitle"
+            label: "Section Title"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string" }
+              - { label: "中文", name: "zh", widget: "string" }
+              - { label: "Malay", name: "ms", widget: "string" }
+          - name: "items"
+            label: "Testimonials"
+            widget: "list"
+            fields:
+              - name: "text"
+                label: "Quote"
+                widget: "object"
+                fields:
+                  - { label: "English", name: "en", widget: "text" }
+                  - { label: "中文", name: "zh", widget: "text" }
+                  - { label: "Malay", name: "ms", widget: "text" }
+              - { label: "Author", name: "author", widget: "string" }
+              - name: "grade"
+                label: "Grade / Role"
+                widget: "object"
+                fields:
+                  - { label: "English", name: "en", widget: "string" }
+                  - { label: "中文", name: "zh", widget: "string" }
+                  - { label: "Malay", name: "ms", widget: "string" }
+
+      - label: "Services"
+        name: "services"
+        file: "src/data/services.json"
+        fields:
+          - name: "sectionTitle"
+            label: "Section Title"
+            widget: "object"
+            fields:
+              - { label: "English", name: "en", widget: "string" }
+              - { label: "中文", name: "zh", widget: "string" }
+              - { label: "Malay", name: "ms", widget: "string" }
+          - name: "items"
+            label: "Services"
+            widget: "list"
+            fields:
+              - name: "name"
+                label: "Service Name"
+                widget: "object"
+                fields:
+                  - { label: "English", name: "en", widget: "string" }
+                  - { label: "中文", name: "zh", widget: "string" }
+                  - { label: "Malay", name: "ms", widget: "string" }
+              - name: "description"
+                label: "Description"
+                widget: "object"
+                fields:
+                  - { label: "English", name: "en", widget: "text" }
+                  - { label: "中文", name: "zh", widget: "text" }
+                  - { label: "Malay", name: "ms", widget: "text" }
+              - { label: "Price", name: "price", widget: "string", hint: "e.g. 180/mo" }
+              - { label: "Open", name: "open", widget: "boolean", default: true }
+
+  # ── Arcade Games ───────────────────────────────────
+  - name: "arcade-games"
+    label: "Arcade Games"
+    files:
+      - label: "Quiz Questions"
+        name: "quiz"
+        file: "src/data/quizData.json"
+        fields:
+          - name: "primary"
+            label: "Primary Level"
+            widget: "list"
+            fields:
+              - { label: "Question", name: "question", widget: "string" }
+              - { label: "Options", name: "options", widget: "list", field: { label: "Option", name: "option", widget: "string" } }
+              - { label: "Correct Answer (0-based index)", name: "correct", widget: "number", value_type: "int", hint: "0 = first option, 1 = second, etc." }
+          - name: "secondary"
+            label: "Secondary Level"
+            widget: "list"
+            fields:
+              - { label: "Question", name: "question", widget: "string" }
+              - { label: "Options", name: "options", widget: "list", field: { label: "Option", name: "option", widget: "string" } }
+              - { label: "Correct Answer (0-based index)", name: "correct", widget: "number", value_type: "int" }
+          - name: "adult"
+            label: "Adult Level"
+            widget: "list"
+            fields:
+              - { label: "Question", name: "question", widget: "string" }
+              - { label: "Options", name: "options", widget: "list", field: { label: "Option", name: "option", widget: "string" } }
+              - { label: "Correct Answer (0-based index)", name: "correct", widget: "number", value_type: "int" }
+
+      - label: "Word Scramble"
+        name: "wordScramble"
+        file: "src/data/wordScrambleData.json"
+        fields:
+          - name: "primary"
+            label: "Primary Level"
+            widget: "list"
+            fields:
+              - { label: "Word", name: "word", widget: "string" }
+              - { label: "Hint", name: "hint", widget: "string" }
+          - name: "secondary"
+            label: "Secondary Level"
+            widget: "list"
+            fields:
+              - { label: "Word", name: "word", widget: "string" }
+              - { label: "Hint", name: "hint", widget: "string" }
+          - name: "adult"
+            label: "Adult Level"
+            widget: "list"
+            fields:
+              - { label: "Word", name: "word", widget: "string" }
+              - { label: "Hint", name: "hint", widget: "string" }
+
+      - label: "Spelling Bee"
+        name: "spellingBee"
+        file: "src/data/spellingBeeData.json"
+        fields:
+          - name: "primary"
+            label: "Primary Level"
+            widget: "list"
+            fields:
+              - { label: "Word", name: "word", widget: "string" }
+              - { label: "Hint", name: "hint", widget: "string" }
+          - name: "secondary"
+            label: "Secondary Level"
+            widget: "list"
+            fields:
+              - { label: "Word", name: "word", widget: "string" }
+              - { label: "Hint", name: "hint", widget: "string" }
+          - name: "adult"
+            label: "Adult Level"
+            widget: "list"
+            fields:
+              - { label: "Word", name: "word", widget: "string" }
+              - { label: "Hint", name: "hint", widget: "string" }
+
+      - label: "Sentence Builder"
+        name: "sentenceBuilder"
+        file: "src/data/sentenceBuilderData.json"
+        fields:
+          - name: "primary"
+            label: "Primary Level"
+            widget: "list"
+            fields:
+              - { label: "Words", name: "words", widget: "list", field: { label: "Word", name: "word", widget: "string" } }
+              - { label: "Correct Sentence", name: "correct", widget: "string" }
+          - name: "secondary"
+            label: "Secondary Level"
+            widget: "list"
+            fields:
+              - { label: "Words", name: "words", widget: "list", field: { label: "Word", name: "word", widget: "string" } }
+              - { label: "Correct Sentence", name: "correct", widget: "string" }
+          - name: "adult"
+            label: "Adult Level"
+            widget: "list"
+            fields:
+              - { label: "Words", name: "words", widget: "list", field: { label: "Word", name: "word", widget: "string" } }
+              - { label: "Correct Sentence", name: "correct", widget: "string" }
+
+      - label: "Grammar Police"
+        name: "grammarPolice"
+        file: "src/data/grammarPoliceData.json"
+        fields:
+          - name: "primary"
+            label: "Primary Level"
+            widget: "list"
+            fields:
+              - { label: "Sentence Words", name: "sentence", widget: "list", field: { label: "Word", name: "word", widget: "string" } }
+              - { label: "Error Index (0-based)", name: "errorIndex", widget: "number", value_type: "int", hint: "0 = first word, 1 = second, etc." }
+              - { label: "Correction", name: "correction", widget: "string" }
+          - name: "secondary"
+            label: "Secondary Level"
+            widget: "list"
+            fields:
+              - { label: "Sentence Words", name: "sentence", widget: "list", field: { label: "Word", name: "word", widget: "string" } }
+              - { label: "Error Index (0-based)", name: "errorIndex", widget: "number", value_type: "int" }
+              - { label: "Correction", name: "correction", widget: "string" }
+          - name: "adult"
+            label: "Adult Level"
+            widget: "list"
+            fields:
+              - { label: "Sentence Words", name: "sentence", widget: "list", field: { label: "Word", name: "word", widget: "string" } }
+              - { label: "Error Index (0-based)", name: "errorIndex", widget: "number", value_type: "int" }
+              - { label: "Correction", name: "correction", widget: "string" }

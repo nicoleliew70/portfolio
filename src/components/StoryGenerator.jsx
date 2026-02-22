@@ -15,6 +15,7 @@ const fallbackTemplates = [
 ];
 
 const StoryGenerator = ({ currentText }) => {
+  const t = currentText.gameUI;
   const [storyInputs, setStoryInputs] = useState({ name: '', place: '', object: '' });
   const [generatedStory, setGeneratedStory] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
@@ -52,8 +53,8 @@ const StoryGenerator = ({ currentText }) => {
     return (
       <div className="text-center py-12">
         <div className="inline-block w-12 h-12 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin mb-6"></div>
-        <p className="text-gray-600 font-medium text-lg">AI is writing your story...</p>
-        <p className="text-gray-400 text-sm mt-2">Powered by Google Gemini ✨</p>
+        <p className="text-gray-600 font-medium text-lg">{t.aiWriting}</p>
+        <p className="text-gray-400 text-sm mt-2">{t.poweredBy}</p>
       </div>
     );
   }
@@ -74,7 +75,7 @@ const StoryGenerator = ({ currentText }) => {
           onClick={() => { setGeneratedStory(''); setStoryInputs({ name: '', place: '', object: '' }); }}
           className="text-purple-600 font-bold hover:text-purple-800"
         >
-          Create Another Story
+          {t.createAnother}
         </button>
       </div>
     );

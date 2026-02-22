@@ -1,7 +1,10 @@
 import { BookOpen, Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { trackWhatsAppClick } from '../utils/analytics';
+import settings from '../data/settings.json';
 
-const Footer = ({ whatsAppLink }) => {
+const Footer = ({ currentText, lang, whatsAppLink }) => {
+  const ft = currentText.footer;
+
   return (
     <>
       <footer className="bg-gray-900 text-gray-400 py-12">
@@ -9,29 +12,29 @@ const Footer = ({ whatsAppLink }) => {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center gap-2 text-white font-bold text-xl mb-4">
-                <BookOpen className="text-sky-500" /> Teacher Nicole
+                <BookOpen className="text-sky-500" /> {settings.brandName}
               </div>
-              <p className="text-sm">Empowering students in Sandakan and Online to achieve their language goals with confidence and creativity.</p>
+              <p className="text-sm">{settings.tagline}</p>
             </div>
             <div>
-              <h3 className="text-white font-bold mb-4">Contact</h3>
+              <h3 className="text-white font-bold mb-4">{ft.contact}</h3>
               <ul className="space-y-2 text-sm">
-                <li className="flex items-center gap-2"><Phone size={16} /> +60-1133-8484-12</li>
-                <li className="flex items-center gap-2"><Mail size={16} /> nicoleliew70@gmail.com</li>
-                <li className="flex items-center gap-2"><MapPin size={16} /> Sandakan, Sabah (and Online)</li>
+                <li className="flex items-center gap-2"><Phone size={16} /> {settings.phone}</li>
+                <li className="flex items-center gap-2"><Mail size={16} /> {settings.email}</li>
+                <li className="flex items-center gap-2"><MapPin size={16} /> {settings.location}</li>
               </ul>
             </div>
             <div>
-              <h3 className="text-white font-bold mb-4">Quick Links</h3>
+              <h3 className="text-white font-bold mb-4">{ft.quickLinks}</h3>
               <ul className="space-y-2 text-sm">
-                <li><a href="#about" className="hover:text-sky-400">About</a></li>
-                <li><a href="#classes" className="hover:text-sky-400">Classes</a></li>
-                <li><a href="#pricing" className="hover:text-sky-400">Pricing</a></li>
+                <li><a href="#about" className="hover:text-sky-400">{currentText.nav.about}</a></li>
+                <li><a href="#classes" className="hover:text-sky-400">{currentText.nav.classes}</a></li>
+                <li><a href="#pricing" className="hover:text-sky-400">{currentText.nav.pricing}</a></li>
               </ul>
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-xs">
-            &copy; {new Date().getFullYear()} Nicole Liew Sing Vei. All rights reserved.
+            &copy; {new Date().getFullYear()} {settings.copyrightName}. All rights reserved.
           </div>
         </div>
       </footer>

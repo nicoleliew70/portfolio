@@ -1,12 +1,13 @@
 import { useState, useCallback } from 'react';
 import { Smile, PenTool, Brain, Trophy, RefreshCw, ArrowRight, X, Shield } from 'lucide-react';
-import grammarPoliceData from '../data/grammarPoliceData';
+import grammarPoliceData from '../data/grammarPoliceData.json';
 import { trackGameStart, trackGameComplete } from '../utils/analytics';
 
 const ROUNDS = 5;
 const MAX_ATTEMPTS = 2;
 
-const GrammarPolice = ({ lang, whatsAppLink }) => {
+const GrammarPolice = ({ currentText, whatsAppLink }) => {
+  const t = currentText.gameUI;
   const [level, setLevel] = useState(null);
   const [round, setRound] = useState(0);
   const [score, setScore] = useState(0);
@@ -87,21 +88,19 @@ const GrammarPolice = ({ lang, whatsAppLink }) => {
   if (!level) {
     return (
       <div className="w-full animate-fadeIn">
-        <h3 className="text-2xl font-bold mb-8 text-gray-800">
-          {lang === 'zh' ? '选择你的级别' : lang === 'ms' ? 'Pilih Tahap Anda' : 'Select Your Level'}
-        </h3>
+        <h3 className="text-2xl font-bold mb-8 text-gray-800">{t.selectLevel}</h3>
         <div className="grid md:grid-cols-3 gap-6">
           <button onClick={() => handleLevelSelect('primary')} className="group p-6 rounded-2xl border-2 border-yellow-200 hover:border-yellow-400 hover:bg-yellow-50 transition flex flex-col items-center">
             <div className="bg-yellow-100 p-4 rounded-full mb-4 group-hover:scale-110 transition"><Smile size={32} className="text-yellow-600" /></div>
-            <span className="font-bold text-lg">Primary</span>
+            <span className="font-bold text-lg">{t.primary}</span>
           </button>
           <button onClick={() => handleLevelSelect('secondary')} className="group p-6 rounded-2xl border-2 border-sky-200 hover:border-sky-400 hover:bg-sky-50 transition flex flex-col items-center">
             <div className="bg-sky-100 p-4 rounded-full mb-4 group-hover:scale-110 transition"><PenTool size={32} className="text-sky-600" /></div>
-            <span className="font-bold text-lg">Secondary</span>
+            <span className="font-bold text-lg">{t.secondary}</span>
           </button>
           <button onClick={() => handleLevelSelect('adult')} className="group p-6 rounded-2xl border-2 border-purple-200 hover:border-purple-400 hover:bg-purple-50 transition flex flex-col items-center">
             <div className="bg-purple-100 p-4 rounded-full mb-4 group-hover:scale-110 transition"><Brain size={32} className="text-purple-600" /></div>
-            <span className="font-bold text-lg">Adult</span>
+            <span className="font-bold text-lg">{t.adult}</span>
           </button>
         </div>
       </div>
@@ -113,15 +112,15 @@ const GrammarPolice = ({ lang, whatsAppLink }) => {
       <div className="animate-fadeIn w-full max-w-lg">
         <Trophy size={64} className="text-yellow-500 mx-auto mb-4 animate-bounce" />
         <h3 className="text-3xl font-bold mb-2">
-          {score >= 4 ? "Grammar Expert!" : score >= 3 ? "Great Job!" : "Keep Learning!"}
+          {score >= 4 ? t.grammarExpert : score >= 3 ? t.greatJob : t.keepLearning}
         </h3>
-        <p className="text-gray-600 mb-6">You scored <span className="font-bold text-indigo-600 text-xl">{score}/{ROUNDS}</span></p>
+        <p className="text-gray-600 mb-6">{t.youScored} <span className="font-bold text-indigo-600 text-xl">{score}/{ROUNDS}</span></p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a href={whatsAppLink} target="_blank" rel="noreferrer" className="bg-indigo-600 text-white px-8 py-3 rounded-full font-bold hover:bg-indigo-700 transition flex items-center justify-center gap-2">
-            Join a Class <ArrowRight size={18} />
+            {t.joinClass} <ArrowRight size={18} />
           </a>
           <button onClick={reset} className="text-gray-500 hover:text-gray-700 font-medium flex items-center justify-center gap-2">
-            <RefreshCw size={18} /> Play Again
+            <RefreshCw size={18} /> {t.playAgain}
           </button>
         </div>
       </div>
@@ -133,17 +132,17 @@ const GrammarPolice = ({ lang, whatsAppLink }) => {
   return (
     <div className="w-full max-w-lg animate-fadeIn">
       <div className="flex justify-between items-center mb-6">
-        <span className="text-sm font-bold text-gray-400 uppercase tracking-wide">Round {round + 1}/{ROUNDS}</span>
+        <span className="text-sm font-bold text-gray-400 uppercase tracking-wide">{t.round} {round + 1}/{ROUNDS}</span>
         <button onClick={reset} className="text-gray-400 hover:text-gray-600"><X size={20} /></button>
       </div>
 
       <div className="flex items-center gap-2 justify-center mb-4">
         <Shield size={20} className="text-red-500" />
-        <p className="text-sm text-gray-500 font-medium">Tap the word with the grammar error!</p>
+        <p className="text-sm text-gray-500 font-medium">{t.tapError}</p>
       </div>
 
       {attempts > 0 && feedback === 'wrong' && (
-        <p className="text-orange-500 text-sm mb-3 text-center font-medium">Not that one! Try again ({MAX_ATTEMPTS - attempts} attempt left)</p>
+        <p className="text-orange-500 text-sm mb-3 text-center font-medium">{t.notThatOne} ({MAX_ATTEMPTS - attempts} {t.attemptLeft})</p>
       )}
 
       <div className="bg-gray-50 rounded-2xl p-6 mb-6">
@@ -186,8 +185,8 @@ const GrammarPolice = ({ lang, whatsAppLink }) => {
       {(feedback === 'correct' || feedback === 'revealed') && (
         <div className={`text-center p-3 rounded-xl ${feedback === 'correct' ? 'bg-green-50' : 'bg-red-50'}`}>
           <p className={`text-sm font-medium ${feedback === 'correct' ? 'text-green-700' : 'text-red-700'}`}>
-            {feedback === 'correct' ? 'Correct! ' : 'The error was: '}
-            <strong>&ldquo;{currentSentence.sentence[currentSentence.errorIndex]}&rdquo;</strong> should be <strong>&ldquo;{currentSentence.correction}&rdquo;</strong>
+            {feedback === 'correct' ? `${t.correct} ` : `${t.errorWas} `}
+            <strong>&ldquo;{currentSentence.sentence[currentSentence.errorIndex]}&rdquo;</strong> {t.shouldBe} <strong>&ldquo;{currentSentence.correction}&rdquo;</strong>
           </p>
         </div>
       )}

@@ -1,0 +1,56 @@
+{
+  "subtitle": {
+    "en": "Invest in your future with affordable rates.",
+    "zh": "以实惠的价格投资你的未来。",
+    "ms": "Laburkan masa depan anda dengan kadar berpatutan."
+  },
+  "disclaimer": {
+    "en": "* Prices are estimates and subject to discussion based on level and location.",
+    "zh": "* 价格为预估，具体视级别和地点而定。",
+    "ms": "* Harga adalah anggaran dan tertakluk kepada perbincangan berdasarkan tahap dan lokasi."
+  },
+  "tiers": [
+    {
+      "name": { "en": "Small Group", "zh": "小组班", "ms": "Kelas Kumpulan" },
+      "desc": { "en": "Perfect for learning with friends.", "zh": "和朋友一起学，更有动力。", "ms": "Sesuai belajar bersama kawan." },
+      "price": "RM 180",
+      "unit": "/mo",
+      "badge": "",
+      "highlighted": false,
+      "color": "gray",
+      "features": {
+        "en": ["Max 3 students", "4 Classes per month", "1.5 Hours per class", "Group activities"],
+        "zh": ["最多3名学生", "每月4节课", "每节课1.5小时", "小组活动"],
+        "ms": ["Maksimum 3 pelajar", "4 Kelas sebulan", "1.5 Jam setiap kelas", "Aktiviti berkumpulan"]
+      }
+    },
+    {
+      "name": { "en": "Personalized (1-on-1)", "zh": "一对一补习", "ms": "Personal (1-on-1)" },
+      "desc": { "en": "Fully focused on your weak points.", "zh": "完全针对你的弱点来加强。", "ms": "Fokus sepenuhnya pada kelemahan anda." },
+      "price": "RM 80 – 150",
+      "unit": "/hr",
+      "badge": "Most Recommended",
+      "highlighted": true,
+      "color": "sky",
+      "features": {
+        "en": ["100% Personal attention", "Flexible scheduling", "Customized materials", "Detailed progress reports"],
+        "zh": ["100% 个人关注", "灵活排课", "定制教材", "详细进度报告"],
+        "ms": ["100% Perhatian peribadi", "Penjadualan fleksibel", "Bahan disesuaikan", "Laporan kemajuan terperinci"]
+      }
+    },
+    {
+      "name": { "en": "Exam Crash Course", "zh": "考试冲刺班", "ms": "Pecutan Peperiksaan" },
+      "desc": { "en": "Intensive prep before major exams.", "zh": "大考前的集中强化训练。", "ms": "Persediaan intensif sebelum peperiksaan besar." },
+      "price": "RM 900",
+      "unit": "/pack",
+      "badge": "",
+      "highlighted": false,
+      "color": "purple",
+      "features": {
+        "en": ["100% Personal attention", "10 Hours Intensive", "Past Year Paper Drills", "Answering Techniques"],
+        "zh": ["100% 个人关注", "10小时集中强化", "历年考题训练", "答题技巧"],
+        "ms": ["100% Perhatian peribadi", "10 Jam Intensif", "Latihan Kertas Tahun Lepas", "Teknik Menjawab"]
+      }
+    }
+  ]
+}

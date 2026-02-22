@@ -9,12 +9,12 @@ const SpellingBee = lazy(() => import('./SpellingBee'));
 const GrammarPolice = lazy(() => import('./GrammarPolice'));
 
 const games = [
-  { key: 'quiz', icon: Trophy, color: 'sky', desc: 'Test your knowledge' },
-  { key: 'story', icon: Sparkles, color: 'purple', desc: 'AI-powered tales' },
-  { key: 'scramble', icon: Shuffle, color: 'indigo', desc: 'Unscramble words' },
-  { key: 'sentence', icon: AlignLeft, color: 'teal', desc: 'Build sentences' },
-  { key: 'spelling', icon: Volume2, color: 'amber', desc: 'Listen & spell' },
-  { key: 'grammar', icon: Shield, color: 'red', desc: 'Find the error' },
+  { key: 'quiz', icon: Trophy, color: 'sky', descKey: 'quizDesc' },
+  { key: 'story', icon: Sparkles, color: 'purple', descKey: 'storyDesc' },
+  { key: 'scramble', icon: Shuffle, color: 'indigo', descKey: 'scrambleDesc' },
+  { key: 'sentence', icon: AlignLeft, color: 'teal', descKey: 'sentenceDesc' },
+  { key: 'spelling', icon: Volume2, color: 'amber', descKey: 'spellingDesc' },
+  { key: 'grammar', icon: Shield, color: 'red', descKey: 'grammarDesc' },
 ];
 
 const colorMap = {
@@ -35,6 +35,7 @@ const LoadingSpinner = () => (
 
 const ArcadeSection = ({ currentText, lang, whatsAppLink }) => {
   const [gameMode, setGameMode] = useState('quiz');
+  const t = currentText.gameUI;
 
   const labels = {
     quiz: currentText.arcade.modeQuiz,
@@ -78,7 +79,7 @@ const ArcadeSection = ({ currentText, lang, whatsAppLink }) => {
                     {labels[game.key]}
                   </p>
                   <p className={`text-xs mt-1 ${isActive ? 'text-white/70' : 'text-indigo-400'}`}>
-                    {game.desc}
+                    {t[game.descKey]}
                   </p>
                 </button>
               );
@@ -88,16 +89,16 @@ const ArcadeSection = ({ currentText, lang, whatsAppLink }) => {
 
         <div className="bg-white text-gray-900 rounded-3xl shadow-2xl p-6 md:p-10 min-h-[400px] flex flex-col justify-center items-center text-center transition-all duration-300">
           <Suspense fallback={<LoadingSpinner />}>
-            {gameMode === 'quiz' && <QuizGame lang={lang} whatsAppLink={whatsAppLink} />}
+            {gameMode === 'quiz' && <QuizGame currentText={currentText} whatsAppLink={whatsAppLink} />}
             {gameMode === 'story' && (
               <div className="w-full max-w-lg animate-fadeIn text-left">
                 <StoryGenerator currentText={currentText} />
               </div>
             )}
-            {gameMode === 'scramble' && <WordScramble lang={lang} whatsAppLink={whatsAppLink} />}
-            {gameMode === 'sentence' && <SentenceBuilder lang={lang} whatsAppLink={whatsAppLink} />}
-            {gameMode === 'spelling' && <SpellingBee lang={lang} whatsAppLink={whatsAppLink} />}
-            {gameMode === 'grammar' && <GrammarPolice lang={lang} whatsAppLink={whatsAppLink} />}
+            {gameMode === 'scramble' && <WordScramble currentText={currentText} whatsAppLink={whatsAppLink} />}
+            {gameMode === 'sentence' && <SentenceBuilder currentText={currentText} whatsAppLink={whatsAppLink} />}
+            {gameMode === 'spelling' && <SpellingBee currentText={currentText} whatsAppLink={whatsAppLink} />}
+            {gameMode === 'grammar' && <GrammarPolice currentText={currentText} whatsAppLink={whatsAppLink} />}
           </Suspense>
         </div>
       </div>

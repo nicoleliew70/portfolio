@@ -1,0 +1,8 @@
+{
+  "items": [
+    { "value": 7, "isNumber": true, "suffix": "+", "displaySuffix": " Years", "label": { "en": "Teaching Exp", "zh": "教学经验", "ms": "Pengalaman" } },
+    { "value": "A+", "isNumber": false, "suffix": "", "displaySuffix": "", "label": { "en": "SPM Record", "zh": "SPM 最佳成绩", "ms": "Rekod SPM" } },
+    { "value": "CELT", "isNumber": false, "suffix": "", "displaySuffix": "", "label": { "en": "Certified", "zh": "专业认证", "ms": "Sijil" } },
+    { "value": 100, "isNumber": true, "suffix": "+", "displaySuffix": "", "label": { "en": "Students", "zh": "位学生", "ms": "Pelajar" } }
+  ]
+}

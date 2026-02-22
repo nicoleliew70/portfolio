@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Smile, PenTool, Brain, Trophy, RefreshCw, ArrowRight, X, Clock } from 'lucide-react';
-import wordScrambleData from '../data/wordScrambleData';
+import wordScrambleData from '../data/wordScrambleData.json';
 import { trackGameStart, trackGameComplete } from '../utils/analytics';
 
 const ROUNDS = 5;
@@ -16,7 +16,8 @@ const scrambleWord = (word) => {
   return scrambled === word ? scrambleWord(word) : scrambled;
 };
 
-const WordScramble = ({ lang, whatsAppLink }) => {
+const WordScramble = ({ currentText, whatsAppLink }) => {
+  const t = currentText.gameUI;
   const [level, setLevel] = useState(null);
   const [round, setRound] = useState(0);
   const [score, setScore] = useState(0);
@@ -100,21 +101,19 @@ const WordScramble = ({ lang, whatsAppLink }) => {
   if (!level) {
     return (
       <div className="w-full animate-fadeIn">
-        <h3 className="text-2xl font-bold mb-8 text-gray-800">
-          {lang === 'zh' ? '选择你的级别' : lang === 'ms' ? 'Pilih Tahap Anda' : 'Select Your Level'}
-        </h3>
+        <h3 className="text-2xl font-bold mb-8 text-gray-800">{t.selectLevel}</h3>
         <div className="grid md:grid-cols-3 gap-6">
           <button onClick={() => handleLevelSelect('primary')} className="group p-6 rounded-2xl border-2 border-yellow-200 hover:border-yellow-400 hover:bg-yellow-50 transition flex flex-col items-center">
             <div className="bg-yellow-100 p-4 rounded-full mb-4 group-hover:scale-110 transition"><Smile size={32} className="text-yellow-600" /></div>
-            <span className="font-bold text-lg">Primary</span>
+            <span className="font-bold text-lg">{t.primary}</span>
           </button>
           <button onClick={() => handleLevelSelect('secondary')} className="group p-6 rounded-2xl border-2 border-sky-200 hover:border-sky-400 hover:bg-sky-50 transition flex flex-col items-center">
             <div className="bg-sky-100 p-4 rounded-full mb-4 group-hover:scale-110 transition"><PenTool size={32} className="text-sky-600" /></div>
-            <span className="font-bold text-lg">Secondary</span>
+            <span className="font-bold text-lg">{t.secondary}</span>
           </button>
           <button onClick={() => handleLevelSelect('adult')} className="group p-6 rounded-2xl border-2 border-purple-200 hover:border-purple-400 hover:bg-purple-50 transition flex flex-col items-center">
             <div className="bg-purple-100 p-4 rounded-full mb-4 group-hover:scale-110 transition"><Brain size={32} className="text-purple-600" /></div>
-            <span className="font-bold text-lg">Adult</span>
+            <span className="font-bold text-lg">{t.adult}</span>
           </button>
         </div>
       </div>
@@ -126,15 +125,15 @@ const WordScramble = ({ lang, whatsAppLink }) => {
       <div className="animate-fadeIn w-full max-w-lg">
         <Trophy size={64} className="text-yellow-500 mx-auto mb-4 animate-bounce" />
         <h3 className="text-3xl font-bold mb-2">
-          {score >= 4 ? "Amazing!" : score >= 3 ? "Great Job!" : "Good Try!"}
+          {score >= 4 ? t.amazing : score >= 3 ? t.greatJob : t.goodTry}
         </h3>
-        <p className="text-gray-600 mb-6">You scored <span className="font-bold text-indigo-600 text-xl">{score}/{ROUNDS}</span></p>
+        <p className="text-gray-600 mb-6">{t.youScored} <span className="font-bold text-indigo-600 text-xl">{score}/{ROUNDS}</span></p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a href={whatsAppLink} target="_blank" rel="noreferrer" className="bg-indigo-600 text-white px-8 py-3 rounded-full font-bold hover:bg-indigo-700 transition flex items-center justify-center gap-2">
-            Join a Class <ArrowRight size={18} />
+            {t.joinClass} <ArrowRight size={18} />
           </a>
           <button onClick={reset} className="text-gray-500 hover:text-gray-700 font-medium flex items-center justify-center gap-2">
-            <RefreshCw size={18} /> Play Again
+            <RefreshCw size={18} /> {t.playAgain}
           </button>
         </div>
       </div>
@@ -144,7 +143,7 @@ const WordScramble = ({ lang, whatsAppLink }) => {
   return (
     <div className="w-full max-w-lg animate-fadeIn">
       <div className="flex justify-between items-center mb-6">
-        <span className="text-sm font-bold text-gray-400 uppercase tracking-wide">Round {round + 1}/{ROUNDS}</span>
+        <span className="text-sm font-bold text-gray-400 uppercase tracking-wide">{t.round} {round + 1}/{ROUNDS}</span>
         <div className="flex items-center gap-4">
           <span className={`flex items-center gap-1 text-sm font-bold ${timeLeft <= 10 ? 'text-red-500' : 'text-gray-400'}`}>
             <Clock size={16} /> {timeLeft}s
@@ -164,7 +163,7 @@ const WordScramble = ({ lang, whatsAppLink }) => {
           type="text"
           value={guess}
           onChange={(e) => setGuess(e.target.value)}
-          placeholder="Type your answer..."
+          placeholder={t.typeAnswer}
           className={`w-full border-2 rounded-lg p-3 text-lg text-center font-semibold focus:outline-none transition ${
             feedback === 'correct' ? 'border-green-500 bg-green-50 text-green-700' :
             feedback === 'wrong' ? 'border-red-500 bg-red-50 text-red-700' :
@@ -175,14 +174,14 @@ const WordScramble = ({ lang, whatsAppLink }) => {
           autoFocus
         />
         {feedback === 'wrong' && (
-          <p className="text-red-500 text-sm mt-2 font-medium text-center">The answer was: <strong>{words[round].word}</strong></p>
+          <p className="text-red-500 text-sm mt-2 font-medium text-center">{t.answerWas} <strong>{words[round].word}</strong></p>
         )}
         {feedback === 'timeout' && (
-          <p className="text-orange-500 text-sm mt-2 font-medium text-center">Time's up! The answer was: <strong>{words[round].word}</strong></p>
+          <p className="text-orange-500 text-sm mt-2 font-medium text-center">{t.timeUp} {t.answerWas} <strong>{words[round].word}</strong></p>
         )}
         {!feedback && (
           <button type="submit" disabled={!guess.trim()} className="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed mt-4">
-            Check Answer
+            {t.checkAnswer}
           </button>
         )}
       </form>

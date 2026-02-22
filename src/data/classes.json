@@ -1,0 +1,74 @@
+{
+  "sectionTitle": {
+    "en": "Choose Your Learning Path",
+    "zh": "选择你的学习路径",
+    "ms": "Pilih Laluan Pembelajaran Anda"
+  },
+  "sectionSubtitle": {
+    "en": "Whether you are preparing for a big exam or just want to speak confidently, I have a class for you.",
+    "zh": "无论你是为大考做准备，还是想自信地说英语，我都有适合你的课程。",
+    "ms": "Sama ada anda bersedia untuk peperiksaan besar atau hanya ingin bertutur dengan yakin, saya ada kelas untuk anda."
+  },
+  "items": [
+    {
+      "title": {
+        "en": "Junior Explorers",
+        "zh": "初级探索者",
+        "ms": "Penjelajah Junior"
+      },
+      "level": {
+        "en": "STD 6 – FORM 3",
+        "zh": "六年级至中三",
+        "ms": "Darjah 6 – Tingkatan 3"
+      },
+      "color": "yellow",
+      "icon": "smile",
+      "badge": "",
+      "features": {
+        "en": ["Essay Writing Foundations", "Grammar Systems", "Comprehension Skills", "Structured Answering"],
+        "zh": ["作文写作基础", "语法体系", "阅读理解能力", "结构化答题"],
+        "ms": ["Asas Penulisan Esei", "Sistem Tatabahasa", "Kemahiran Kefahaman", "Jawapan Berstruktur"]
+      }
+    },
+    {
+      "title": {
+        "en": "Exam Warriors",
+        "zh": "考试战士",
+        "ms": "Pejuang Peperiksaan"
+      },
+      "level": {
+        "en": "Form 4 & 5 / IGCSE",
+        "zh": "中四和中五 / IGCSE",
+        "ms": "Tingkatan 4 & 5 / IGCSE"
+      },
+      "color": "sky",
+      "icon": "penTool",
+      "badge": "POPULAR",
+      "features": {
+        "en": ["SPM & IGCSE Prep", "Essay Writing Structures", "Advanced Writing & Argument Development", "Advanced Grammar Logic"],
+        "zh": ["SPM & IGCSE 备考", "作文写作结构", "高级写作与论证", "高级语法逻辑"],
+        "ms": ["Persediaan SPM & IGCSE", "Struktur Penulisan Esei", "Penulisan Lanjutan & Pembangunan Hujah", "Logik Tatabahasa Lanjutan"]
+      }
+    },
+    {
+      "title": {
+        "en": "Global Speakers",
+        "zh": "全球演讲者",
+        "ms": "Penutur Global"
+      },
+      "level": {
+        "en": "Adults & University",
+        "zh": "成人和大学生",
+        "ms": "Dewasa & Universiti"
+      },
+      "color": "purple",
+      "icon": "brain",
+      "badge": "",
+      "features": {
+        "en": ["IELTS / PTE / MUET", "Business Communication", "Conversation Skills", "Resume & Interview Prep"],
+        "zh": ["IELTS / PTE / MUET", "商务沟通", "会话技巧", "简历和面试准备"],
+        "ms": ["IELTS / PTE / MUET", "Komunikasi Perniagaan", "Kemahiran Perbualan", "Persediaan Resume & Temuduga"]
+      }
+    }
+  ]
+}

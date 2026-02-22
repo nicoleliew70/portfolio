@@ -1,0 +1,48 @@
+{
+  "sectionTitle": {
+    "en": "Student Success Stories",
+    "zh": "学生成功故事",
+    "ms": "Kisah Kejayaan Pelajar"
+  },
+  "items": [
+    {
+      "text": {
+        "en": "Teacher Nicole makes grammar logic so easy to understand!",
+        "zh": "Nicole老师让语法逻辑变得好容易理解！",
+        "ms": "Cikgu Nicole menjadikan logik tatabahasa begitu mudah difahami!"
+      },
+      "author": "Form 5 Student",
+      "grade": {
+        "en": "SPM Candidate",
+        "zh": "SPM 考生",
+        "ms": "Calon SPM"
+      }
+    },
+    {
+      "text": {
+        "en": "My daughter used to be shy, but now she loves storytelling time.",
+        "zh": "我女儿以前很害羞，但现在她爱上了讲故事时间。",
+        "ms": "Anak perempuan saya dulu pemalu, tetapi sekarang dia suka masa bercerita."
+      },
+      "author": "Mrs. Tan",
+      "grade": {
+        "en": "Parent",
+        "zh": "家长",
+        "ms": "Ibu Bapa"
+      }
+    },
+    {
+      "text": {
+        "en": "I finally passed my IELTS thanks to the structured speaking practice.",
+        "zh": "多亏了结构化的口语练习，我终于通过了雅思！",
+        "ms": "Saya akhirnya lulus IELTS berkat latihan pertuturan yang berstruktur."
+      },
+      "author": "University Student",
+      "grade": {
+        "en": "Adult Learner",
+        "zh": "成人学员",
+        "ms": "Pelajar Dewasa"
+      }
+    }
+  ]
+}
