@@ -117,6 +117,33 @@
           "Persediaan Resume & Temuduga"
         ]
       }
+    },
+    {
+      "title": {
+        "en": "test",
+        "zh": "test",
+        "ms": "test"
+      },
+      "level": {
+        "en": "a",
+        "zh": "a",
+        "ms": "a"
+      },
+      "image": "/images/uploads/ChatGPT Image Feb 11, 2026, 11_03_40 PM.png",
+      "color": "sky",
+      "icon": "brain",
+      "badge": "b",
+      "features": {
+        "en": [
+          "c"
+        ],
+        "zh": [
+          "c"
+        ],
+        "ms": [
+          "c"
+        ]
+      }
     }
   ]
 }
