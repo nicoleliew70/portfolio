@@ -9,7 +9,12 @@
       "Bash(npx eslint:*)",
       "Bash(npm run deploy:*)",
       "Bash(bash:*)",
-      "Bash(git:*)"
+      "Bash(git:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(npm install:*)",
+      "Bash(cd /Users/tnhmb/Documents/Sveltia/sveltia-cms-auth && npx wrangler login 2>&1)",
+      "Bash(cd /Users/tnhmb/Documents/Sveltia/sveltia-cms-auth && npx wrangler deploy 2>&1)"
     ]
   }
 }
