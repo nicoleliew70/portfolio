@@ -8,18 +8,21 @@
     {
       "name": { "en": "Junior Explorers (Std 6 – Form 3)", "zh": "初级探索者（六年级至中三）", "ms": "Penjelajah Junior (Darjah 6 – Tingkatan 3)" },
       "description": { "en": "Essay writing foundations, grammar systems, comprehension skills & structured answering.", "zh": "作文写作基础、语法体系、阅读理解和结构化答题。", "ms": "Asas penulisan esei, sistem tatabahasa, kemahiran kefahaman & jawapan berstruktur." },
+      "image": "",
       "price": "180/mo",
       "open": true
     },
     {
       "name": { "en": "Exam Warriors (Form 4 & 5 / IGCSE)", "zh": "考试战士（中四和中五 / IGCSE）", "ms": "Pejuang Peperiksaan (Tingkatan 4 & 5 / IGCSE)" },
       "description": { "en": "SPM & IGCSE prep, essay writing structures, advanced grammar logic & argument development.", "zh": "SPM和IGCSE备考、作文写作结构、高级语法逻辑和论证。", "ms": "Persediaan SPM & IGCSE, struktur penulisan esei, logik tatabahasa lanjutan & pembangunan hujah." },
+      "image": "",
       "price": "80–150/hr",
       "open": true
     },
     {
       "name": { "en": "Global Speakers (Adults & University)", "zh": "全球演讲者（成人和大学生）", "ms": "Penutur Global (Dewasa & Universiti)" },
       "description": { "en": "IELTS / PTE / MUET, business communication, conversation skills & interview prep.", "zh": "IELTS / PTE / MUET、商务沟通、会话技巧和面试准备。", "ms": "IELTS / PTE / MUET, komunikasi perniagaan, kemahiran perbualan & persediaan temuduga." },
+      "image": "",
       "price": "80–150/hr",
       "open": true
     }

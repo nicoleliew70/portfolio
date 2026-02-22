@@ -2,6 +2,8 @@ import { ArrowRight } from 'lucide-react';
 import useScrollReveal from '../hooks/useScrollReveal';
 import servicesData from '../data/services.json';
 
+const cmsImage = (path) => path ? `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}` : '';
+
 const ServicesSection = ({ lang, currentText, whatsAppLink }) => {
     const { ref, isVisible } = useScrollReveal();
     const ft = currentText.footer;
@@ -16,6 +18,11 @@ const ServicesSection = ({ lang, currentText, whatsAppLink }) => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {servicesData.items.map((service, index) => (
                         <div key={index} className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all border-2 border-transparent hover:border-sky-200 group">
+                            {service.image && (
+                                <div className="w-full h-40 rounded-2xl overflow-hidden mb-4">
+                                    <img src={cmsImage(service.image)} alt={service.name[lang]} className="w-full h-full object-cover" />
+                                </div>
+                            )}
                             <div className="mb-4">
                                 <span className={`px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${service.open ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
                                     {service.open ? ft.slotsAvailable : ft.currentlyFull}

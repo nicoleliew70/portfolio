@@ -16,6 +16,7 @@ collections:
         name: "settings"
         file: "src/data/settings.json"
         fields:
+          - { label: "Profile Image", name: "profileImage", widget: "image", required: false, hint: "Teacher photo for About section. Leave empty for default." }
           - { label: "WhatsApp Number (no dashes)", name: "whatsappNumber", widget: "string", hint: "e.g. 601133848412" }
           - { label: "Email", name: "email", widget: "string" }
           - { label: "Phone (display format)", name: "phone", widget: "string", hint: "e.g. +60-1133-8484-12" }
@@ -578,6 +579,7 @@ collections:
                   - { label: "English", name: "en", widget: "string" }
                   - { label: "中文", name: "zh", widget: "string" }
                   - { label: "Malay", name: "ms", widget: "string" }
+              - { label: "Image", name: "image", widget: "image", required: false, hint: "Optional image. If empty, icon is shown instead." }
               - { label: "Color", name: "color", widget: "select", options: ["yellow", "sky", "purple"] }
               - { label: "Icon", name: "icon", widget: "select", options: ["smile", "penTool", "brain"] }
               - { label: "Badge", name: "badge", widget: "string", required: false, hint: "e.g. POPULAR (leave empty for none)" }
@@ -660,6 +662,7 @@ collections:
                   - { label: "English", name: "en", widget: "text" }
                   - { label: "中文", name: "zh", widget: "text" }
                   - { label: "Malay", name: "ms", widget: "text" }
+              - { label: "Avatar", name: "avatar", widget: "image", required: false, hint: "Optional photo of the person" }
               - { label: "Author", name: "author", widget: "string" }
               - name: "grade"
                 label: "Grade / Role"
@@ -698,6 +701,7 @@ collections:
                   - { label: "English", name: "en", widget: "text" }
                   - { label: "中文", name: "zh", widget: "text" }
                   - { label: "Malay", name: "ms", widget: "text" }
+              - { label: "Image", name: "image", widget: "image", required: false, hint: "Optional service image" }
               - { label: "Price", name: "price", widget: "string", hint: "e.g. 180/mo" }
               - { label: "Open", name: "open", widget: "boolean", default: true }
 

@@ -21,6 +21,7 @@
         "zh": "六年级至中三",
         "ms": "Darjah 6 – Tingkatan 3"
       },
+      "image": "",
       "color": "yellow",
       "icon": "smile",
       "badge": "",
@@ -56,6 +57,7 @@
         "zh": "中四和中五 / IGCSE",
         "ms": "Tingkatan 4 & 5 / IGCSE"
       },
+      "image": "",
       "color": "sky",
       "icon": "penTool",
       "badge": "POPULAR",
@@ -91,6 +93,7 @@
         "zh": "成人和大学生",
         "ms": "Dewasa & Universiti"
       },
+      "image": "",
       "color": "purple",
       "icon": "brain",
       "badge": "",

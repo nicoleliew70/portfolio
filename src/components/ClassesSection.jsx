@@ -3,6 +3,7 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import classesData from '../data/classes.json';
 
 const iconMap = { smile: Smile, penTool: PenTool, brain: Brain };
+const cmsImage = (path) => path ? `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}` : '';
 
 const colorMap = {
   yellow: { border: 'border-yellow-400', bg: 'bg-yellow-100', text: 'text-yellow-600', dot: 'bg-yellow-400' },
@@ -34,9 +35,15 @@ const ClassesSection = ({ lang }) => {
                 {item.badge && (
                   <div className="absolute top-0 right-0 bg-sky-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">{item.badge}</div>
                 )}
-                <div className={`w-16 h-16 ${colors.bg} rounded-2xl flex items-center justify-center ${colors.text} mb-6 mx-auto`}>
-                  <Icon size={32} />
-                </div>
+                {item.image ? (
+                  <div className="w-20 h-20 rounded-2xl mb-6 mx-auto overflow-hidden">
+                    <img src={cmsImage(item.image)} alt={item.title[lang]} className="w-full h-full object-cover" />
+                  </div>
+                ) : (
+                  <div className={`w-16 h-16 ${colors.bg} rounded-2xl flex items-center justify-center ${colors.text} mb-6 mx-auto`}>
+                    <Icon size={32} />
+                  </div>
+                )}
                 <h3 className="text-xl font-bold text-center mb-4">{item.title[lang]}</h3>
                 <p className="text-gray-500 text-center text-sm mb-6 uppercase tracking-wider font-bold">{item.level[lang]}</p>
                 <ul className="space-y-3 mb-8">

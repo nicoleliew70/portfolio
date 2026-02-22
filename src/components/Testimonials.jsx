@@ -4,6 +4,7 @@ import testimonialsData from '../data/testimonials.json';
 import useScrollReveal from '../hooks/useScrollReveal';
 
 const AUTO_ROTATE_MS = 5000;
+const cmsImage = (path) => path ? `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}` : '';
 
 const Testimonials = ({ lang }) => {
   const items = testimonialsData.items;
@@ -41,9 +42,14 @@ const Testimonials = ({ lang }) => {
               className={`absolute inset-0 transition-opacity duration-700 flex flex-col items-center justify-center ${i === activeTestimonial ? 'opacity-100' : 'opacity-0'}`}
             >
               <p className="text-xl md:text-2xl font-light italic text-gray-700 mb-6">&ldquo;{item.text[lang]}&rdquo;</p>
-              <div>
-                <div className="font-bold text-gray-900">{item.author}</div>
-                <div className="text-sm text-gray-500">{item.grade[lang]}</div>
+              <div className="flex items-center justify-center gap-3">
+                {item.avatar && (
+                  <img src={cmsImage(item.avatar)} alt={item.author} className="w-10 h-10 rounded-full object-cover" />
+                )}
+                <div className={item.avatar ? 'text-left' : ''}>
+                  <div className="font-bold text-gray-900">{item.author}</div>
+                  <div className="text-sm text-gray-500">{item.grade[lang]}</div>
+                </div>
               </div>
             </div>
           ))}

@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { GraduationCap, Smile, Check, Coffee } from 'lucide-react';
 import useScrollReveal from '../hooks/useScrollReveal';
 import teacherNicoleImg from '../assets/teacher-nicole.webp';
+import settings from '../data/settings.json';
+
+const cmsImage = (path) => path ? `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}` : '';
 
 const AboutSection = ({ currentText }) => {
   const [imageError, setImageError] = useState(false);
-  const profileImageSrc = teacherNicoleImg;
+  const profileImageSrc = settings.profileImage ? cmsImage(settings.profileImage) : teacherNicoleImg;
   const { ref, isVisible } = useScrollReveal();
 
   return (
