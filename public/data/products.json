@@ -17,13 +17,6 @@
       "description": "IELTS / PTE / MUET, business communication, conversation skills & interview prep.",
       "price": "80–150/hr",
       "open": true
-    },
-    {
-      "open": true,
-      "name": "Test",
-      "description": "Test",
-      "price": "100",
-      "image": "/images/uploads/gemini_generated_image_ik6jmcik6jmcik6j.png"
     }
   ]
 }
