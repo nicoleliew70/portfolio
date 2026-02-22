@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import StatsBar from './components/StatsBar';
 import AboutSection from './components/AboutSection';
-import ServicesSection from './components/Services';
 import ArcadeSection from './components/ArcadeSection';
 import ClassesSection from './components/ClassesSection';
 import PricingSection from './components/PricingSection';
@@ -30,7 +29,6 @@ const App = () => {
         <HeroSection currentText={currentText} whatsAppLink={whatsAppLink} />
         <StatsBar lang={lang} />
         <AboutSection currentText={currentText} />
-        <ServicesSection lang={lang} currentText={currentText} whatsAppLink={whatsAppLink} />
         <ArcadeSection currentText={currentText} lang={lang} whatsAppLink={whatsAppLink} />
         <ClassesSection lang={lang} />
         <PricingSection currentText={currentText} lang={lang} whatsAppLink={whatsAppLink} />

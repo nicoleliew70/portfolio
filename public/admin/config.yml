@@ -672,38 +672,6 @@ collections:
                   - { label: "中文", name: "zh", widget: "string" }
                   - { label: "Malay", name: "ms", widget: "string" }
 
-      - label: "Services"
-        name: "services"
-        file: "src/data/services.json"
-        fields:
-          - name: "sectionTitle"
-            label: "Section Title"
-            widget: "object"
-            fields:
-              - { label: "English", name: "en", widget: "string" }
-              - { label: "中文", name: "zh", widget: "string" }
-              - { label: "Malay", name: "ms", widget: "string" }
-          - name: "items"
-            label: "Services"
-            widget: "list"
-            fields:
-              - name: "name"
-                label: "Service Name"
-                widget: "object"
-                fields:
-                  - { label: "English", name: "en", widget: "string" }
-                  - { label: "中文", name: "zh", widget: "string" }
-                  - { label: "Malay", name: "ms", widget: "string" }
-              - name: "description"
-                label: "Description"
-                widget: "object"
-                fields:
-                  - { label: "English", name: "en", widget: "text" }
-                  - { label: "中文", name: "zh", widget: "text" }
-                  - { label: "Malay", name: "ms", widget: "text" }
-              - { label: "Image", name: "image", widget: "image", required: false, hint: "Optional service image" }
-              - { label: "Price", name: "price", widget: "string", hint: "e.g. 180/mo" }
-              - { label: "Open", name: "open", widget: "boolean", default: true }
 
   # ── Arcade Games ───────────────────────────────────
   - name: "arcade-games"
