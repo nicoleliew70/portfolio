@@ -114,32 +114,6 @@
           "Persediaan Resume & Temuduga"
         ]
       }
-    },
-    {
-      "title": {
-        "en": "test",
-        "zh": "test",
-        "ms": "test"
-      },
-      "level": {
-        "en": "test",
-        "zh": "test",
-        "ms": "test"
-      },
-      "color": "sky",
-      "icon": "penTool",
-      "badge": "",
-      "features": {
-        "en": [
-          "test"
-        ],
-        "zh": [
-          "test"
-        ],
-        "ms": [
-          "test"
-        ]
-      }
     }
   ]
 }
