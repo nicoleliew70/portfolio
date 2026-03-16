@@ -1,8 +1,8 @@
 # robots.txt — Teacher Nicole Portfolio
-# https://teachernichole.pages.dev/
+# https://teachernicole.pages.dev/
 
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://teachernichole.pages.dev/sitemap.xml
+Sitemap: https://teachernicole.pages.dev/sitemap.xml
