@@ -1,1 +1,5 @@
-# Redirects are managed in netlify.toml
+# SPA Routing
+/*    /index.html   200
+
+# Decap CMS admin
+/admin/*    /admin/index.html   200
