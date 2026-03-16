@@ -1,4 +1,8 @@
+# robots.txt — Teacher Nicole Portfolio
+# https://nicoleliew70.github.io/portfolio/
+
 User-agent: *
 Allow: /
 
+# Sitemap location
 Sitemap: https://nicoleliew70.github.io/portfolio/sitemap.xml
