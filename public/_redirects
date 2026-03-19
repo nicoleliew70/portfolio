@@ -1,5 +1,7 @@
-# SPA Routing
-/*    /index.html   200
+# Consolidate duplicate URLs to root canonical
+/index.html   /   301
+/portfolio    /   301
+/portfolio/*  /   301
 
 # Decap CMS admin
 /admin/*    /admin/index.html   200

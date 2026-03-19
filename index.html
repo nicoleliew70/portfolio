@@ -7,7 +7,12 @@
     <script>
       // Redirect from old GitHub Pages URL to new Cloudflare Pages domain
       if (window.location.hostname === 'nicoleliew70.github.io') {
-        window.location.href = 'https://teachernicole.pages.dev' + window.location.pathname.replace('/portfolio', '');
+        var newLink = 'https://teachernicole.pages.dev' + window.location.pathname.replace('/portfolio', '');
+        var meta = document.createElement('meta');
+        meta.httpEquiv = "refresh";
+        meta.content = "0;url=" + newLink;
+        document.getElementsByTagName('head')[0].appendChild(meta);
+        window.location.replace(newLink);
       }
     </script>
 
@@ -34,8 +39,8 @@
     <meta name="twitter:image" content="https://teachernicole.pages.dev/images/teacher-nicole.jpg" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
-    <link rel="apple-touch-icon" href="/portfolio/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
