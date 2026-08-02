@@ -2,8 +2,14 @@ import { BookOpen, Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { trackWhatsAppClick } from '../utils/analytics';
 import settings from '../data/settings.json';
 
-const Footer = ({ currentText, lang, whatsAppLink }) => {
+const Footer = ({ currentText, lang, whatsAppLink, navigationItems }) => {
   const ft = currentText.footer;
+  const defaultNavigationItems = [
+    { href: '#about', label: currentText.nav.about },
+    { href: '#classes', label: currentText.nav.classes },
+    { href: '#pricing', label: currentText.nav.pricing },
+  ];
+  const links = navigationItems || defaultNavigationItems;
 
   return (
     <>
@@ -27,9 +33,9 @@ const Footer = ({ currentText, lang, whatsAppLink }) => {
             <div>
               <h3 className="text-white font-bold mb-4">{ft.quickLinks}</h3>
               <ul className="space-y-2 text-sm">
-                <li><a href="#about" className="hover:text-sky-400">{currentText.nav.about}</a></li>
-                <li><a href="#classes" className="hover:text-sky-400">{currentText.nav.classes}</a></li>
-                <li><a href="#pricing" className="hover:text-sky-400">{currentText.nav.pricing}</a></li>
+                {links.map((item) => (
+                  <li key={item.href}><a href={item.href} className="hover:text-sky-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2">{item.label}</a></li>
+                ))}
               </ul>
             </div>
           </div>
@@ -45,7 +51,7 @@ const Footer = ({ currentText, lang, whatsAppLink }) => {
         target="_blank"
         rel="noreferrer"
         onClick={() => trackWhatsAppClick('floating_button')}
-        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl z-50 transition transform hover:scale-110 flex items-center justify-center"
+        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl z-50 transition transform hover:scale-110 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2"
         aria-label="Contact on WhatsApp"
       >
         <MessageCircle size={32} />

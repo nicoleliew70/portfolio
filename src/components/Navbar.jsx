@@ -1,8 +1,11 @@
 import { useState } from 'react';
 import { BookOpen, MessageCircle, Menu, X, Globe, Gamepad2 } from 'lucide-react';
 import { trackLanguageSwitch, trackWhatsAppClick } from '../utils/analytics';
+import ServiceLinks from './ServiceLinks';
 
-const Navbar = ({ lang, setLang, currentText, whatsAppLink }) => {
+const focusRingClasses = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2';
+
+const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -10,6 +13,15 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink }) => {
     setLang(code);
     trackLanguageSwitch(code);
   };
+
+  const defaultNavigationItems = [
+    { href: '#about', label: currentText.nav.about },
+    { href: '#classes', label: currentText.nav.classes },
+    { href: '#arcade', label: currentText.nav.arcade, icon: Gamepad2 },
+    { href: '#pricing', label: currentText.nav.pricing },
+    { href: '#contact', label: currentText.nav.contact },
+  ];
+  const links = navigationItems || defaultNavigationItems;
 
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-50">
@@ -23,12 +35,18 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink }) => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden lg:flex space-x-6 items-center">
-            <a href="#about" className="text-gray-600 hover:text-sky-600 font-medium transition whitespace-nowrap">{currentText.nav.about}</a>
-            <a href="#classes" className="text-gray-600 hover:text-sky-600 font-medium transition whitespace-nowrap">{currentText.nav.classes}</a>
-            <a href="#arcade" className="text-gray-600 hover:text-sky-600 font-medium transition flex items-center gap-1 whitespace-nowrap"><Gamepad2 size={16} /> {currentText.nav.arcade}</a>
-            <a href="#pricing" className="text-gray-600 hover:text-sky-600 font-medium transition whitespace-nowrap">{currentText.nav.pricing}</a>
-            <a href="#contact" className="text-gray-600 hover:text-sky-600 font-medium transition whitespace-nowrap">{currentText.nav.contact}</a>
+          <div className="hidden xl:flex gap-1 items-center">
+            {links.map((item) => {
+              const Icon = item.icon;
+              return (
+                <a key={item.href} href={item.href} className={`text-gray-600 hover:text-sky-600 font-medium transition flex items-center gap-1 whitespace-nowrap ${focusRingClasses}`}>
+                  {Icon && <Icon size={16} />}
+                  {item.label}
+                </a>
+              );
+            })}
+
+            <ServiceLinks />
 
             {/* Lang Switcher */}
             <div className="flex bg-gray-100 rounded-full p-1 shrink-0">
@@ -36,7 +54,8 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink }) => {
                 <button
                   key={code}
                   onClick={() => handleLangChange(code)}
-                  className={`px-3 py-1 rounded-full text-xs font-bold transition ${lang === code ? 'bg-white shadow text-sky-600' : 'text-gray-400 hover:text-gray-600'}`}
+                  aria-label={`Website language: ${label}`}
+                  className={`px-3 py-1 rounded-full text-xs font-bold transition ${focusRingClasses} ${lang === code ? 'bg-white shadow text-sky-600' : 'text-gray-400 hover:text-gray-600'}`}
                 >
                   {label}
                 </button>
@@ -48,7 +67,7 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink }) => {
               target="_blank"
               rel="noreferrer"
               onClick={() => trackWhatsAppClick('navbar')}
-              className="bg-sky-500 hover:bg-sky-600 text-white px-5 py-2 rounded-full font-bold transition shadow-md flex items-center gap-2 transform hover:scale-105 whitespace-nowrap"
+              className={`bg-sky-500 hover:bg-sky-600 text-white px-5 py-2 rounded-full font-bold transition shadow-md flex items-center gap-2 transform hover:scale-105 whitespace-nowrap ${focusRingClasses}`}
             >
               <MessageCircle size={18} />
               {currentText.nav.book}
@@ -56,11 +75,19 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink }) => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="lg:hidden flex items-center gap-4">
-            <button onClick={() => handleLangChange(lang === 'en' ? 'zh' : lang === 'zh' ? 'ms' : 'en')} className="font-bold text-sky-600 bg-sky-50 px-2 py-1 rounded text-sm">
+          <div className="xl:hidden flex items-center gap-4">
+            <button
+              onClick={() => handleLangChange(lang === 'en' ? 'zh' : lang === 'zh' ? 'ms' : 'en')}
+              aria-label="Change website language"
+              className={`font-bold text-sky-600 bg-sky-50 px-2 py-1 rounded text-sm ${focusRingClasses}`}
+            >
               {{ en: 'EN', zh: '中', ms: 'BM' }[lang]} <Globe size={14} className="inline ml-1" />
             </button>
-            <button onClick={toggleMenu} className="text-gray-600 hover:text-sky-600 focus:outline-none">
+            <button
+              onClick={toggleMenu}
+              aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              className={`text-gray-600 hover:text-sky-600 ${focusRingClasses}`}
+            >
               {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
@@ -69,14 +96,13 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink }) => {
 
       {/* Mobile Dropdown */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-100">
+        <div className="xl:hidden bg-white border-t border-gray-100">
           <div className="px-4 pt-2 pb-6 space-y-2">
-            <a href="#about" onClick={toggleMenu} className="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sky-50 hover:text-sky-600">{currentText.nav.about}</a>
-            <a href="#classes" onClick={toggleMenu} className="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sky-50 hover:text-sky-600">{currentText.nav.classes}</a>
-            <a href="#arcade" onClick={toggleMenu} className="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sky-50 hover:text-sky-600">{currentText.nav.arcade}</a>
-            <a href="#pricing" onClick={toggleMenu} className="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sky-50 hover:text-sky-600">{currentText.nav.pricing}</a>
-            <a href="#contact" onClick={toggleMenu} className="block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sky-50 hover:text-sky-600">{currentText.nav.contact}</a>
-            <a href={whatsAppLink} onClick={() => trackWhatsAppClick('mobile_menu')} className="block px-3 py-3 rounded-md text-base font-bold text-sky-600 bg-sky-50 mt-4">{currentText.nav.book}</a>
+            <ServiceLinks mobile />
+            {links.map((item) => (
+              <a key={item.href} href={item.href} onClick={toggleMenu} className={`block px-3 py-3 rounded-md text-base font-medium text-gray-700 hover:bg-sky-50 hover:text-sky-600 ${focusRingClasses}`}>{item.label}</a>
+            ))}
+            <a href={whatsAppLink} onClick={() => trackWhatsAppClick('mobile_menu')} className={`block px-3 py-3 rounded-md text-base font-bold text-sky-600 bg-sky-50 mt-4 ${focusRingClasses}`}>{currentText.nav.book}</a>
           </div>
         </div>
       )}

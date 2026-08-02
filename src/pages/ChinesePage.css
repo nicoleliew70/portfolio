@@ -1,0 +1,38 @@
+.mandarin-page {
+  --mandarin-cream: #fff8ec;
+  --mandarin-vermilion: #e6534a;
+  --mandarin-dark-vermilion: #b93832;
+  --mandarin-soft-gold: #f4c95d;
+  --mandarin-ink: #172033;
+  background: var(--mandarin-cream);
+  color: var(--mandarin-ink);
+}
+
+.mandarin-page .mandarin-shell-section {
+  min-height: 4rem;
+  border-top: 1px solid rgba(185, 56, 50, 0.08);
+  scroll-margin-top: 6rem;
+}
+
+.mandarin-page .mandarin-hero {
+  min-height: 20rem;
+  display: grid;
+  place-items: center;
+  border-top: 0;
+  background: var(--mandarin-cream);
+}
+
+.mandarin-page .mandarin-shell-inner {
+  width: min(100% - 2rem, 72rem);
+  margin-inline: auto;
+  padding-block: 4rem;
+  text-align: center;
+}
+
+.mandarin-page .mandarin-hero h1 {
+  margin: 0;
+  color: var(--mandarin-dark-vermilion);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}

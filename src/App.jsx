@@ -11,16 +11,34 @@ import PricingSection from './components/PricingSection';
 import Testimonials from './components/Testimonials';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
+import ChinesePage from './pages/ChinesePage';
 
 const whatsAppLink = `https://wa.me/${settings.whatsappNumber}`;
+
+const getRoutePath = () => {
+  const path = window.location.pathname.replace(/\/+$/, '');
+  return path || '/';
+};
 
 const App = () => {
   const [lang, setLang] = useState('en');
   const currentText = translations[lang];
+  const isChineseRoute = getRoutePath() === '/chinese';
 
   useEffect(() => {
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang === 'ms' ? 'ms' : 'en';
   }, [lang]);
+
+  if (isChineseRoute) {
+    return (
+      <ChinesePage
+        lang={lang}
+        setLang={setLang}
+        currentText={currentText}
+        whatsAppLink={whatsAppLink}
+      />
+    );
+  }
 
   return (
     <div className="font-sans text-gray-800 bg-sky-50 min-h-screen selection:bg-yellow-200">
