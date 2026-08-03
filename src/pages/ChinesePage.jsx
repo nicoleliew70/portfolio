@@ -4,16 +4,16 @@ import './ChinesePage.css';
 
 const navigationItems = [
   { href: '#mandarin-programmes', label: 'Programmes' },
-  { href: '#mandarin-approach', label: 'Approach' },
-  { href: '#mandarin-playground', label: 'Playground' },
+  { href: '#mandarin-process', label: 'How It Works' },
   { href: '#mandarin-pricing', label: 'Pricing' },
-  { href: '#mandarin-contact', label: 'Contact' },
+  { href: '#mandarin-faq', label: 'FAQ' },
 ];
 
 const footerNavigationItems = [
   { href: '#mandarin-programmes', label: 'Programmes' },
-  { href: '#mandarin-approach', label: 'Approach' },
+  { href: '#mandarin-process', label: 'How It Works' },
   { href: '#mandarin-pricing', label: 'Pricing' },
+  { href: '#mandarin-faq', label: 'FAQ' },
 ];
 
 const shellSections = [

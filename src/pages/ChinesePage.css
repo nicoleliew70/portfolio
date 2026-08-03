@@ -1,25 +1,29 @@
 .mandarin-page {
-  --mandarin-cream: #fff8ec;
-  --mandarin-vermilion: #e6534a;
-  --mandarin-dark-vermilion: #b93832;
-  --mandarin-soft-gold: #f4c95d;
+  --mandarin-sky: #0ea5e9;
+  --mandarin-sky-dark: #0369a1;
+  --mandarin-yellow: #facc15;
   --mandarin-ink: #172033;
-  background: var(--mandarin-cream);
+  --mandarin-vermilion: #e6534a;
+  background: #f8fafc;
   color: var(--mandarin-ink);
 }
 
 .mandarin-page .mandarin-shell-section {
-  min-height: 4rem;
-  border-top: 1px solid rgba(185, 56, 50, 0.08);
+  min-height: 3.5rem;
+  border-top: 1px solid rgba(14, 165, 233, 0.12);
+  background: rgba(255, 255, 255, 0.72);
   scroll-margin-top: 6rem;
 }
 
 .mandarin-page .mandarin-hero {
-  min-height: 20rem;
+  min-height: 18rem;
   display: grid;
   place-items: center;
   border-top: 0;
-  background: var(--mandarin-cream);
+  background:
+    radial-gradient(circle at 8% 12%, rgba(250, 204, 21, 0.24), transparent 30%),
+    radial-gradient(circle at 92% 10%, rgba(14, 165, 233, 0.2), transparent 32%),
+    #f0f9ff;
 }
 
 .mandarin-page .mandarin-shell-inner {
@@ -31,8 +35,18 @@
 
 .mandarin-page .mandarin-hero h1 {
   margin: 0;
-  color: var(--mandarin-dark-vermilion);
+  color: var(--mandarin-ink);
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
   letter-spacing: -0.025em;
+}
+
+.mandarin-page .mandarin-hero h1::after {
+  display: block;
+  width: 4rem;
+  height: 0.35rem;
+  margin: 1rem auto 0;
+  border-radius: 9999px;
+  background: var(--mandarin-yellow);
+  content: '';
 }
