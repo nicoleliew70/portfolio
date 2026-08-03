@@ -4,6 +4,7 @@
 /portfolio/*  /   301
 
 # Serve the Chinese route entry without requiring a trailing slash
+/chinese/index.html  /chinese  301
 /chinese      /chinese/index.html  200
 
 # Decap CMS admin

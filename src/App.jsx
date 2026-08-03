@@ -16,8 +16,8 @@ import ChinesePage from './pages/ChinesePage';
 const whatsAppLink = `https://wa.me/${settings.whatsappNumber}`;
 
 const getRoutePath = () => {
-  const path = window.location.pathname.replace(/\/+$/, '');
-  return path || '/';
+  const path = window.location.pathname.replace(/\/+$/, '') || '/';
+  return path === '/chinese/index.html' ? '/chinese' : path;
 };
 
 const App = () => {
