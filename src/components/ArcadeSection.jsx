@@ -33,7 +33,7 @@ const LoadingSpinner = () => (
   </div>
 );
 
-const ArcadeSection = ({ currentText, lang, whatsAppLink }) => {
+const ArcadeSection = ({ currentText, whatsAppLink }) => {
   const [gameMode, setGameMode] = useState('quiz');
   const t = currentText.gameUI;
 

@@ -2,7 +2,7 @@ import { BookOpen, Phone, Mail, MapPin, MessageCircle } from 'lucide-react';
 import { trackWhatsAppClick } from '../utils/analytics';
 import settings from '../data/settings.json';
 
-const Footer = ({ currentText, lang, whatsAppLink, navigationItems }) => {
+const Footer = ({ currentText, whatsAppLink, navigationItems }) => {
   const ft = currentText.footer;
   const defaultNavigationItems = [
     { href: '#about', label: currentText.nav.about },

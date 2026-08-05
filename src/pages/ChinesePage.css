@@ -1,52 +1,94 @@
 .mandarin-page {
-  --mandarin-sky: #0ea5e9;
-  --mandarin-sky-dark: #0369a1;
-  --mandarin-yellow: #facc15;
+  --mandarin-sky: #159bd7;
+  --mandarin-sky-dark: #0876ad;
   --mandarin-ink: #172033;
-  --mandarin-vermilion: #e6534a;
-  background: #f8fafc;
+  --mandarin-paper: #fffdf7;
+  --mandarin-yellow: #facb27;
+  --mandarin-vermilion: #d8584f;
+  --mandarin-line: rgba(23, 32, 51, .12);
   color: var(--mandarin-ink);
+  background: var(--mandarin-paper);
 }
 
-.mandarin-page .mandarin-shell-section {
-  min-height: 3.5rem;
-  border-top: 1px solid rgba(14, 165, 233, 0.12);
-  background: rgba(255, 255, 255, 0.72);
-  scroll-margin-top: 6rem;
-}
+.mandarin-page .mandarin-container { width: min(100% - 2rem, 72rem); margin-inline: auto; }
+.mandarin-page .mandarin-section, .mandarin-page .mandarin-contact { padding: 5rem 0; scroll-margin-top: 5rem; }
+.mandarin-page .mandarin-section--paper { background: var(--mandarin-paper); }
+.mandarin-page .mandarin-section--sky { background: #eaf7fd; }
+.mandarin-page .mandarin-section--yellow { background: #fff5c8; }
+.mandarin-page .mandarin-section--ink { background: var(--mandarin-ink); color: white; }
 
-.mandarin-page .mandarin-hero {
-  min-height: 18rem;
-  display: grid;
-  place-items: center;
-  border-top: 0;
-  background:
-    radial-gradient(circle at 8% 12%, rgba(250, 204, 21, 0.24), transparent 30%),
-    radial-gradient(circle at 92% 10%, rgba(14, 165, 233, 0.2), transparent 32%),
-    #f0f9ff;
-}
+.mandarin-page .mandarin-eyebrow { display: inline-flex; align-items: center; gap: .45rem; margin: 0 0 .9rem; color: var(--mandarin-vermilion); font-size: .78rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+.mandarin-page .mandarin-section-heading { max-width: 42rem; margin-bottom: 4rem; }
+.mandarin-page .mandarin-section-heading--centered { margin-inline: auto; text-align: center; }
+.mandarin-page .mandarin-section-heading h2, .mandarin-page .mandarin-contact h2 { margin: 0; color: inherit; font-size: 1.875rem; font-weight: 700; letter-spacing: 0; line-height: 1.2; }
+.mandarin-page .mandarin-lead, .mandarin-page .mandarin-contact-content > p:not(.mandarin-eyebrow) { margin: 1rem 0 0; color: #536071; font-size: 1.125rem; line-height: 1.65; }
 
-.mandarin-page .mandarin-shell-inner {
-  width: min(100% - 2rem, 72rem);
-  margin-inline: auto;
-  padding-block: 4rem;
-  text-align: center;
-}
+.mandarin-page .mandarin-hero { position: relative; overflow: hidden; padding: 4rem 0 5rem; background: #f0f9ff; }
+.mandarin-page .mandarin-hero-content { position: relative; z-index: 1; max-width: 48rem; text-align: center; }
+.mandarin-page .mandarin-hero-badge { display: inline-block; margin: 0 0 1.5rem; border-radius: 999px; padding: .375rem 1rem; background: #fef3c7; color: #854d0e; font-size: .875rem; font-weight: 700; }
+.mandarin-page .mandarin-hero h1 { max-width: 48rem; margin: 0 auto 1.5rem; font-size: 3rem; font-weight: 800; letter-spacing: 0; line-height: 1.25; }
+.mandarin-page .mandarin-hero h1 span { color: var(--mandarin-sky); }
+.mandarin-page .mandarin-hero-lead { max-width: 42rem; margin: 0 auto 2.5rem; color: #4b5563; font-size: 1.25rem; line-height: 1.625; }
+.mandarin-page .mandarin-hero-actions, .mandarin-page .mandarin-contact-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 0; }
+.mandarin-page .mandarin-button { display: inline-flex; min-height: 3.75rem; align-items: center; justify-content: center; gap: .5rem; border: 2px solid transparent; border-radius: 999px; padding: 1rem 2rem; font-size: 1.125rem; font-weight: 700; text-align: center; transition: transform .2s ease, background-color .2s ease, border-color .2s ease, color .2s ease; }
+.mandarin-page .mandarin-button:hover { transform: translateY(-.15rem); }
+.mandarin-page .mandarin-button:focus-visible, .mandarin-page button:focus-visible, .mandarin-page .mandarin-email-link:focus-visible { outline: 3px solid var(--mandarin-vermilion); outline-offset: 3px; }
+.mandarin-page .mandarin-button--primary { background: var(--mandarin-sky); color: white; box-shadow: 0 .625rem 1rem -.2rem rgba(21, 155, 215, .28); }
+.mandarin-page .mandarin-button--primary:hover { background: var(--mandarin-sky-dark); }
+.mandarin-page .mandarin-button--secondary { border-color: #e0f2fe; background: white; color: #0284c7; box-shadow: 0 .25rem .45rem rgba(23,32,51,.08); }
+.mandarin-page .mandarin-button--secondary:hover { background: #f9fafb; }
+.mandarin-page .mandarin-button--yellow { background: var(--mandarin-yellow); color: #352a00; }
+.mandarin-page .mandarin-hero-note { display: flex; justify-content: center; align-items: center; gap: .4rem; margin: 1.25rem 0 0; color: #596575; font-size: .9rem; }
+.mandarin-page .mandarin-hero-note svg { color: var(--mandarin-vermilion); }
+.mandarin-page .mandarin-hero-shape { position: absolute; border-radius: 999px; pointer-events: none; }
+.mandarin-page .mandarin-hero-shape--one { width: 18rem; height: 18rem; top: -5rem; left: -5rem; background: #fde047; opacity: .3; mix-blend-mode: multiply; filter: blur(64px); }
+.mandarin-page .mandarin-hero-shape--two { width: 18rem; height: 18rem; top: -5rem; right: -5rem; background: #7dd3fc; opacity: .3; mix-blend-mode: multiply; filter: blur(64px); }
 
-.mandarin-page .mandarin-hero h1 {
-  margin: 0;
-  color: var(--mandarin-ink);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-}
+.mandarin-page .mandarin-programme-grid, .mandarin-page .mandarin-process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.mandarin-page .mandarin-programme-card { position: relative; overflow: hidden; min-height: 100%; border: 0; border-bottom: .5rem solid var(--mandarin-yellow); border-radius: 1rem; padding: 2rem; background: white; box-shadow: 0 .625rem .95rem -.2rem rgba(23, 32, 51, .12); transition: transform .3s ease, box-shadow .3s ease; }
+.mandarin-page .mandarin-programme-card:nth-child(2) { border-bottom-color: var(--mandarin-sky); }
+.mandarin-page .mandarin-programme-card:nth-child(3) { border-bottom-color: var(--mandarin-vermilion); }
+.mandarin-page .mandarin-programme-card:hover { transform: translateY(-.5rem); box-shadow: 0 1.1rem 1.8rem -.4rem rgba(23,32,51,.18); }
+.mandarin-page .mandarin-card-number { display: block; color: var(--mandarin-yellow); font-size: 2.2rem; font-weight: 900; letter-spacing: -.08em; }
+.mandarin-page .mandarin-programme-card h3, .mandarin-page .mandarin-approach-steps h3, .mandarin-page .mandarin-process-grid h3 { margin: .85rem 0 .55rem; font-size: 1.3rem; font-weight: 800; }
+.mandarin-page .mandarin-programme-card p, .mandarin-page .mandarin-approach-steps p, .mandarin-page .mandarin-process-grid p { margin: 0; color: #5b6675; line-height: 1.6; }
+.mandarin-page .mandarin-programme-card ul, .mandarin-page .mandarin-pricing-card ul { display: grid; gap: .65rem; margin: 1.4rem 0 0; padding: 0; list-style: none; }
+.mandarin-page .mandarin-programme-card li, .mandarin-page .mandarin-pricing-card li { display: flex; align-items: flex-start; gap: .45rem; color: #3f4a58; font-size: .92rem; }
+.mandarin-page .mandarin-programme-card li svg { flex: 0 0 auto; margin-top: .16rem; color: var(--mandarin-vermilion); }
 
-.mandarin-page .mandarin-hero h1::after {
-  display: block;
-  width: 4rem;
-  height: 0.35rem;
-  margin: 1rem auto 0;
-  border-radius: 9999px;
-  background: var(--mandarin-yellow);
-  content: '';
-}
+.mandarin-page .mandarin-approach-layout, .mandarin-page .mandarin-playground-layout, .mandarin-page .mandarin-pricing-layout { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); align-items: center; gap: clamp(2rem, 7vw, 6rem); }
+.mandarin-page .mandarin-approach-layout .mandarin-section-heading, .mandarin-page .mandarin-playground-layout .mandarin-section-heading, .mandarin-page .mandarin-pricing-layout .mandarin-section-heading { margin-bottom: 0; }
+.mandarin-page .mandarin-approach-steps { display: grid; gap: .9rem; margin: 0; padding: 0; list-style: none; }
+.mandarin-page .mandarin-approach-steps li { display: flex; gap: 1rem; padding: 1rem; border-radius: 1rem; background: rgba(255,255,255,.75); }
+.mandarin-page .mandarin-approach-steps span, .mandarin-page .mandarin-process-grid > article > span { display: grid; width: 2.25rem; height: 2.25rem; flex: 0 0 auto; place-items: center; border-radius: 50%; background: var(--mandarin-yellow); color: #574700; font-weight: 900; }
+.mandarin-page .mandarin-approach-steps h3 { margin-top: .1rem; }
+
+.mandarin-page .mandarin-game { border: 1px solid rgba(23,32,51,.13); border-radius: 1.5rem; padding: 2rem; background: #fffefa; box-shadow: 0 .8rem 1.6rem rgba(23,32,51,.12); }
+.mandarin-page .mandarin-game-topline { display: flex; justify-content: space-between; align-items: center; gap: 1rem; color: #465260; font-size: .9rem; font-weight: 700; }
+.mandarin-page .mandarin-game-topline > span:first-child { display: flex; align-items: center; gap: .45rem; }
+.mandarin-page .mandarin-score { color: var(--mandarin-vermilion); white-space: nowrap; }
+.mandarin-page .mandarin-pinyin { display: grid; place-items: center; min-height: 9rem; margin: 1.3rem 0; border-radius: 1rem; background: #eef9fe; }
+.mandarin-page .mandarin-pinyin strong { color: var(--mandarin-sky-dark); font-size: clamp(3rem, 8vw, 4.6rem); font-weight: 800; line-height: 1; }
+.mandarin-page .mandarin-pinyin span { margin-top: .4rem; color: #5b6675; font-size: .85rem; }
+.mandarin-page .mandarin-pinyin .mandarin-word-meaning { color: #147042; font-weight: 700; }
+.mandarin-page .mandarin-character-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: .65rem; }
+.mandarin-page .mandarin-character-button { min-height: 4.1rem; border: 2px solid #dbe8ed; border-radius: 1rem; background: white; color: var(--mandarin-ink); font-size: 1.8rem; font-weight: 800; box-shadow: 0 .2rem .4rem rgba(23,32,51,.06); transition: transform .2s ease, border-color .2s ease, background-color .2s ease; }
+.mandarin-page .mandarin-character-button:not(:disabled):hover { transform: translateY(-.2rem); border-color: var(--mandarin-sky); background: #edfaff; }
+.mandarin-page .mandarin-character-button:disabled { cursor: default; }
+.mandarin-page .mandarin-character-button.is-correct { border-color: #36a269; background: #ecfdf3; color: #147042; }
+.mandarin-page .mandarin-character-button.is-wrong { border-color: var(--mandarin-vermilion); background: #fff0ed; color: #a83d36; }
+.mandarin-page .mandarin-game-feedback { min-height: 1.6rem; margin: 1rem 0 .1rem; color: #5b6675; font-size: .9rem; line-height: 1.5; }
+.mandarin-page .mandarin-game-feedback.is-correct { color: #147042; font-weight: 700; }.mandarin-page .mandarin-game-feedback.is-retry { color: #a83d36; font-weight: 700; }
+.mandarin-page .mandarin-text-button { display: inline-flex; align-items: center; gap: .4rem; margin-top: .35rem; border: 0; background: none; color: var(--mandarin-sky-dark); font-weight: 800; cursor: pointer; }
+
+.mandarin-page .mandarin-process-grid { position: relative; }.mandarin-page .mandarin-process-grid > article { padding: 1.3rem 1rem 0; text-align: center; }.mandarin-page .mandarin-process-grid > article > span { margin-inline: auto; }.mandarin-page .mandarin-process-grid h3 { margin-top: 1.1rem; }.mandarin-page .mandarin-process-grid p { font-size: .95rem; }
+.mandarin-page .mandarin-section--ink .mandarin-eyebrow { color: var(--mandarin-yellow); }.mandarin-page .mandarin-section--ink .mandarin-lead { color: #cbd5e1; }
+.mandarin-page .mandarin-pricing-card { padding: 2rem; border: 1px solid rgba(250,203,39,.45); border-radius: 1rem; background: #253149; box-shadow: 0 .8rem 1.6rem rgba(0,0,0,.2); }.mandarin-page .mandarin-pricing-card > svg { color: var(--mandarin-yellow); }.mandarin-page .mandarin-pricing-card li { color: #f1f5f9; }.mandarin-page .mandarin-pricing-card li svg { flex: 0 0 auto; color: #9ae6b4; }.mandarin-page .mandarin-pricing-card .mandarin-button { width: 100%; margin-top: 1.5rem; }.mandarin-page .mandarin-pricing-card p { margin: 1rem 0 0; color: #aebbd0; font-size: .8rem; line-height: 1.5; }
+
+.mandarin-page .mandarin-faq-container { max-width: 48rem; }.mandarin-page .mandarin-faq-list { display: grid; gap: .8rem; }.mandarin-page .mandarin-faq-item { overflow: hidden; border: 1px solid var(--mandarin-line); border-radius: 1rem; background: white; box-shadow: 0 .25rem .6rem rgba(23,32,51,.05); }.mandarin-page .mandarin-faq-item h3 { margin: 0; }.mandarin-page .mandarin-faq-item button { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 1rem; border: 0; padding: 1.15rem 1.2rem; background: white; color: var(--mandarin-ink); font: inherit; font-weight: 800; text-align: left; cursor: pointer; }.mandarin-page .mandarin-faq-item button:hover { background: #f6fbfd; }.mandarin-page .mandarin-faq-item button svg { flex: 0 0 auto; transition: transform .2s ease; }.mandarin-page .mandarin-faq-item button[aria-expanded='true'] svg { transform: rotate(180deg); }.mandarin-page .mandarin-faq-item div { padding: 0 1.2rem 1.2rem; }.mandarin-page .mandarin-faq-item p { margin: 0; color: #5b6675; line-height: 1.65; }
+
+.mandarin-page .mandarin-contact { background: linear-gradient(120deg, #dff4fd, #fbf5ce); text-align: center; }.mandarin-page .mandarin-contact-content { max-width: 48rem; }.mandarin-page .mandarin-email-link { display: inline-flex; align-items: center; gap: .35rem; min-height: 3.75rem; color: #12648d; font-size: 1.125rem; font-weight: 700; }.mandarin-page .mandarin-contact-actions { align-items: center; margin-top: 2rem; }
+@media (min-width: 768px) { .mandarin-page .mandarin-section-heading h2, .mandarin-page .mandarin-contact h2 { font-size: 2.25rem; } }
+@media (min-width: 1024px) { .mandarin-page .mandarin-hero { padding: 6rem 0 7rem; } .mandarin-page .mandarin-hero h1 { font-size: 3.75rem; } }
+@media (max-width: 760px) { .mandarin-page .mandarin-programme-grid, .mandarin-page .mandarin-process-grid, .mandarin-page .mandarin-approach-layout, .mandarin-page .mandarin-playground-layout, .mandarin-page .mandarin-pricing-layout { grid-template-columns: 1fr; }.mandarin-page .mandarin-approach-layout, .mandarin-page .mandarin-playground-layout, .mandarin-page .mandarin-pricing-layout { gap: 2.4rem; }.mandarin-page .mandarin-process-grid { gap: .3rem; }.mandarin-page .mandarin-process-grid > article { display: grid; grid-template-columns: 2.25rem 1fr; column-gap: 1rem; padding: .9rem 0; text-align: left; }.mandarin-page .mandarin-process-grid > article > span { grid-row: span 2; margin: .15rem 0 0; }.mandarin-page .mandarin-process-grid h3 { margin: 0; }.mandarin-page .mandarin-process-grid p { margin-top: .4rem; }.mandarin-page .mandarin-section-heading { margin-bottom: 2.5rem; }.mandarin-page .mandarin-hero-actions, .mandarin-page .mandarin-contact-actions { flex-direction: column; }.mandarin-page .mandarin-hero-actions .mandarin-button, .mandarin-page .mandarin-contact-actions .mandarin-button { width: 100%; }.mandarin-page .mandarin-contact-actions .mandarin-email-link { width: 100%; justify-content: center; }.mandarin-page .mandarin-game-topline { align-items: flex-start; flex-direction: column; gap: .4rem; }.mandarin-page .mandarin-character-options { gap: .45rem; }.mandarin-page .mandarin-character-button { min-height: 3.6rem; font-size: 1.55rem; } }
+@media (prefers-reduced-motion: reduce) { .mandarin-page *, .mandarin-page *::before, .mandarin-page *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }

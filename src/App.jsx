@@ -21,7 +21,7 @@ const getRoutePath = () => {
 };
 
 const App = () => {
-  const [lang, setLang] = useState('en');
+  const [lang, setLang] = useState(() => (getRoutePath() === '/chinese' ? 'zh' : 'en'));
   const currentText = translations[lang];
   const isChineseRoute = getRoutePath() === '/chinese';
 
