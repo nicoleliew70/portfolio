@@ -14,6 +14,7 @@ const LanguageSelector = ({ lang, onChange, mobile = false }) => (
   <div
     role="group"
     aria-label="Website language"
+    translate="no"
     title="Website language"
     className={mobile
       ? 'rounded-2xl border border-gray-200 bg-gray-50 p-3'
@@ -71,8 +72,8 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems }) =
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-sm" aria-label="Primary navigation">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex min-h-20 items-center justify-between gap-4">
-          <div className="flex shrink-0 items-center gap-2">
+        <div className="flex min-h-20 flex-wrap items-center justify-between gap-4 py-4">
+          <div className="flex shrink-0 items-center gap-2" translate="no">
             <div className="bg-yellow-400 p-2 rounded-full text-white">
               <BookOpen size={24} />
             </div>
@@ -80,8 +81,8 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems }) =
           </div>
 
           {/* Desktop navigation groups */}
-          <div className="hidden min-w-0 flex-1 items-center justify-end gap-4 xl:flex">
-            <div className="flex shrink-0 items-center gap-4 border-r border-gray-200 pr-4">
+          <div className="hidden min-w-0 max-w-full flex-1 flex-wrap items-center justify-end gap-4 xl:flex">
+            <div className="flex max-w-full flex-wrap items-center gap-4 border-r border-gray-200 pr-4">
               {links.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -114,6 +115,7 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems }) =
               onClick={cycleLanguage}
               aria-label={`Website language: ${languageOptions.find(({ code }) => code === lang)?.label}. Open the menu for all languages.`}
               title="Website language"
+              translate="no"
               className={`flex items-center gap-1 rounded-lg bg-sky-50 px-2.5 py-1.5 text-sm font-bold text-sky-600 ${focusRingClasses}`}
             >
               {languageOptions.find(({ code }) => code === lang)?.label} <Globe size={14} aria-hidden="true" />

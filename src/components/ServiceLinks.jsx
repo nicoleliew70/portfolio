@@ -27,6 +27,7 @@ const ServiceLinks = ({ mobile = false, onNavigate }) => {
     <div
       role="group"
       aria-label="Tuition classes"
+      translate="no"
       className={mobile
         ? 'rounded-2xl border border-yellow-200 bg-yellow-50 p-3 shadow-sm'
         : 'flex shrink-0 items-center gap-2 rounded-2xl border border-yellow-200 bg-yellow-50 px-2.5 py-1.5 shadow-sm'}
