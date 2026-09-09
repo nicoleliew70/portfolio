@@ -7,5 +7,10 @@
 /chinese/index.html  /chinese  301
 /chinese      /chinese/index.html  200
 
+/singapore/index.html  /singapore  301
+/singapore  /singapore/index.html  200
+/australia/index.html  /australia  301
+/australia  /australia/index.html  200
+
 # Decap CMS admin
 /admin/*    /admin/index.html   200

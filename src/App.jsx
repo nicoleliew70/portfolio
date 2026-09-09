@@ -12,18 +12,22 @@ import Testimonials from './components/Testimonials';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import ChinesePage from './pages/ChinesePage';
+import { marketForPath, normalizeRoutePath, mandarinMarkets } from './data/mandarinMarkets';
 
 const whatsAppLink = `https://wa.me/${settings.whatsappNumber}`;
 
 const getRoutePath = () => {
-  const path = window.location.pathname.replace(/\/+$/, '') || '/';
-  return path === '/chinese/index.html' ? '/chinese' : path;
+  return normalizeRoutePath(window.location.pathname);
 };
 
 const App = () => {
-  const [lang, setLang] = useState(() => (getRoutePath() === '/chinese' ? 'zh' : 'en'));
+  const market = marketForPath(getRoutePath());
+  const [lang, setLang] = useState(() => {
+    const requested = new URLSearchParams(window.location.search).get('lang');
+    return market && ['en', 'zh', 'ms'].includes(requested) ? requested : market ? 'zh' : 'en';
+  });
   const currentText = translations[lang];
-  const isChineseRoute = getRoutePath() === '/chinese';
+  const isChineseRoute = Boolean(market);
 
   useEffect(() => {
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang === 'ms' ? 'ms' : 'en';
@@ -32,10 +36,11 @@ const App = () => {
   if (isChineseRoute) {
     return (
       <ChinesePage
+        market={market}
         lang={lang}
         setLang={setLang}
         currentText={currentText}
-        whatsAppLink={whatsAppLink}
+        whatsAppLink={`${whatsAppLink}?text=${encodeURIComponent(`Hello, I would like to enquire about Mandarin classes for ${mandarinMarkets[market].name} (${mandarinMarkets[market].currency}).`)}`}
       />
     );
   }

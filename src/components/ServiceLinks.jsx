@@ -1,12 +1,8 @@
-const normalizePath = (path) => {
-  const normalized = path.replace(/\/+$/, '');
-  const route = normalized || '/';
-  return route === '/chinese/index.html' ? '/chinese' : route;
-};
+import { marketForPath, mandarinMarkets, preferredMandarinPath } from '../data/mandarinMarkets';
 
 const ServiceLinks = ({ mobile = false, onNavigate }) => {
-  const currentPath = normalizePath(window.location.pathname);
-  const isChineseService = currentPath === '/chinese';
+  const market = marketForPath(window.location.pathname);
+  const isChineseService = Boolean(market);
 
   const links = [
     {
@@ -16,7 +12,7 @@ const ServiceLinks = ({ mobile = false, onNavigate }) => {
       ariaLabel: 'English classes service',
     },
     {
-      href: '/chinese',
+      href: market ? mandarinMarkets[market].path : preferredMandarinPath(),
       label: 'Mandarin 中文',
       active: isChineseService,
       ariaLabel: 'Mandarin Chinese classes service',

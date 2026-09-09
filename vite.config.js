@@ -18,6 +18,8 @@ export default defineConfig({
       input: {
         main: resolve(projectRoot, 'index.html'),
         chinese: resolve(projectRoot, 'chinese/index.html'),
+        singapore: resolve(projectRoot, 'singapore/index.html'),
+        australia: resolve(projectRoot, 'australia/index.html'),
       },
     },
   },

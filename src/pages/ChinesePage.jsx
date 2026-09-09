@@ -14,6 +14,9 @@ import Footer from '../components/Footer';
 import useScrollReveal from '../hooks/useScrollReveal';
 import { trackEvent, trackWhatsAppClick } from '../utils/analytics';
 import settings from '../data/settings.json';
+import { mandarinMarkets } from '../data/mandarinMarkets';
+import MarketSelector from '../components/MarketSelector';
+import RegionalMandarinPricing from '../components/RegionalMandarinPricing';
 import './ChinesePage.css';
 
 const copy = {
@@ -212,15 +215,16 @@ const MandarinPlayground = ({ t, lang }) => {
   );
 };
 
-const ChinesePage = ({ lang, setLang, currentText, whatsAppLink }) => {
+const ChinesePage = ({ lang, setLang, currentText, whatsAppLink, market = 'malaysia' }) => {
   const [openFaq, setOpenFaq] = useState(0);
   const t = copy[lang] || copy.en;
   const navigationItems = navigationFor(t);
   const whatsapp = (location) => () => trackWhatsAppClick(location);
+  const marketConfig = mandarinMarkets[market];
 
   return (
-    <div className="mandarin-page min-h-screen selection:bg-yellow-200" data-site-language={lang} data-service="chinese">
-      <Navbar lang={lang} setLang={setLang} currentText={currentText} whatsAppLink={whatsAppLink} navigationItems={navigationItems} />
+    <div className="mandarin-page min-h-screen selection:bg-yellow-200" data-site-language={lang} data-service="chinese" data-market={market}>
+      <Navbar lang={lang} setLang={setLang} currentText={currentText} whatsAppLink={whatsAppLink} navigationItems={navigationItems} market={market} />
       <main>
         <section id="mandarin-hero" className="mandarin-hero" aria-labelledby="mandarin-page-title">
           <div className="mandarin-hero-shape mandarin-hero-shape--one animate-blob" aria-hidden="true" />
@@ -270,10 +274,15 @@ const ChinesePage = ({ lang, setLang, currentText, whatsAppLink }) => {
         </section>
 
         <section id="mandarin-pricing" className="mandarin-section mandarin-section--ink" aria-labelledby="mandarin-pricing-title">
+          <div className="mandarin-container mb-8"><MarketSelector market={market} lang={lang} /></div>
+          {marketConfig.courses.length > 0 ? (
+            <Reveal className="mandarin-container"><RegionalMandarinPricing market={marketConfig} lang={lang} whatsAppLink={whatsAppLink} onEnquire={whatsapp('mandarin_pricing')} /></Reveal>
+          ) : (
           <Reveal className="mandarin-container mandarin-pricing-layout">
             <SectionHeading {...t.pricing} centered={false} id="mandarin-pricing-title" />
             <div className="mandarin-pricing-card"><PenLine size={25} aria-hidden="true" /><ul>{t.pricing.points.map((point) => <li key={point}><Check size={17} aria-hidden="true" /> {point}</li>)}</ul><a href={whatsAppLink} target="_blank" rel="noreferrer" onClick={whatsapp('mandarin_pricing')} className="mandarin-button mandarin-button--yellow">{t.pricing.cta}<ArrowRight size={18} aria-hidden="true" /></a><p>{t.pricing.note}</p></div>
           </Reveal>
+          )}
         </section>
 
         <section id="mandarin-faq" className="mandarin-section mandarin-section--paper" aria-labelledby="mandarin-faq-title">

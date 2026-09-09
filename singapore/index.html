@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Redirect legacy GitHub Pages and Cloudflare Pages hosts to the Academy domain.
+      var legacyHost = window.location.hostname;
+      if (legacyHost === 'nicoleliew70.github.io' || legacyHost === 'teachernicole.pages.dev') {
+        var legacyPath = legacyHost === 'nicoleliew70.github.io'
+          ? window.location.pathname.replace(/^\/portfolio(?=\/|$)/, '')
+          : window.location.pathname;
+        var newLink = 'https://teachernicoleacademy.com' + legacyPath + window.location.search + window.location.hash;
+        window.location.replace(newLink);
+      }
+    </script>
+    <title>Teacher Nicole Academy | 新加坡华语课程咨询</title>
+    <meta name="description" content="与 Teacher Nicole 讨论适合儿童、青少年或成人的华语学习方向：拼音声调、阅读、书写与日常沟通。" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://teachernicoleacademy.com/singapore" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://teachernicoleacademy.com/singapore" />
+    <meta property="og:title" content="Teacher Nicole Academy | 新加坡华语课程咨询" />
+    <meta property="og:description" content="从拼音、阅读与书写，到日常沟通；欢迎咨询适合你的华语学习方向。" />
+    <meta property="og:image" content="https://teachernicoleacademy.com/images/teacher-nicole.jpg" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Teacher Nicole Academy | 新加坡华语课程咨询" />
+    <meta name="twitter:description" content="从拼音、阅读与书写，到日常沟通；欢迎咨询适合你的华语学习方向。" />
+    <meta name="twitter:image" content="https://teachernicoleacademy.com/images/teacher-nicole.jpg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-E7JY92Y1T3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-E7JY92Y1T3');
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -3,6 +3,7 @@ import { BookOpen, MessageCircle, Menu, X, Globe, Gamepad2 } from 'lucide-react'
 import { trackLanguageSwitch, trackWhatsAppClick } from '../utils/analytics';
 import settings from '../data/settings.json';
 import ServiceLinks from './ServiceLinks';
+import MarketSelector from './MarketSelector';
 
 const focusRingClasses = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2';
 const languageOptions = [
@@ -45,7 +46,7 @@ const LanguageSelector = ({ lang, onChange, mobile = false }) => (
   </div>
 );
 
-const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems }) => {
+const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems, market }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen((open) => !open);
   const closeMenu = () => setIsMenuOpen(false);
@@ -71,7 +72,7 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems }) =
   const links = navigationItems || defaultNavigationItems;
 
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow-sm" aria-label="Primary navigation">
+    <nav className="sticky top-0 z-[60] bg-white shadow-sm" aria-label="Primary navigation">
       <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <div className="flex min-h-20 flex-wrap items-center justify-between gap-2 py-4 sm:gap-4">
           <div className="flex shrink-0 items-center gap-1.5 sm:gap-2" translate="no">
@@ -125,6 +126,8 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems }) =
               type="button"
               onClick={toggleMenu}
               aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-navigation"
               className={`text-gray-600 hover:text-sky-600 ${focusRingClasses}`}
             >
               {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -135,9 +138,10 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems }) =
 
       {/* Mobile/tablet menu */}
       {isMenuOpen && (
-        <div className="border-t border-gray-100 bg-white shadow-lg xl:hidden">
+        <div id="mobile-navigation" className="max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-gray-100 bg-white shadow-lg xl:hidden">
           <div className="mx-auto grid max-w-7xl gap-3 px-4 pt-4 pb-6 sm:px-6 lg:px-8">
             <ServiceLinks mobile onNavigate={closeMenu} />
+            {market && <MarketSelector market={market} lang={lang} onNavigate={closeMenu} />}
             <LanguageSelector mobile lang={lang} onChange={handleLangChange} />
             <div className="grid gap-1">
               {links.map((item) => (
