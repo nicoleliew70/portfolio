@@ -16,9 +16,9 @@
   status = 200
   force = true
 
-# Redirect everything else to GitHub Pages
+# Redirect everything else to the canonical public domain
 [[redirects]]
   from = "/*"
-  to = "https://nicoleliew70.github.io/portfolio/:splat"
+  to = "https://teachernicoleacademy.com/:splat"
   status = 301
   force = true

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BookOpen, MessageCircle, Menu, X, Globe, Gamepad2 } from 'lucide-react';
 import { trackLanguageSwitch, trackWhatsAppClick } from '../utils/analytics';
+import settings from '../data/settings.json';
 import ServiceLinks from './ServiceLinks';
 
 const focusRingClasses = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2';
@@ -71,13 +72,13 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems }) =
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-sm" aria-label="Primary navigation">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex min-h-20 flex-wrap items-center justify-between gap-4 py-4">
-          <div className="flex shrink-0 items-center gap-2" translate="no">
+      <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+        <div className="flex min-h-20 flex-wrap items-center justify-between gap-2 py-4 sm:gap-4">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2" translate="no">
             <div className="bg-yellow-400 p-2 rounded-full text-white">
               <BookOpen size={24} />
             </div>
-            <span className="text-xl md:text-2xl font-bold text-sky-600 tracking-tight whitespace-nowrap">Teacher Nicole</span>
+            <span className="text-sm sm:text-xl md:text-2xl font-bold text-sky-600 leading-none tracking-tighter whitespace-nowrap">{settings.brandName}</span>
           </div>
 
           {/* Desktop navigation groups */}
@@ -109,7 +110,7 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems }) =
           </div>
 
           {/* Mobile/tablet controls */}
-          <div className="flex items-center gap-3 xl:hidden">
+          <div className="flex items-center gap-2 sm:gap-3 xl:hidden">
             <button
               type="button"
               onClick={cycleLanguage}

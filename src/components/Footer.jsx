@@ -26,7 +26,7 @@ const Footer = ({ currentText, whatsAppLink, navigationItems }) => {
               <h3 className="text-white font-bold mb-4">{ft.contact}</h3>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-center gap-2"><Phone size={16} /> {settings.phone}</li>
-                <li className="flex items-center gap-2"><Mail size={16} /> {settings.email}</li>
+                <li className="flex items-center gap-2"><Mail size={16} className="shrink-0" /> <a href={`mailto:${settings.email}`} className="min-w-0 break-all hover:text-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-400">{settings.email}</a></li>
                 <li className="flex items-center gap-2"><MapPin size={16} /> {settings.location}</li>
               </ul>
             </div>
@@ -40,7 +40,8 @@ const Footer = ({ currentText, whatsAppLink, navigationItems }) => {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-xs">
-            &copy; {new Date().getFullYear()} {settings.copyrightName}. All rights reserved.
+            <p>Business Registration No.: {settings.businessRegistrationNumber}</p>
+            <p className="mt-2">&copy; 2026 {settings.copyrightName}. All rights reserved.</p>
           </div>
         </div>
       </footer>
