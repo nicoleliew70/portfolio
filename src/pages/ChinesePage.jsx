@@ -273,8 +273,8 @@ const ChinesePage = ({ lang, setLang, currentText, whatsAppLink, market = 'malay
           </Reveal>
         </section>
 
-        <section id="mandarin-pricing" className="mandarin-section mandarin-section--ink" aria-labelledby="mandarin-pricing-title">
-          <div className="mandarin-container mb-8"><MarketSelector market={market} lang={lang} /></div>
+        <section id="mandarin-pricing" className="mandarin-section mandarin-section--ink mandarin-pricing-section" aria-labelledby="mandarin-pricing-title">
+          <div className="mandarin-container mandarin-market-selector-wrap"><MarketSelector market={market} lang={lang} /></div>
           {marketConfig.courses.length > 0 ? (
             <Reveal className="mandarin-container"><RegionalMandarinPricing market={marketConfig} lang={lang} whatsAppLink={whatsAppLink} onEnquire={whatsapp('mandarin_pricing')} /></Reveal>
           ) : (

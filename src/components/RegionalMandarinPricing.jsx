@@ -1,24 +1,44 @@
+import { ArrowRight } from 'lucide-react';
+
 const labels = {
-  en: { title: 'Mandarin lesson fees', hourly: 'Single class · per hour', package: '10-hour package', enquiry: 'Ask about lessons' },
-  zh: { title: '华语课程收费', hourly: '单堂课 · 每小时', package: '10小时配套', enquiry: '咨询课程' },
-  ms: { title: 'Yuran kelas Mandarin', hourly: 'Kelas tunggal · sejam', package: 'Pakej 10 jam', enquiry: 'Tanya tentang kelas' },
+  en: { title: 'Mandarin lesson fees', hourly: 'Single class · per hour', package: '10-hour package', format: '1-to-1 lesson', enquiry: 'Ask about lessons' },
+  zh: { title: '华语课程收费', hourly: '单堂课 · 每小时', package: '10小时配套', format: '一对一课程', enquiry: '咨询课程' },
+  ms: { title: 'Yuran kelas Mandarin', hourly: 'Kelas tunggal · sejam', package: 'Pakej 10 jam', format: 'Kelas 1-to-1', enquiry: 'Tanya tentang kelas' },
 };
 
 const RegionalMandarinPricing = ({ market, lang, whatsAppLink, onEnquire }) => {
   const t = labels[lang] || labels.en;
+
   return (
     <div className="mandarin-regional-pricing">
-      <h2 id="mandarin-pricing-title" className="text-3xl font-bold">{t.title}</h2>
-      <p className="mb-6 mt-2" translate="no">{market.name} · {market.currency}</p>
-      <div className="grid gap-5 md:grid-cols-2">
-        {market.courses.map((course) => (
-          <article key={course.name} className="rounded-3xl bg-white p-6 text-slate-800 shadow-lg">
-            <h3 className="text-xl font-bold" lang="en">{course.name}</h3>
-            <dl className="my-6 grid gap-4">
-              <div><dt className="text-sm text-slate-600">{t.hourly}</dt><dd className="text-2xl font-bold text-sky-700" translate="no">{market.symbol}{course.hourly} <span className="text-sm">{market.currency}</span></dd></div>
-              <div><dt className="text-sm text-slate-600">{t.package}</dt><dd className="text-2xl font-bold text-sky-700" translate="no">{market.symbol}{course.package} <span className="text-sm">{market.currency}</span></dd></div>
+      <div className="mandarin-regional-pricing__heading">
+        <div>
+          <p className="mandarin-eyebrow">{market.name} · {market.currency}</p>
+          <h2 id="mandarin-pricing-title">{t.title}</h2>
+        </div>
+        <span className="mandarin-regional-pricing__currency" translate="no">{market.currency}</span>
+      </div>
+      <div className="mandarin-regional-pricing__grid">
+        {market.courses.map((course, index) => (
+          <article key={course.name} className="mandarin-regional-card">
+            <div className="mandarin-regional-card__topline">
+              <span className="mandarin-regional-card__number">0{index + 1}</span>
+              <span className="mandarin-regional-card__label">{t.format}</span>
+            </div>
+            <h3 lang="en">{course.name}</h3>
+            <dl className="mandarin-regional-card__prices">
+              <div>
+                <dt>{t.hourly}</dt>
+                <dd translate="no">{market.symbol}{course.hourly}</dd>
+              </div>
+              <div>
+                <dt>{t.package}</dt>
+                <dd translate="no">{market.symbol}{course.package}</dd>
+              </div>
             </dl>
-            <a href={whatsAppLink} target="_blank" rel="noreferrer" onClick={onEnquire} className="mandarin-button mandarin-button--yellow">{t.enquiry}</a>
+            <a href={whatsAppLink} target="_blank" rel="noreferrer" onClick={onEnquire} className="mandarin-button mandarin-button--yellow mandarin-regional-card__button">
+              {t.enquiry}<ArrowRight size={18} aria-hidden="true" />
+            </a>
           </article>
         ))}
       </div>
