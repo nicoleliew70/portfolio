@@ -4,6 +4,22 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Keep the app background stable while mobile browsers resize their visual viewport. */
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  background: #111827;
+}
+
+/* Extend the footer beneath phone safe areas instead of exposing the canvas. */
+.site-footer {
+  padding-bottom: calc(3rem + env(safe-area-inset-bottom, 0px));
+}
+
 @keyframes blob {
   0% { transform: translate(0px, 0px) scale(1); }
   33% { transform: translate(30px, -50px) scale(1.1); }

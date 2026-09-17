@@ -12,6 +12,21 @@
   overflow-x: clip;
 }
 
+/* Make the footer the painted end of the page, including device safe areas. */
+.mandarin-page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mandarin-page > main {
+  flex: 1 0 auto;
+}
+
+.mandarin-page .site-footer {
+  flex: 0 0 auto;
+}
+
 .mandarin-page .mandarin-container { width: min(100% - 2rem, 72rem); margin-inline: auto; }
 .mandarin-page .mandarin-section, .mandarin-page .mandarin-contact { padding: 5rem 0; scroll-margin-top: 5rem; }
 .mandarin-page .mandarin-section--paper { background: var(--mandarin-paper); }
