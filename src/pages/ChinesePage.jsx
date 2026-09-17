@@ -15,7 +15,6 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import { trackEvent, trackWhatsAppClick } from '../utils/analytics';
 import settings from '../data/settings.json';
 import { mandarinMarkets } from '../data/mandarinMarkets';
-import MarketSelector from '../components/MarketSelector';
 import RegionalMandarinPricing from '../components/RegionalMandarinPricing';
 import './ChinesePage.css';
 
@@ -71,7 +70,7 @@ const copy = {
     contact: { eyebrow: 'Ready when you are', title: 'Start with a simple hello.', lead: 'Tell Teacher Nicole who is learning Mandarin and what you would like to work on. A short message is enough to begin the conversation.', cta: 'Message on WhatsApp', email: 'Or email directly' },
   },
   zh: {
-    nav: { programmes: '课程方向', process: '学习流程', pricing: '收费咨询', faq: '常见问题' },
+    nav: { programmes: '课程方向', process: '学习流程', pricing: '课程收费', faq: '常见问题' },
     hero: {
       eyebrow: 'Nicole 老师的华语学习空间',
       title: '把华语学习变得',
@@ -137,6 +136,18 @@ const navigationFor = (t) => [
   { href: '#mandarin-pricing', label: t.nav.pricing },
   { href: '#mandarin-faq', label: t.nav.faq },
 ];
+
+const marketStripLabels = {
+  en: {
+    malaysia: ['Malaysia', 'Mandarin tuition'], singapore: ['Singapore', 'Mandarin tuition'], australia: ['Australia', 'Mandarin tuition'],
+  },
+  zh: {
+    malaysia: ['马来西亚', '华语课程'], singapore: ['新加坡', '华语课程'], australia: ['澳大利亚', '华语课程'],
+  },
+  ms: {
+    malaysia: ['Malaysia', 'Kelas Mandarin'], singapore: ['Singapura', 'Kelas Mandarin'], australia: ['Australia', 'Kelas Mandarin'],
+  },
+};
 
 const toneRounds = [
   { pinyin: 'mā', character: '妈', meaning: { en: 'mother', zh: '妈妈', ms: 'ibu' } },
@@ -215,16 +226,18 @@ const MandarinPlayground = ({ t, lang }) => {
   );
 };
 
-const ChinesePage = ({ lang, setLang, currentText, whatsAppLink, market = 'malaysia' }) => {
+const ChinesePage = ({ lang, setLang, currentText, whatsAppLink, market = 'malaysia', onMarketChange }) => {
   const [openFaq, setOpenFaq] = useState(0);
   const t = copy[lang] || copy.en;
   const navigationItems = navigationFor(t);
   const whatsapp = (location) => () => trackWhatsAppClick(location);
   const marketConfig = mandarinMarkets[market];
+  const [marketName, marketService] = (marketStripLabels[lang] || marketStripLabels.en)[market] || marketStripLabels.en.malaysia;
 
   return (
     <div className="mandarin-page min-h-screen selection:bg-yellow-200" data-site-language={lang} data-service="chinese" data-market={market}>
-      <Navbar lang={lang} setLang={setLang} currentText={currentText} whatsAppLink={whatsAppLink} navigationItems={navigationItems} market={market} />
+      <Navbar lang={lang} setLang={setLang} currentText={currentText} whatsAppLink={whatsAppLink} navigationItems={navigationItems} market={market} onMarketChange={onMarketChange} />
+      <div className="bg-sky-100 py-2 text-center text-sm font-bold text-sky-800">{marketName} · {marketService}</div>
       <main>
         <section id="mandarin-hero" className="mandarin-hero" aria-labelledby="mandarin-page-title">
           <div className="mandarin-hero-shape mandarin-hero-shape--one animate-blob" aria-hidden="true" />
@@ -274,7 +287,6 @@ const ChinesePage = ({ lang, setLang, currentText, whatsAppLink, market = 'malay
         </section>
 
         <section id="mandarin-pricing" className="mandarin-section mandarin-section--ink mandarin-pricing-section" aria-labelledby="mandarin-pricing-title">
-          <div className="mandarin-container mandarin-market-selector-wrap"><MarketSelector market={market} lang={lang} /></div>
           {marketConfig.courses.length > 0 ? (
             <Reveal className="mandarin-container"><RegionalMandarinPricing market={marketConfig} lang={lang} whatsAppLink={whatsAppLink} onEnquire={whatsapp('mandarin_pricing')} /></Reveal>
           ) : (

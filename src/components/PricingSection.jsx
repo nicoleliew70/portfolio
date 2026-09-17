@@ -3,15 +3,22 @@ import useScrollReveal from '../hooks/useScrollReveal';
 import { trackWhatsAppClick } from '../utils/analytics';
 import pricingData from '../data/pricing.json';
 
+const pricingLabels = {
+  en: { title: 'Malaysia English tuition fees', note: 'Fees apply to students residing in Malaysia.' },
+  zh: { title: '马来西亚英语课程收费', note: '收费适用于居住在马来西亚的学生。' },
+  ms: { title: 'Yuran Bahasa Inggeris Malaysia', note: 'Yuran dikenakan kepada pelajar yang menetap di Malaysia.' },
+};
+
 const PricingSection = ({ currentText, lang, whatsAppLink }) => {
   const { ref, isVisible } = useScrollReveal();
   const tiers = pricingData.tiers;
+  const labels = pricingLabels[lang] || pricingLabels.en;
 
   return (
     <section id="pricing" className="py-20 bg-sky-900 text-white">
       <div ref={ref} className={`max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 scroll-reveal ${isVisible ? 'visible' : ''}`}>
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{currentText.pricing.title}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{labels.title}</h2>
           <p className="text-sky-200 text-lg">{pricingData.subtitle[lang]}</p>
         </div>
 
@@ -54,7 +61,7 @@ const PricingSection = ({ currentText, lang, whatsAppLink }) => {
             );
           })}
         </div>
-        <p className="text-center text-sky-300 text-sm mt-8 opacity-75">{pricingData.disclaimer[lang]}</p>
+        <p className="text-center text-sky-300 text-sm mt-8 opacity-75">{labels.note} {pricingData.disclaimer[lang]}</p>
       </div>
     </section>
   );

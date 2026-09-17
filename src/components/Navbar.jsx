@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { BookOpen, MessageCircle, Menu, X, Globe, Gamepad2 } from 'lucide-react';
 import { trackLanguageSwitch, trackWhatsAppClick } from '../utils/analytics';
 import settings from '../data/settings.json';
-import ServiceLinks from './ServiceLinks';
-import MarketSelector from './MarketSelector';
+import RegionMenu from './RegionMenu';
+import { getAllowedLanguages } from '../data/regionLanguages';
 
 const focusRingClasses = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2';
 const languageOptions = [
@@ -12,7 +12,11 @@ const languageOptions = [
   { code: 'ms', label: 'BM' },
 ];
 
-const LanguageSelector = ({ lang, onChange, mobile = false }) => (
+const LanguageSelector = ({ lang, onChange, market, mobile = false }) => {
+  const allowedLanguages = getAllowedLanguages(market);
+  const options = languageOptions.filter(({ code }) => allowedLanguages.includes(code));
+
+  return (
   <div
     role="group"
     aria-label="Website language"
@@ -27,8 +31,8 @@ const LanguageSelector = ({ lang, onChange, mobile = false }) => (
       <span>Website language</span>
     </div>
     {!mobile && <Globe size={14} className="ml-1 text-gray-400" aria-hidden="true" />}
-    <div className={mobile ? 'grid grid-cols-3 gap-1' : 'flex items-center'}>
-      {languageOptions.map(({ code, label }) => (
+    <div className={mobile ? (options.length === 2 ? 'grid grid-cols-2 gap-1' : 'grid grid-cols-3 gap-1') : 'flex items-center'}>
+      {options.map(({ code, label }) => (
         <button
           key={code}
           type="button"
@@ -44,21 +48,25 @@ const LanguageSelector = ({ lang, onChange, mobile = false }) => (
       ))}
     </div>
   </div>
-);
+  );
+};
 
-const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems, market }) => {
+const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems, market, onMarketChange }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen((open) => !open);
   const closeMenu = () => setIsMenuOpen(false);
+  const allowedLanguages = getAllowedLanguages(market);
+  const availableLanguageOptions = languageOptions.filter(({ code }) => allowedLanguages.includes(code));
 
   const handleLangChange = (code) => {
+    if (!allowedLanguages.includes(code)) return;
     setLang(code);
     trackLanguageSwitch(code);
   };
 
   const cycleLanguage = () => {
-    const currentIndex = languageOptions.findIndex(({ code }) => code === lang);
-    const nextLanguage = languageOptions[(currentIndex + 1) % languageOptions.length];
+    const currentIndex = availableLanguageOptions.findIndex(({ code }) => code === lang);
+    const nextLanguage = availableLanguageOptions[(currentIndex + 1) % availableLanguageOptions.length];
     handleLangChange(nextLanguage.code);
   };
 
@@ -96,8 +104,8 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems, mar
               })}
             </div>
 
-            <ServiceLinks />
-            <LanguageSelector lang={lang} onChange={handleLangChange} />
+            <RegionMenu market={market} lang={lang} onMarketChange={onMarketChange} />
+            <LanguageSelector lang={lang} market={market} onChange={handleLangChange} />
             <a
               href={whatsAppLink}
               target="_blank"
@@ -115,12 +123,12 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems, mar
             <button
               type="button"
               onClick={cycleLanguage}
-              aria-label={`Website language: ${languageOptions.find(({ code }) => code === lang)?.label}. Open the menu for all languages.`}
+              aria-label={`Website language: ${availableLanguageOptions.find(({ code }) => code === lang)?.label}. Open the menu for all languages.`}
               title="Website language"
               translate="no"
               className={`flex items-center gap-1 rounded-lg bg-sky-50 px-2.5 py-1.5 text-sm font-bold text-sky-600 ${focusRingClasses}`}
             >
-              {languageOptions.find(({ code }) => code === lang)?.label} <Globe size={14} aria-hidden="true" />
+              {availableLanguageOptions.find(({ code }) => code === lang)?.label} <Globe size={14} aria-hidden="true" />
             </button>
             <button
               type="button"
@@ -140,9 +148,8 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems, mar
       {isMenuOpen && (
         <div id="mobile-navigation" className="max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-gray-100 bg-white shadow-lg xl:hidden">
           <div className="mx-auto grid max-w-7xl gap-3 px-4 pt-4 pb-6 sm:px-6 lg:px-8">
-            <ServiceLinks mobile onNavigate={closeMenu} />
-            {market && <MarketSelector market={market} lang={lang} onNavigate={closeMenu} />}
-            <LanguageSelector mobile lang={lang} onChange={handleLangChange} />
+            <RegionMenu mobile market={market} lang={lang} onMarketChange={onMarketChange} onNavigate={closeMenu} />
+            <LanguageSelector mobile lang={lang} market={market} onChange={handleLangChange} />
             <div className="grid gap-1">
               {links.map((item) => (
                 <a key={item.href} href={item.href} onClick={closeMenu} className={`block rounded-xl px-3 py-3 text-base font-semibold text-gray-700 transition hover:bg-sky-50 hover:text-sky-600 ${focusRingClasses}`}>{item.label}</a>

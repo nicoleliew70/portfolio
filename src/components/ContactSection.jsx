@@ -27,8 +27,9 @@ const ContactSection = ({ currentText, whatsAppLink }) => {
 
   const handleWhatsApp = () => {
     if (!isValid) return;
-    const text = encodeURIComponent(buildMessage());
-    window.open(`${whatsAppLink}?text=${text}`, '_blank');
+    const url = new URL(whatsAppLink);
+    url.searchParams.set('text', buildMessage());
+    window.open(url.toString(), '_blank');
     trackEvent('contact_whatsapp', { method: 'whatsapp' });
     setSent(true);
   };

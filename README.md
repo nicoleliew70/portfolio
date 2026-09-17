@@ -1,5 +1,7 @@
 # React + Vite
 
+During local Vite development, the app starts in Malaysia with English so a saved manual region does not make localhost appear to be another market. Production keeps the selected region in local storage; use the region menu to change it.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

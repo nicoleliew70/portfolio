@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { mandarinMarkets, marketForPath, normalizeRoutePath, preferredMandarinPath, rememberMarket } from '../src/data/mandarinMarkets.js';
+import { mandarinMarkets, marketForPath, normalizeRoutePath } from '../src/data/mandarinMarkets.js';
+import { resolveMarketPayload } from '../src/data/regionPricing.js';
 
 test('Mandarin route variants use the same market; English stays separate', () => {
   for (const [key, market] of Object.entries(mandarinMarkets)) {
@@ -22,24 +23,10 @@ test('Only approved regional fees are published; no Malaysian prices invented', 
   assert.equal(mandarinMarkets.malaysia.courses.length, 0);
 });
 
-test('Remembered market only changes service entry link, never explicit route', () => {
-  const original = Object.getOwnPropertyDescriptor(globalThis, 'localStorage');
-  let saved;
-  try {
-    Object.defineProperty(globalThis, 'localStorage', { configurable: true, value: {
-      getItem: () => saved, setItem: (_, value) => { saved = value; },
-    } });
-    assert.equal(preferredMandarinPath(), '/chinese');
-    rememberMarket('australia');
-    assert.equal(preferredMandarinPath(), '/australia');
-    assert.equal(marketForPath('/singapore'), 'singapore');
-    saved = 'invalid';
-    assert.equal(preferredMandarinPath(), '/chinese');
-    Object.defineProperty(globalThis, 'localStorage', { configurable: true, get() { throw Error('Blocked storage'); } });
-    assert.doesNotThrow(() => rememberMarket('singapore'));
-    assert.equal(preferredMandarinPath(), '/chinese');
-  } finally {
-    if (original) Object.defineProperty(globalThis, 'localStorage', original);
-    else delete globalThis.localStorage;
-  }
+test('Geo payload is the only market source and invalid data is safe', () => {
+  assert.equal(resolveMarketPayload({ market: 'singapore' }), 'singapore');
+  assert.equal(resolveMarketPayload({ market: 'AUSTRALIA' }), 'australia');
+  assert.equal(resolveMarketPayload({ market: 'malaysia', country: 'SG' }), 'malaysia');
+  assert.equal(resolveMarketPayload({ market: 'invalid' }), 'malaysia');
+  assert.equal(resolveMarketPayload({}), 'malaysia');
 });
