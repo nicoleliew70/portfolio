@@ -52,7 +52,7 @@ const Footer = ({ currentText, whatsAppLink, navigationItems }) => {
         target="_blank"
         rel="noreferrer"
         onClick={() => trackWhatsAppClick('floating_button')}
-        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl z-50 transition transform hover:scale-110 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2"
+        className="mandarin-floating-whatsapp fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl z-50 transition transform hover:scale-110 flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2"
         aria-label="Contact on WhatsApp"
       >
         <MessageCircle size={32} />

@@ -80,9 +80,9 @@ const Navbar = ({ lang, setLang, currentText, whatsAppLink, navigationItems, mar
   const links = navigationItems || defaultNavigationItems;
 
   return (
-    <nav className="sticky top-0 z-[60] bg-white shadow-sm" aria-label="Primary navigation">
+    <nav className="mandarin-navbar sticky top-0 z-[60] bg-white shadow-sm" aria-label="Primary navigation">
       <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-        <div className="flex min-h-20 flex-wrap items-center justify-between gap-2 py-4 sm:gap-4">
+        <div className="mandarin-navbar__inner flex min-h-20 items-center justify-between gap-2 py-4 sm:gap-4">
           <div className="flex shrink-0 items-center gap-1.5 sm:gap-2" translate="no">
             <div className="bg-yellow-400 p-2 rounded-full text-white">
               <BookOpen size={24} />
