@@ -13,7 +13,7 @@
     {
       "name": { "en": "Small Group", "zh": "小组班", "ms": "Kelas Kumpulan" },
       "desc": { "en": "Perfect for learning with friends.", "zh": "和朋友一起学，更有动力。", "ms": "Sesuai belajar bersama kawan." },
-      "price": "RM 180",
+      "price": "RM 350",
       "unit": "/mo",
       "badge": "",
       "highlighted": false,
