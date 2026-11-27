@@ -17,6 +17,13 @@ export const mandarinMarkets = {
           zh: '针对中学华文提供个别指导，巩固语文能力并建立学习信心。',
         },
       },
+      {
+        name: 'Mandarin for Adults – 1-to-1 Lessons', hourly: 85, package: 750,
+        description: {
+          en: 'Build confidence in real-life Mandarin through personalised lessons tailored to everyday conversations, professional communication and cultural connections.',
+          zh: '通过量身定制的个别课程，提升日常交流、职场沟通及文化交流中的华语运用信心。',
+        },
+      },
     ],
   },
   australia: {

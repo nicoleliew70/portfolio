@@ -15,7 +15,7 @@ test('Mandarin route variants use the same market; English stays separate', () =
 });
 
 test('Only approved regional fees are published; no Malaysian prices invented', () => {
-  assert.deepEqual(mandarinMarkets.singapore.courses.map(c => [c.hourly, c.package]), [[80,700],[90,800]]);
+  assert.deepEqual(mandarinMarkets.singapore.courses.map(c => [c.hourly, c.package]), [[80,700],[90,800],[85,750]]);
   assert.deepEqual(mandarinMarkets.australia.courses.map(c => [c.hourly, c.package]), [[80,700],[95,850]]);
   assert.equal(mandarinMarkets.singapore.currency, 'SGD');
   assert.equal(mandarinMarkets.australia.currency, 'AUD');

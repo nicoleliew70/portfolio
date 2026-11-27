@@ -124,6 +124,7 @@
 .mandarin-page .mandarin-regional-pricing__currency { display: inline-flex; min-height: 2.5rem; align-items: center; border: 1px solid rgba(250,203,39,.7); border-radius: 999px; padding: .45rem .85rem; color: var(--mandarin-yellow); font-size: .8rem; font-weight: 900; letter-spacing: .08em; }
 .mandarin-page .mandarin-regional-pricing__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 1.25rem; }
 .mandarin-page .mandarin-regional-card { display: flex; min-width: 0; flex-direction: column; border: 1px solid rgba(186,230,253,.8); border-bottom: .55rem solid var(--mandarin-yellow); border-radius: 1.35rem; padding: 2.2rem 2.05rem 1.65rem; background: white; color: var(--mandarin-ink); box-shadow: 0 .75rem 1.4rem rgba(0,0,0,.16); }
+.mandarin-page .mandarin-regional-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .mandarin-page .mandarin-regional-card:nth-child(2) { border-bottom-color: var(--mandarin-sky); }
 .mandarin-page .mandarin-regional-card__topline { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
 .mandarin-page .mandarin-regional-card__index { display: flex; flex-direction: column; gap: .65rem; }
